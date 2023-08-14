@@ -2,7 +2,6 @@ package com.bank.springbackend.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,18 +14,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bank.springbackend.entity.LoginRequest;
 import com.bank.springbackend.entity.User;
 import com.bank.springbackend.service.UserService;
 
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/user")
 @CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
-
-	@Autowired
-	private UserService userService;
+	
+	private final UserService userService;
 	
 	//RESTful API method for Login
 	@PostMapping("/login")

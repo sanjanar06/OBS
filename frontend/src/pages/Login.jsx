@@ -1,6 +1,6 @@
-import React from 'react'
 import UserService from '../services/UserService'
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Login = (props) => {
   const [credentials, setCredentials] = useState({
@@ -9,6 +9,7 @@ const Login = (props) => {
   });
 
   const [loginError, setLoginError] =useState('');
+  const navigate = useNavigate();
 
   const handleInputChange= (event) =>{
     const {name,value}= event.target;
@@ -21,7 +22,9 @@ const Login = (props) => {
   const handleLogin = (event) => {
     event.preventDefault();
     UserService.loginUser(credentials).then((res) =>{
-        console.log('Logged in')
+        console.log('Logged in');
+        navigate("/userProfile");
+        
     })
     .catch((error) =>{
         setLoginError('Invalid credentials')

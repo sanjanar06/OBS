@@ -1,21 +1,21 @@
 package com.bank.springbackend.service;
 
-import java.io.Console;
 import java.util.List;
 import java.util.Objects;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.bank.springbackend.entity.User;
+import com.bank.springbackend.exception.ResourceNotFoundException;
 import com.bank.springbackend.repository.UserRepository;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Service
 public class UserService {
 	
-	@Autowired
-	private UserRepository userRepository;
+	private final UserRepository userRepository;
 	
 	public boolean authenticateUser(String username, String password)
 	{
@@ -40,7 +40,8 @@ public class UserService {
 	}
 	
 	public User updateUser(User updatedUser, Long userId) {
-		User currentUser = userRepository.findById(userId).orElse(null);
+		User currentUser = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User does not exist with id :" + userId));
+
 		if (Objects.nonNull(updatedUser.getUsername()) && !"".equalsIgnoreCase(updatedUser.getUsername())) 
 		{
 	            currentUser.setUsername(
@@ -54,7 +55,7 @@ public class UserService {
 	    }
 	 
 	 
-	        return userRepository.save(currentUser);
+	    return userRepository.save(currentUser);
 	}
 	
 	public void deleteUserById(Long id) {
