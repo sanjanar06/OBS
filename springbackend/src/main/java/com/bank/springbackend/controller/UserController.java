@@ -30,7 +30,7 @@ public class UserController {
 	
 	//RESTful API method for Login
 	@PostMapping("/login")
-	public ResponseEntity<String> loginUser(@RequestBody LoginRequest user)
+	public ResponseEntity<String> loginUser(@RequestBody User user)
 	{
 		String username = user.getUsername();
 		String password  = user.getPassword();
