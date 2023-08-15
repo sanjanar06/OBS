@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Login = (props) => {
   const [credentials, setCredentials] = useState({
-    username:'',
+    userId:'',
     password:''
   });
 
@@ -40,8 +40,8 @@ const Login = (props) => {
                 <label>Username:</label>
                 <input 
                     type="text"
-                    name="username"
-                    value={credentials.username}
+                    name="userId"
+                    value={credentials.userId}
                     onChange={handleInputChange}
                      />
             </div>

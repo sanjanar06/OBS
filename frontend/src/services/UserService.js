@@ -6,8 +6,8 @@ class UserService {
     
     loginUser(user){
         return axios.post(USER_API_BASE_URL+'/login', {
-            username: user.username,
-            password: user.password,
+            userId: user.userId,
+            loginPassword: user.password,
         });
     }
 }
