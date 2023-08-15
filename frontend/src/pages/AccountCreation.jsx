@@ -1,15 +1,10 @@
-<<<<<<< HEAD
-=======
 import './AccountCreation.css';
 
 import React from 'react'
->>>>>>> 9b8c29ecdae4d3f4c71520847c803ac1756da51e
 import { useState } from 'react';
 import AccountService from '../services/AccountService'
 import { useForm } from "react-hook-form";
 import { Form, Button } from 'semantic-ui-react';
-
-
 
 const AccountCreation = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
