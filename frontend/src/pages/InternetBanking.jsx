@@ -1,34 +1,17 @@
 import React from 'react'
 import { useState } from 'react';
 import InternetBankingService from '../services/InternetBanking'
-
+import { useForm } from "react-hook-form";
 
 
 const InternetBanking = () => {
-  const [state, setState] = useState({
-    accountNum : '',
-    loginPassword : '',
-    confirmLoginPassword : '',
-    transactionPass : '',
-    confirmTransactionPass : '',
-  });
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
-  const [otp, setOTP] = useState({
-    otp : ''
-  });
+  const [otp, setOTP] = useState('')
 
+  const onSubmit = (data) => {
 
-  const handleInputChange = (event) =>{
-    setState((prevProps) => ({
-        ...prevProps,
-        [event.target.name]: event.target.value
-    }));
-  }
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    InternetBankingService.sendRequest(state).then((res) =>{
+    InternetBankingService.sendRequest(data).then((res) =>{
         console.log('Your netbanking account details will be sent shortly.')
     })
     .catch((error) =>{
@@ -39,44 +22,34 @@ const InternetBanking = () => {
   return (
     <div>
         
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)} noValidate>
             
                 <label>Account Number:</label>
                 <input 
                     type="text"
-                    name="accountNum"
-                    value={state.accountNum}
-                    onChange={handleInputChange}
+                    {...register("accountNum", { required: true })} 
                      />
                 <label>Login Password:</label>
                 <input 
                     type="password"
-                    name="loginPassword"
-                    value={state.loginPassword}
-                    onChange={handleInputChange}
+                    {...register("password", { required: true })} 
                      />
             <   label>Confirm Login Password:</label>
                 <input 
                     type="password"
-                    name="confirmLoginPassword"
-                    value={state.confirmLoginPassword}
-                    onChange={handleInputChange}
+                    {...register("firstName", { required: true })} 
                      />
 
             <   label>Transaction Password:</label>
                 <input 
                     type="password"
-                    name="transactionPass"
-                    value={state.transactionPass}
-                    onChange={handleInputChange}
+                    
                      />
             
             <   label>Confirm Transaction Password:</label>
                 <input 
                     type="password"
-                    name="confirmTransactionPass"
-                    value={state.confirmTransactionPass}
-                    onChange={handleInputChange}
+                    
                      />
             
             <div>
