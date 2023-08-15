@@ -1,5 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
+import AccountService from '../services/AccountService'
+
 
 const AccountCreation = () => {
   const [state, setState] = useState({
@@ -16,16 +18,29 @@ const AccountCreation = () => {
     grossAnnualIncome:'',
   });
 
+  const [checkboxStatus, setCheckboxStatus] = useState(false);
 
-  const handleInputChange= (event) =>{
+  const handleCheckboxChange = (event) => {
+    setCheckboxStatus(event.target.checked);
+  };
+
+  const handleInputChange = (event) =>{
     setState((prevProps) => ({
         ...prevProps,
         [event.target.name]: event.target.value
     }));
   }
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(state);
+    state['netbanking'] = checkboxStatus
+
+    AccountService.sendAccount(state).then((res) =>{
+        console.log('Request Sent for Approval')
+    })
+    .catch((error) =>{
+        console.log("Error in sendind request");
+    });
   }
 
   return (
@@ -58,8 +73,8 @@ const AccountCreation = () => {
             <   label>EmailID:</label>
                 <input 
                     type="email"
-                    name="email"email
-                    value={state.lastName}
+                    name="emailID"
+                    value={state.emailID}
                     onChange={handleInputChange}
                      />
             
@@ -82,14 +97,14 @@ const AccountCreation = () => {
             <   label>Adhaar Number:</label>
                 <input 
                     type="text"
-                    name="adhaar"
+                    name="adhaarNo"
                     value={state.adhaarNo}
                     onChange={handleInputChange}
                      />
 
             <   label>Date of Birth:</label>
                 <input 
-                    type="tedatext"
+                    type="date"
                     name="dob"
                     value={state.dob}
                     onChange={handleInputChange}
@@ -104,30 +119,29 @@ const AccountCreation = () => {
             <   label>Occupation Type:</label>
                 <input 
                     type="text"
-                    name="occupation"
+                    name="occupationType"
                     value={state.occupationType}
                     onChange={handleInputChange}
                      />  
             <   label>Gross Anual Income:</label>
                 <input 
                     type="text"
-                    name="income"
+                    name="grossAnnualIncome"
                     value={state.grossAnnualIncome}
                     onChange={handleInputChange}
                     /> 
-                    
-
-
-
-
-
-
-
-
-
+            
+            <label>
+            Do you need a Netbanking account:
+            <input
+                type="checkbox"
+                checked={checkboxStatus}
+                onChange={handleCheckboxChange}
+            />
+            </label>
 
             <div>
-                <button type="submit">Login</button>
+                <button type="submit">Register</button>
             </div>
         </form>
     </div>
