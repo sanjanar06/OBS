@@ -9,6 +9,12 @@ import Home from './pages/Home';
 import AccountCreation from './pages/AccountCreation';
 import InternetBanking from './pages/InternetBanking';
 
+import AccountDatiails from './pages/DashboardPages/AccountDetails.jsx';
+import AccountDetails from './pages/DashboardPages/AccountDetails.jsx';
+import AccountSummary from './pages/DashboardPages/AccountSummary.jsx';
+import ChangeUid_pass from './pages/DashboardPages/ChangeUserId_Password.jsx';
+import UserProfile from './pages/DashboardPages/UserProfile.jsx';
+
 function App() {
   return (
     <div className="App">
@@ -19,6 +25,10 @@ function App() {
         <Route path="/userProfile" element={<UserDashboard></UserDashboard>}></Route>
         <Route path="/account" element={<AccountCreation />}></Route>
         <Route path="/internetBanking" element={<InternetBanking />}></Route>
+        <Route path="/AccountDetails" element={<AccountDetails/>}/> 
+          <Route path="/AccountSummary" element={<AccountSummary/>}/> 
+          <Route path="/Change" element={<ChangeUid_pass/>}/> 
+          <Route path="/UserProfile" element={<UserProfile/>}/> 
       </Routes>
 
     </div>
