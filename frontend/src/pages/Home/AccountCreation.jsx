@@ -1,5 +1,4 @@
-import './AccountCreation.css';
-
+import './AccountCreation.css'
 import React from 'react'
 import { useState } from 'react';
 import AccountService from '../../services/AccountService'
@@ -43,7 +42,7 @@ const AccountCreation = () => {
 
   return (
     
-    <div className='form'>        
+    <div className='form-box'>        
         <Form onSubmit={handleSubmit(onSubmit)} noValidate>
         <h2>Open a Savings Account</h2>
             <Form.Field>
