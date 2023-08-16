@@ -15,6 +15,7 @@ import AccountDetails from './pages/UserDashboard/AccountDetails.jsx';
 import AccountSummary from './pages/UserDashboard/AccountSummary.jsx';
 import ChangeUid_pass from './pages/Home/ForgotPassword.jsx';
 import UserProfile from './pages/UserDashboard/UserProfile.jsx';
+import ChangePassword from './pages/changePassword';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/AccountSummary" element={<AccountSummary/>}/> 
           <Route path="/Change" element={<ChangeUid_pass/>}/> 
           <Route path="/UserProfile" element={<UserProfile/>}/> 
+          <Route path="/ChangePassword" element = {<ChangePassword/>} />
       </Routes>
 
     </div>
