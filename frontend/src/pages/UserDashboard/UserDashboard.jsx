@@ -1,11 +1,11 @@
 import React from 'react'
 
 import {Route, Routes } from 'react-router-dom';
-import AccountDatiails from './DashboardPages/AccountDetails.jsx';
-import AccountDetails from './DashboardPages/AccountDetails.jsx';
-import AccountSummary from './DashboardPages/AccountSummary.jsx';
-import ChangeUid_pass from './DashboardPages/ChangeUserId_Password.jsx';
-import UserProfile from './DashboardPages/UserProfile.jsx';
+import AccountDatiails from './AccountDetails.jsx';
+import AccountDetails from './AccountDetails.jsx';
+import AccountSummary from './AccountSummary.jsx';
+import ChangeUid_pass from '../Home/ForgotPassword.jsx';
+import UserProfile from './UserProfile.jsx';
 function UserDashboard() {
   return (
     <div>

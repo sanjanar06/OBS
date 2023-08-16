@@ -2,7 +2,7 @@ import './AccountCreation.css';
 
 import React from 'react'
 import { useState } from 'react';
-import AccountService from '../services/AccountService'
+import AccountService from '../../services/AccountService'
 import { useForm } from "react-hook-form";
 import { Form, Button } from 'semantic-ui-react';
 

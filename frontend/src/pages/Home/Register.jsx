@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
-import InternetBankingService from '../services/InternetBanking'
+import InternetBankingService from '../../services/InternetBanking'
 import { useForm } from "react-hook-form";
 
 

@@ -1,19 +1,19 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 
-import Login from './pages/Login.jsx';
-import UserDashboard from './pages/UserDashboard';
+import Login from './pages/Home/Login.jsx';
+import UserDashboard from './pages/UserDashboard/UserDashboard';
 
-import Home from './pages/Home';
+import Home from './pages/Home/Home';
 
-import AccountCreation from './pages/AccountCreation';
-import InternetBanking from './pages/InternetBanking';
+import AccountCreation from './pages/Home/AccountCreation';
+import InternetBanking from './pages/Home/Register';
 
-import AccountDatiails from './pages/DashboardPages/AccountDetails.jsx';
-import AccountDetails from './pages/DashboardPages/AccountDetails.jsx';
-import AccountSummary from './pages/DashboardPages/AccountSummary.jsx';
-import ChangeUid_pass from './pages/DashboardPages/ChangeUserId_Password.jsx';
-import UserProfile from './pages/DashboardPages/UserProfile.jsx';
+import AccountDatiails from './pages/UserDashboard/AccountDetails.jsx';
+import AccountDetails from './pages/UserDashboard/AccountDetails.jsx';
+import AccountSummary from './pages/UserDashboard/AccountSummary.jsx';
+import ChangeUid_pass from './pages/Home/ForgotPassword.jsx';
+import UserProfile from './pages/UserDashboard/UserProfile.jsx';
 
 function App() {
   return (
