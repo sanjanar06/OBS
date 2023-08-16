@@ -1,11 +1,11 @@
 {
   "netbanking": [
     {
-      "accountNum": "677",
-      "loginPassword": "yu",
-      "confirmLoginPassword": "yu",
-      "transactionPass": "tyg@",
-      "confirmTransactionPass": "tyg",
+      "accountNum": "1312",
+      "loginPassword": "aditya",
+      "confirmloginPassword": "aditya",
+      "transactionPassword": "haha",
+      "confirmtransactionPassword": "haha",
       "id": 1
     }
   ]

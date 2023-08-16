@@ -8,9 +8,10 @@ import { useForm } from "react-hook-form";
 const InternetBanking = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
-  const [otp, setOTP] = useState('')
+  const loginPassword = watch('loginPassword')
+  const transactionPassword = watch('transactionPassword')
 
-  const onSubmit = (data) => {
+  const onSubmit = (data) => {     
 
     InternetBankingService.sendRequest(data).then((res) =>{
         console.log('Your netbanking account details will be sent shortly.')
@@ -18,8 +19,9 @@ const InternetBanking = () => {
     .catch((error) =>{
         console.log("Error in sending request");
     });
+    
   }
-
+  
   return (
     <div className = "form-box">
         <h1>Register for a Netbanking Account</h1>
@@ -34,25 +36,35 @@ const InternetBanking = () => {
                 <label>Login Password:</label>
                 <input 
                     type="password"
-                    {...register("password", { required: true })} 
+                    name = "loginPassword"
+                    {...register("loginPassword", { required: true })} 
                      />
-            <   label>Confirm Login Password:</label>
+                <label>Confirm Login Password:</label>
                 <input 
                     type="password"
-                    {...register("firstName", { required: true })} 
+                    name = "confirmloginPassword"
+                    {...register("confirmloginPassword", { required: true , validate: (value) => value === loginPassword || 'Login Passwords do not match', })} 
                      />
+                {errors.confirmloginPassword && (
+            <p style={{ color: 'red' }}>{errors.confirmloginPassword.message}</p>)}
 
             <   label>Transaction Password:</label>
                 <input 
                     type="password"
-                    
+                    name = "transactionPassword"
+                    {...register("transactionPassword", { required: true })} 
                      />
             
             <   label>Confirm Transaction Password:</label>
                 <input 
                     type="password"
+                    name = "confirmtransactionPassword"
+                    {...register("confirmtransactionPassword", { required: true , validate: (value) => value === transactionPassword || 'Transaction Passwords do not match', })} 
+            
                     
                      />
+                {errors.confirmtransactionPassword && (
+            <p style={{ color: 'red' }}>{errors.confirmtransactionPassword.message}</p>)}
             
             <div>
                 <button type="submit">Register</button>
@@ -63,3 +75,4 @@ const InternetBanking = () => {
 }
 
 export default InternetBanking;
+
