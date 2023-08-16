@@ -14,10 +14,10 @@ class Home extends React.Component {
           <Link to="/login">
             <button className="Button">Login</button>
             </Link>
-            <Link to="/Register">
+            <Link to="/register">
             <button className="Button">Register</button>
             </Link>
-            <Link to="/Account">
+            <Link to="/account">
             <button className="Button">Apply Online for Account</button>
             </Link>
           </div>

@@ -1,20 +1,21 @@
-import "./AccountCreation.css"
+import "../style/AccountCreation.css"
 import React from 'react'
-import { useState } from 'react';
-import InternetBankingService from '../../services/InternetBanking'
 import { useForm } from "react-hook-form";
+import UserService from "../../services/UserService";
+import { useNavigate } from 'react-router-dom';
 
 
 const InternetBanking = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
-
+  const navigate = useNavigate();
   const loginPassword = watch('loginPassword')
   const transactionPassword = watch('transactionPassword')
 
   const onSubmit = (data) => {     
 
-    InternetBankingService.sendRequest(data).then((res) =>{
+    UserService.registerUser(data).then((res) =>{
         console.log('Your netbanking account details will be sent shortly.')
+        navigate("/login");
     })
     .catch((error) =>{
         console.log("Error in sending request");
@@ -31,7 +32,7 @@ const InternetBanking = () => {
                 <label>Account Number:</label>
                 <input 
                     type="text"
-                    {...register("accountNum", { required: true })} 
+                    {...register("accountNumber", { required: true })} 
                      />
                 <label>Login Password:</label>
                 <input 

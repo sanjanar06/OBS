@@ -4,11 +4,13 @@ import { useState } from 'react';
 import AccountService from '../../services/AccountService'
 import { useForm } from "react-hook-form";
 import { Form, Button } from 'semantic-ui-react';
+import { useNavigate } from 'react-router-dom';
 
 const AccountCreation = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const [checkboxStatus, setCheckboxStatus] = useState(false);
+  const navigate = useNavigate();
 
   const handleCheckboxChange = (event) => {
     setCheckboxStatus(event.target.checked);
@@ -16,14 +18,21 @@ const AccountCreation = () => {
 
 
   const onSubmit = (data) => {
-    data['netbanking'] = checkboxStatus
+    // data['netBanking'] = checkboxStatus
     console.log(data)
     AccountService.openAccount(data).then((res) =>{
         console.log('Request Sent for Approval')
+
+        if(checkboxStatus)
+            navigate("/register");
+        else
+            navigate("/");
     })
     .catch((error) =>{
         console.log("Error in sending request");
     });
+
+
   }
 
   return (
@@ -124,14 +133,14 @@ const AccountCreation = () => {
             </Form.Field>
             
 
-            {/* <label>
+            <label>
                 Do you need a Netbanking account:
                 <input
                     type="checkbox"
                     checked={checkboxStatus}
                     onChange={handleCheckboxChange}
                 />
-            </label> */}
+            </label>
 
             <div>
                 <Button type="submit">Register</Button>

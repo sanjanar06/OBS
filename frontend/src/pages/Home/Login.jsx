@@ -23,7 +23,7 @@ const Login = (props) => {
     event.preventDefault();
     UserService.loginUser(credentials).then((res) =>{
         console.log('Logged in');
-        navigate("/userProfile");
+        navigate("/userDashboard");
         
     })
     .catch((error) =>{
