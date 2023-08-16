@@ -1,0 +1,21 @@
+.form-box{
+    min-width: 100%;
+    height: 200vh;
+    /* border: 1px solid red; */
+    margin: 0vw;
+    padding: 5vw ;
+    position:relative; 
+    /* position:relative for .prevBtn and .nextBtn position:absolute; */
+}
+
+.form-box label{
+    display: block;
+    text-align: center;
+    font-size: 20px;
+    margin: 0 0 2vh 0;
+}
+
+.form-box input {
+    border: 2px solid black;
+    border-radius: 4px;
+  }

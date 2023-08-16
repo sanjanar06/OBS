@@ -9,7 +9,6 @@ import Home from './pages/Home/Home';
 import AccountCreation from './pages/Home/AccountCreation';
 import InternetBanking from './pages/Home/Register';
 
-import AccountDatiails from './pages/UserDashboard/AccountDetails.jsx';
 import AccountDetails from './pages/UserDashboard/AccountDetails.jsx';
 import AccountSummary from './pages/UserDashboard/AccountSummary.jsx';
 import ChangeUid_pass from './pages/Home/ForgotPassword.jsx';
