@@ -1,3 +1,4 @@
+import "./AccountCreation.css"
 import React from 'react'
 import { useState } from 'react';
 import InternetBankingService from '../../services/InternetBanking'
@@ -20,7 +21,8 @@ const InternetBanking = () => {
   }
 
   return (
-    <div>
+    <div className = "form-box">
+        <h1>Register for a Netbanking Account</h1>
         
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
             
