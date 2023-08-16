@@ -31,7 +31,7 @@ public class NetbankingService {
         User user = User.builder()
             .account(account)
             .loginPassword(request.getLoginPassword())
-            .transactionPassword(request.getTransPassword())
+            .transactionPassword(request.getTransactionPassword())
             .build();
 
         netBankingRepository.save(user);

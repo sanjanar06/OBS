@@ -10,6 +10,7 @@ class UserService {
             loginPassword: user.password,
         });
     }
+
 }
 
 export default new UserService();

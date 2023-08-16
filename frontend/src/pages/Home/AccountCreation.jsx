@@ -1,26 +1,12 @@
-import './AccountCreation.css'
-import React from 'react'
+import '../style/AccountCreation.css';
+
 import { useState } from 'react';
 import AccountService from '../../services/AccountService'
 import { useForm } from "react-hook-form";
 import { Form, Button } from 'semantic-ui-react';
 
 const AccountCreation = () => {
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
-
-//   const [state, setState] = useState({
-//     firstName:'',
-//     middleName:'',
-//     lastName:'',
-//     emailID:'',
-//     fatherName:'',
-//     motherName:'',
-//     adhaarNo:'',
-//     dob:'',
-//     address:'',
-//     occupationType:'',
-//     grossAnnualIncome:'',
-//   });
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
   const [checkboxStatus, setCheckboxStatus] = useState(false);
 
@@ -32,7 +18,7 @@ const AccountCreation = () => {
   const onSubmit = (data) => {
     data['netbanking'] = checkboxStatus
     console.log(data)
-    AccountService.sendAccount(data).then((res) =>{
+    AccountService.openAccount(data).then((res) =>{
         console.log('Request Sent for Approval')
     })
     .catch((error) =>{
@@ -46,6 +32,10 @@ const AccountCreation = () => {
         <Form onSubmit={handleSubmit(onSubmit)} noValidate>
         <h2>Open a Savings Account</h2>
             <Form.Field>
+                <label>Title</label>
+                <input type = "text" 
+                    {...register("title", { required: true })} 
+                />
                 <label>First Name</label>
                 <input type = "text" 
                     {...register("firstName", { required: true })} 
@@ -91,10 +81,10 @@ const AccountCreation = () => {
             </Form.Field>
                 
             <Form.Field>
-            <label>Adhaar Number:</label>
+            <label>Aadhar Number:</label>
                 <input 
                     type="text"
-                    {...register("adhaar", {required: "Enter a valid Adhaar Number", pattern: /^\d{12}$/})}
+                    {...register("aadharNo", {required: "Enter a valid Adhaar Number", pattern: /^\d{12}$/})}
                 />
             {errors.adhaar && <p className="text-error">Enter valid Adhaar Number</p>}
             </Form.Field>
@@ -121,7 +111,7 @@ const AccountCreation = () => {
                 <label>Occupation Type:</label>
                     <input 
                         type="text"
-                        {...register("occupation", {required : true})}
+                        {...register("occupationType", {required : true})}
                         />  
                 {errors.occupation && <p className="text-error">Enter Occupation Type</p>}
 
@@ -134,14 +124,14 @@ const AccountCreation = () => {
             </Form.Field>
             
 
-            <label>
+            {/* <label>
                 Do you need a Netbanking account:
                 <input
                     type="checkbox"
                     checked={checkboxStatus}
                     onChange={handleCheckboxChange}
                 />
-            </label>
+            </label> */}
 
             <div>
                 <Button type="submit">Register</Button>

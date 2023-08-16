@@ -2,6 +2,7 @@ package com.bank.springbackend.controller;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/account")
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserDetailsController {
     
     private final UserDetailsService userDetailsService;

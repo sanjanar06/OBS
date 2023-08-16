@@ -12,6 +12,6 @@ public class RegisterRequest {
     private int accountNumber;
     private int userId;
     private String loginPassword;
-    private String transPassword;
+    private String transactionPassword;
     
 }
