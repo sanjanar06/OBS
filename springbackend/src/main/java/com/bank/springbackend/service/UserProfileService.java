@@ -32,13 +32,15 @@ public class UserProfileService {
           .occupationType(accountRequest.getOccupationType())
           .grossAnnualIncome(accountRequest.getGrossAnnualIncome())
           .status(ProfileStatusEnum.ACCEPTED)
+          .account(null)
+          .user(null)
           .build();
       
 
       return userProfileRepository.save(userProfile);
     }
 
-    public List<UserProfile> getAllUsers(){
+    public List<UserProfile> getAllUserProfiles(){
 		return userProfileRepository.findAll();
 	}
 

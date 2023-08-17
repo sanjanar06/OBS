@@ -47,4 +47,7 @@ public class UserProfile {
     @OneToOne(optional = true, cascade = CascadeType.ALL)
     private User user;
 
+    @OneToOne(optional = true, cascade = CascadeType.ALL )
+    private Account account;
+
 }

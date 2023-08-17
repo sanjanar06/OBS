@@ -19,13 +19,13 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/account")
+@RequestMapping("/userProfile")
 @CrossOrigin(origins = "http://localhost:3000")
 public class UserProfileController {
     
     private final UserProfileService userProfileService;
 
-    // RESTful API method
+    // User : Open an Account
     @PostMapping("/addProfile")
     public UserProfile addUserProfile(@RequestBody UserDetailsRequest accountRequest) {
 		  return userProfileService.createProfile(accountRequest);
@@ -34,7 +34,7 @@ public class UserProfileController {
     // Admin :Fetch all account opening forms
     @GetMapping("/profiles")
     public List<UserProfile> findAllUserProfiles(){
-		  return userProfileService.getAllUsers();
+		  return userProfileService.getAllUserProfiles();
     }
 
     // Admin :Delete rejected account opening forms

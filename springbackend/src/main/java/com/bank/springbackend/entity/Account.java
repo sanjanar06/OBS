@@ -6,7 +6,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,21 +16,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "netbanking_users")
-public class User {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long userId;
-	
-	@Column(name = "login_password", nullable = true)
-	private String loginPassword;
+public class Account {
+    @Id
+    @Column(name = "accountId", unique = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer accountId;
 
-	@Column(name = "trans_password", nullable = true)
-	private String transactionPassword;
-	
-	@OneToOne(mappedBy = "user")
-	private UserProfile userProfile;
+    private AccountTypeEnum accountType;
+    private Double balance; 
 
-	
+    @OneToOne(mappedBy = "account")
+    private UserProfile userProfile;
 }

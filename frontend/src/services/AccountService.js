@@ -1,12 +1,11 @@
 import axios from 'axios';
 
-// const USER_API_BASE_URL = "http://localhost:3000";
-const ACCOUNT_API_BASE_URL = "http://localhost:8080/account"
+const PROFILE_API_BASE_URL = "http://localhost:8080/userProfile"
 
 class AccountService {
     
     openAccount(details){
-        return axios.post(ACCOUNT_API_BASE_URL + '/addProfile',{
+        return axios.post(PROFILE_API_BASE_URL + '/addProfile',{
             title : details.title,
             firstName : details.firstName,
             middleName : details.middleName,
