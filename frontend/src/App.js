@@ -7,6 +7,8 @@ import UserDashboard from './pages/UserDashboard/UserDashboard';
 import Home from './pages/Home/Home'; 
 import ForgotUserId from './pages/Home/ForgetUserId';
 import SetNewPassword from './pages/Home/SetNewPassword';
+import RTGSPayment from './pages/Home/RTGS';
+import AddBeneficiary from './pages/Home/AddBeneficiary';
 
 import AccountCreation from './pages/Home/AccountCreation';
 import Register from './pages/Home/Register';
@@ -26,8 +28,11 @@ function App() {
         <Route path="/resetPassword" element={<SetNewPassword/>}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/account" element={<AccountCreation />}></Route>
+        <Route path="/addbeneficiary" element={<AddBeneficiary />}></Route>
+
 
         <Route path="/accountDetails" element={<AccountDetails/>}/> 
+        <Route path="/RTGS" element={<RTGSPayment/>}/> 
         <Route path="/accountSummary" element={<AccountSummary/>}/> 
         {/* <Route path="/forgotPassword" element={<ForgotPassword/>}/>  */}
         <Route path="/userDashboard" element={<UserDashboard/>}/> 
