@@ -4,11 +4,11 @@ import org.springframework.stereotype.Service;
 
 import com.bank.springbackend.communication.RegisterRequest;
 import com.bank.springbackend.communication.RegisterResponse;
-import com.bank.springbackend.entity.UserDetails;
+import com.bank.springbackend.entity.UserProfile;
 import com.bank.springbackend.exception.ResourceNotFoundException;
 import com.bank.springbackend.entity.ProfileStatusEnum;
 import com.bank.springbackend.entity.User;
-import com.bank.springbackend.repository.UserDetailsRepository;
+import com.bank.springbackend.repository.UserProfileRepository;
 import com.bank.springbackend.repository.NetBankingRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -18,18 +18,18 @@ import lombok.RequiredArgsConstructor;
 public class NetbankingService {
 
     private final NetBankingRepository netBankingRepository;
-    private final UserDetailsRepository userDetailsRepository;
+    private final UserProfileRepository userProfileRepository;
 
     public RegisterResponse register(RegisterRequest request) {
-        // To verify if the user has an account
-        UserDetails account = userDetailsRepository.findById(request.getAccountNumber()).orElseThrow();
+        // To verify if the user has an userProfile
+        UserProfile userProfile = userProfileRepository.findById(request.getAccountNumber()).orElseThrow();
 
-        if(account.getStatus() == ProfileStatusEnum.PENDING) {
+        if(userProfile.getStatus() == ProfileStatusEnum.PENDING) {
             throw new ResourceNotFoundException("LOL");
         }
 
         User user = User.builder()
-            .account(account)
+            .userProfile(userProfile)
             .loginPassword(request.getLoginPassword())
             .transactionPassword(request.getTransactionPassword())
             .build();

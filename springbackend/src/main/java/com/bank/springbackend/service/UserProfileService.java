@@ -6,19 +6,19 @@ import org.springframework.stereotype.Service;
 
 import com.bank.springbackend.communication.UserDetailsRequest;
 import com.bank.springbackend.entity.ProfileStatusEnum;
-import com.bank.springbackend.entity.UserDetails;
-import com.bank.springbackend.repository.UserDetailsRepository;
+import com.bank.springbackend.entity.UserProfile;
+import com.bank.springbackend.repository.UserProfileRepository;
 
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
-public class UserDetailsService {
+public class UserProfileService {
     
-    private final UserDetailsRepository userDetailsRepository; 
+    private final UserProfileRepository userProfileRepository; 
 
-    public UserDetails createProfile(UserDetailsRequest accountRequest){
-      UserDetails userDetails = UserDetails.builder()
+    public UserProfile createProfile(UserDetailsRequest accountRequest){
+      UserProfile userProfile = UserProfile.builder()
           .title(accountRequest.getTitle())
           .firstName(accountRequest.getFirstName())
           .middleName(accountRequest.getMiddleName())
@@ -35,15 +35,15 @@ public class UserDetailsService {
           .build();
       
 
-      return userDetailsRepository.save(userDetails);
+      return userProfileRepository.save(userProfile);
     }
 
-    public List<UserDetails> getAllUsers(){
-		return userDetailsRepository.findAll();
+    public List<UserProfile> getAllUsers(){
+		return userProfileRepository.findAll();
 	}
 
     public void deleteUserProfileById(Integer id) {
-		userDetailsRepository.deleteById(id);
+		userProfileRepository.deleteById(id);
 	}
 
 }

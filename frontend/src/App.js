@@ -29,7 +29,7 @@ function App() {
 
         <Route path="/accountDetails" element={<AccountDetails/>}/> 
         <Route path="/accountSummary" element={<AccountSummary/>}/> 
-        <Route path="/forgotPassword" element={<ForgotPassword/>}/> 
+        {/* <Route path="/forgotPassword" element={<ForgotPassword/>}/>  */}
         <Route path="/userDashboard" element={<UserDashboard/>}/> 
   
         {/* <Route path="/Change" element={<ChangeUid_pass/>}/>  */}

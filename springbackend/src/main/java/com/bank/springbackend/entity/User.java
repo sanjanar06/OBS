@@ -31,6 +31,6 @@ public class User {
 	private String transactionPassword;
 	
 	@OneToOne(mappedBy = "user")
-	private UserDetails account;
+	private UserProfile userProfile;
 	
 }

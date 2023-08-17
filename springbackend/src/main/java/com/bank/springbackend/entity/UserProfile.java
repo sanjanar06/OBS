@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "users_profile")
-public class UserDetails {
+public class UserProfile {
 
     @Id
     @Column(name="accountNumber", unique = true)

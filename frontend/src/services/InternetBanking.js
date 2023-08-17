@@ -1,3 +1,9 @@
+
+// THIS PAGE IS ONLY FOR REFERENCE PURPOSE
+// REFER THE SAME TEMPLATE FOR TESTING WITH FAKE JSON SERVER
+
+
+
 import axios from 'axios';
 // or if you're not using ES6 modules
 // const axios = require('axios');
