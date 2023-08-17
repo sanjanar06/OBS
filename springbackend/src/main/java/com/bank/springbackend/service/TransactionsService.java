@@ -30,5 +30,9 @@ public class TransactionsService {
     public  List<Transactions> getByDate(LocalDate date){
         return transactionsRepository.findByTransactionDate(date);
     }
+
+    public  List<Transactions> getByDateRange(LocalDate startDate, LocalDate endDate){
+        return transactionsRepository.findByTransactionDateBetween(startDate, endDate);
+    }
 }
 

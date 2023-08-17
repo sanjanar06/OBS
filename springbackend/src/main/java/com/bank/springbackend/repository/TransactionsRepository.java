@@ -8,4 +8,5 @@ import com.bank.springbackend.entity.Transactions;
 
 public interface TransactionsRepository extends JpaRepository<Transactions, Long> {
     List<Transactions> findByTransactionDate(LocalDate date);
+    List<Transactions> findByTransactionDateBetween(LocalDate startDate, LocalDate endDate);
 }
