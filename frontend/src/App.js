@@ -9,6 +9,8 @@ import ForgotUserId from './pages/Home/ForgetUserId';
 import SetNewPassword from './pages/Home/SetNewPassword';
 import RTGSPayment from './pages/Home/RTGS';
 import AddBeneficiary from './pages/Home/AddBeneficiary';
+import FundTransfer from './pages/Home/FundTransfer';
+
 
 import AccountCreation from './pages/Home/AccountCreation';
 import Register from './pages/Home/Register';
@@ -30,6 +32,8 @@ function App() {
         <Route path="/register" element={<Register />}></Route>
         <Route path="/account" element={<AccountCreation />}></Route>
         <Route path="/addbeneficiary" element={<AddBeneficiary />}></Route>
+        <Route path="/fundtransfer" element={<FundTransfer />}></Route>
+
 
 
         <Route path="/accountDetails" element={<AccountDetails/>}/> 
