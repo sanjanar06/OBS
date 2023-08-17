@@ -1,5 +1,6 @@
 import React from 'react';
 import '../style/RTGS.css';
+import { Link } from 'react-router-dom';
 
 
 class RTGSPayment extends React.Component {
@@ -15,7 +16,9 @@ class RTGSPayment extends React.Component {
           <div className="form-group">
             <label htmlFor="toAccount">To Account:</label>
             <input type="text" id="toAccount" name="toAccount" />
+            <Link to="/addbeneficiary">
             <button type="button" className="add-new-button">Add New +</button>
+            </Link>
           </div>
           <div className="form-group">
             <label htmlFor="amount">Amount:</label>

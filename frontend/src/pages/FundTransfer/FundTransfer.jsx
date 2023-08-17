@@ -11,13 +11,13 @@ class FundTransfer extends React.Component {
           <h1>Fund Transfer</h1>
           <p>Choose Your Method To Transfer</p>
           <div className="Button-container">
-          <Link to="/RTGS">
+          <Link to="/RTGSPayment">
             <button className="Button">RTGS</button>
             </Link>
-            <Link to="/IMPS">
+            <Link to="/IMPSPayment">
             <button className="Button">IMPS</button>
             </Link>
-            <Link to="/NeftPayment">
+            <Link to="/NEFTPayment">
             <button className="Button">NEFT</button>
             </Link>
           </div>

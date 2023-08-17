@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import './style/IMPSPayment.css'; // You can import your CSS file here for styling
+import '../style/IMPSPayment.css'; // You can import your CSS file here for styling
+import { Link } from 'react-router-dom';
 
 class IMPSPayment extends Component {
   constructor(props) {
@@ -68,6 +69,9 @@ class IMPSPayment extends Component {
               value={this.state.toAccount}
               onChange={this.handleInputChange}
             />
+            <Link to="/addbeneficiary">
+            <button type="button" className="add-new-button">Add New +</button>
+            </Link>
             </div1>
 
             <div1>
