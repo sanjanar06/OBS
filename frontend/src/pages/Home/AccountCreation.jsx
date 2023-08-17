@@ -49,7 +49,7 @@ const AccountCreation = () => {
                 <input type = "text" 
                     {...register("firstName", { required: true })} 
                 />
-                {errors.firstName && <p className="text-error" >Enter First Name</p>}
+                {errors.firstName && <p style = {{ color: 'red'}}>Enter First Name</p>}
 
                 <label>Middle Name:</label>
                 <input type = "text" 
@@ -60,7 +60,7 @@ const AccountCreation = () => {
                 <input type = "text" 
                     {...register("lastName", { required: true })} 
                 />
-                {errors.lastName && <p className="text-error" >Enter Last Name</p>}
+                {errors.lastName && <p style = {{ color: 'red'}} >Enter Last Name</p>}
             </Form.Field>
             <Form.Field>
                 <label>EmailID:</label>
@@ -70,7 +70,7 @@ const AccountCreation = () => {
                         pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/  
                     })} 
                 />
-                {errors.emailID && <p className="text-error" >Enter Valid Email</p>}
+                {errors.emailID && <p style = {{ color: 'red'}} >Enter Valid Email</p>}
             </Form.Field>
             <Form.Field>
                 <label>Father's Name:</label>
@@ -78,14 +78,14 @@ const AccountCreation = () => {
                     type="text"
                     {...register("fatherName", {required: true})}/>
 
-                {errors.fatherName && <p className="text-error" >Enter Father's Name</p>}
+                {errors.fatherName && <p style = {{ color: 'red'}} >Enter Father's Name</p>}
 
                 <label>Mother's Name:</label>
                 <input 
                     type="text"
                     {...register("motherName", {required: true})}
                 />
-                {errors.motherName && <p className="text-error" >Enter Mother's Name</p>}
+                {errors.motherName && <p style = {{ color: 'red'}} >Enter Mother's Name</p>}
 
             </Form.Field>
                 
@@ -95,7 +95,7 @@ const AccountCreation = () => {
                     type="text"
                     {...register("aadharNo", {required: "Enter a valid Adhaar Number", pattern: /^\d{12}$/})}
                 />
-            {errors.adhaar && <p className="text-error">Enter valid Adhaar Number</p>}
+            {errors.aadharNo && <p style = {{ color: 'red'}}>Enter valid Adhaar Number</p>}
             </Form.Field>
             
             <Form.Field>
@@ -104,7 +104,7 @@ const AccountCreation = () => {
                         type="date"
                         {...register("dob", {required: true})}
                     />
-                {errors.adhaar && <p className="text-error">Enter DOB</p>}
+                {errors.adhaar && <p style = {{ color: 'red'}}>Enter DOB</p>}
             </Form.Field>
             
             <Form.Field>
@@ -113,7 +113,7 @@ const AccountCreation = () => {
                         type="text"
                         {...register("address", {required : true})}
                         />  
-                {errors.adhaar && <p className="text-error">Enter Address</p>} 
+                {errors.adhaar && <p style = {{ color: 'red'}}>Enter Address</p>} 
             </Form.Field>
             
             <Form.Field>
@@ -122,14 +122,14 @@ const AccountCreation = () => {
                         type="text"
                         {...register("occupationType", {required : true})}
                         />  
-                {errors.occupation && <p className="text-error">Enter Occupation Type</p>}
+                {errors.occupation && <p style = {{ color: 'red'}}>Enter Occupation Type</p>}
 
             <label>Gross Annual Income:</label>
                 <input 
                     type="text"
                     {...register("grossAnnualIncome", {required : true})}
                 /> 
-            {errors.adhaar && <p className="text-error">Enter Income</p>}
+            {errors.adhaar && <p style = {{ color: 'red'}}>Enter Income</p>}
             </Form.Field>
             
 

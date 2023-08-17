@@ -1,0 +1,48 @@
+/* style/NeftPayment.css */
+
+.neft-form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .neft-form label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .neft-form input[type="text"],
+  .neft-form input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .neft-form button[type="submit"],
+  .neft-form button[type="button"] {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .neft-form button[type="submit"]:hover,
+  .neft-form button[type="button"]:hover {
+    background-color: #0056b3;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  div1 {
+    display: flex;
+  }
+  
