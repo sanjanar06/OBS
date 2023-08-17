@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import './style/NeftPayment.css'; // You can import your CSS file here for styling
+import '../style/NeftPayment.css'; // You can import your CSS file here for styling
+import { Link } from 'react-router-dom';
 
 class NeftPayment extends Component {
   constructor(props) {
@@ -56,6 +57,11 @@ class NeftPayment extends Component {
               value={this.state.toAccount}
               onChange={this.handleInputChange}
             />
+         <div1>
+            <Link to="/addbeneficiary">
+            <button type="button" className="add-new-button">Add New +</button>
+            </Link>
+            </div1>
             </div1>
 
             <div1>

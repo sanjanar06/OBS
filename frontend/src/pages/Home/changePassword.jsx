@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './style/ChangePassword.css'; // You can import your CSS file here for styling
+import '../style/ChangePassword.css'; // You can import your CSS file here for styling
 
 class ChangePassword extends Component {
   constructor(props) {
