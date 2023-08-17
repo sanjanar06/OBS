@@ -20,6 +20,7 @@ import ChangeUid_pass from './pages/Home/ForgotPassword.jsx';
 import UserProfile from './pages/UserDashboard/UserProfile.jsx';
 import ChangePassword from './pages/changePassword';
 import NeftPayment from './pages/neftPayment';
+import IMPSPayment from './pages/impsPayment';
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
         <Route path="/UserProfile" element={<UserProfile/>}/> 
         {/* <Route path="/ChangePassword" element = {<ChangePassword/>} /> */}
         <Route path = "/NeftPayment" element={<NeftPayment/>}/>
+        <Route path = "/IMPSPayment" element={<IMPSPayment/>}/>
       </Routes>
 
     </div>

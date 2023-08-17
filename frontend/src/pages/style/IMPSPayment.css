@@ -1,0 +1,59 @@
+/* style/IMPSPayment.css */
+
+.imps-form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .imps-form label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .imps-form input[type="text"],
+  .imps-form input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .imps-form .buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  
+  .imps-form button[type="submit"],
+  .imps-form button[type="button"] {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 5px;
+    margin-right: 5px;
+
+  }
+  
+  .imps-form button[type="submit"]:hover,
+  .imps-form button[type="button"]:hover {
+    background-color: #0056b3;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  div1 {
+    display: flex;
+  }
