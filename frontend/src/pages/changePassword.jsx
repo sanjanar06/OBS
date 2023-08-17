@@ -31,8 +31,8 @@ class ChangePassword extends Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
+      <div>
+        
           <h1>Set New Password</h1>
           <form className="password-form" onSubmit={this.handleSubmit}>
             <label>Login Password:</label>
@@ -73,7 +73,7 @@ class ChangePassword extends Component {
 
             <button type="submit">Submit</button>
           </form>
-        </header>
+       
       </div>
     );
   }
