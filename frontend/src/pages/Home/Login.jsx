@@ -33,7 +33,7 @@ const Login = (props) => {
 
  }  ;
   return (
-    <div style={{backgroundImage:`url(${login_img})`}} >
+    <div className="login-name" style={{'margin': '1px auto', 'marginTop': '1px', 'width': '1000px', 'height':'100vh'}}>
         <h2>Login</h2>
         <div>{loginError}</div>
         <form onSubmit={handleLogin}>
