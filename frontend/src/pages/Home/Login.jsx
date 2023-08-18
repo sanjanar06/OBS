@@ -1,6 +1,7 @@
 import UserService from '../../services/UserService'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import login_img from '../../assets/login.jpg'
 
 const Login = (props) => {
   const [credentials, setCredentials] = useState({
@@ -32,7 +33,7 @@ const Login = (props) => {
 
  }  ;
   return (
-    <div>
+    <div style={{backgroundImage:`url(${login_img})`}} >
         <h2>Login</h2>
         <div>{loginError}</div>
         <form onSubmit={handleLogin}>
@@ -58,6 +59,7 @@ const Login = (props) => {
                 <button type="submit">Login</button>
             </div>
         </form>
+        {/* <img src={login_img} alt="img" /> */}
     </div>
   )
 }
