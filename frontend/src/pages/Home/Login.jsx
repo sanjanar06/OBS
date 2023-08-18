@@ -32,7 +32,7 @@ const Login = (props) => {
 
  }  ;
   return (
-    <div>
+    <div className="login-name" style={{'margin': '0 auto', 'marginTop': '200px', 'width': '600px'}}>
         <h2>Login</h2>
         <div>{loginError}</div>
         <form onSubmit={handleLogin}>
