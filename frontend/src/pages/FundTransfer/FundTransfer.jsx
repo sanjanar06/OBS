@@ -3,8 +3,7 @@ import '../style/FundTransfer.css';
 import { Link } from 'react-router-dom';
 
 
-class FundTransfer extends React.Component {
-  render() {
+function FundTransfer(){
     return (
       <div className="Home">
         <header className="Home-header">
@@ -25,5 +24,4 @@ class FundTransfer extends React.Component {
       </div>
     );
   }
-}
 export default FundTransfer;

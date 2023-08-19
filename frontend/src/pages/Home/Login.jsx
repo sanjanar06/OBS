@@ -33,7 +33,7 @@ const Login = () => {
 
   }
   return (
-    <div>
+    <div className="login-name" style={{'margin': '1px auto', 'marginTop': '1px', 'width': '1000px', 'height':'100vh'}}>
         <h2>Login</h2>
         <div>{loginError}</div>
         <form onSubmit={handleLogin}>
@@ -59,6 +59,7 @@ const Login = () => {
                 <button type="submit">Login</button>
             </div>
         </form>
+        {/* <img src={login_img} alt="img" /> */}
     </div>
   )
 }
