@@ -1,8 +1,8 @@
-import UserService from '../../services/UserService'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { apiLogin } from '../../services/auth';
 
-const Login = (props) => {
+const Login = () => {
   const [credentials, setCredentials] = useState({
     userId:'',
     password:''
@@ -19,18 +19,19 @@ const Login = (props) => {
     })
   }
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
-    UserService.loginUser(credentials).then((res) =>{
-        console.log('Logged in');
-        navigate("/userDashboard");
-        
-    })
-    .catch((error) =>{
-        setLoginError('Invalid credentials')
-    });
+    const res = await apiLogin(credentials);
+    
+    if(res)
+    {
+      navigate("/userDashboard")
+    }
+    else{
+      setLoginError("Invalid credentials")
+    }
 
- }  ;
+  }
   return (
     <div>
         <h2>Login</h2>

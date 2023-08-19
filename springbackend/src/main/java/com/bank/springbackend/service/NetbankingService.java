@@ -1,18 +1,20 @@
 package com.bank.springbackend.service;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.bank.springbackend.communication.RegisterRequest;
 import com.bank.springbackend.communication.RegisterResponse;
-import com.bank.springbackend.entity.UserProfile;
-import com.bank.springbackend.exception.ResourceNotFoundException;
 import com.bank.springbackend.entity.Account;
 import com.bank.springbackend.entity.AccountTypeEnum;
 import com.bank.springbackend.entity.ProfileStatusEnum;
 import com.bank.springbackend.entity.User;
-import com.bank.springbackend.repository.UserProfileRepository;
+import com.bank.springbackend.entity.UserProfile;
+import com.bank.springbackend.exception.ResourceNotFoundException;
 import com.bank.springbackend.repository.AccountRepository;
 import com.bank.springbackend.repository.NetBankingRepository;
+import com.bank.springbackend.repository.RoleRepository;
+import com.bank.springbackend.repository.UserProfileRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,7 +24,9 @@ public class NetbankingService {
 
     private final NetBankingRepository netBankingRepository;
     private final UserProfileRepository userProfileRepository;
+    private final RoleRepository roleRepository;
     private final AccountRepository accountRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public RegisterResponse register(RegisterRequest request) {
         // To verify if the user has an userProfile
@@ -33,9 +37,9 @@ public class NetbankingService {
         }
 
         User user = User.builder()
-            // .userProfile(userProfile)
-            .loginPassword(request.getLoginPassword())
+            .loginPassword(passwordEncoder.encode(request.getLoginPassword()))
             .transactionPassword(request.getTransactionPassword())
+            // .roles(List.of(roleRepository.findByName(RoleEnum.USER).orElseThrow()))
             .build();
 
         Account account = Account.builder()

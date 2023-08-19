@@ -12,12 +12,12 @@ class UserService {
         });
     }
 
-    loginUser(user){
-        return axios.post(USER_API_BASE_URL+'/login', {
-            userId: user.userId,
-            loginPassword: user.password,
-        });
-    }
+    // loginUser(user){
+    //     return axios.post(USER_API_BASE_URL+'/login', {
+    //         userId: user.userId,
+    //         loginPassword: user.password,
+    //     });
+    // }
 
 }
 

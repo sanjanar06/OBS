@@ -1,13 +1,9 @@
 package com.bank.springbackend.service;
 
-import java.util.Optional;
-
 import org.springframework.stereotype.Service;
 
 import com.bank.springbackend.communication.AccountResponse;
-import com.bank.springbackend.entity.Account;
 import com.bank.springbackend.entity.UserProfile;
-import com.bank.springbackend.repository.AccountRepository;
 import com.bank.springbackend.repository.UserProfileRepository;
 
 import lombok.RequiredArgsConstructor;
