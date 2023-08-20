@@ -1,7 +1,5 @@
 package com.bank.springbackend.controller;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,12 +25,4 @@ public class NetBankingController {
 		return netbankingService.register(request);
     }
 
-    @PostMapping("/login")
-	public ResponseEntity<String> login(@RequestBody RegisterRequest request)
-	{
-		if(netbankingService.authenticateUser(request))
-			return ResponseEntity.ok("Login successful");
-		else
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid login credentials!");
-	}
 }

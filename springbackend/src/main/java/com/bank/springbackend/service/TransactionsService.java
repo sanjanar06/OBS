@@ -1,17 +1,13 @@
 package com.bank.springbackend.service;
 
+import java.time.LocalDate;
 import java.util.List;
-import com.bank.springbackend.communication.RegisterRequest;
-import com.bank.springbackend.communication.RegisterResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import com.bank.springbackend.communication.TransactionRequest;
+
 import com.bank.springbackend.entity.Transactions;
 import com.bank.springbackend.repository.TransactionsRepository;
-import org.springframework.web.bind.annotation.*;
-import java.time.LocalDate;
+
 import lombok.RequiredArgsConstructor;
 
 @Service
