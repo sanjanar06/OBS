@@ -26,5 +26,16 @@
       "saveBeneficiary": true,
       "id": 2
     }
+  ],
+  "rtgs": [
+    {
+      "fromAccount": "123",
+      "toAccount": "123",
+      "amount": "123",
+      "transactionDate": "2023-08-20",
+      "maturityInstruction": "earle",
+      "remark": "personal",
+      "id": 1
+    }
   ]
 }
