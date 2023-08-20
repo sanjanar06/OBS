@@ -1,6 +1,6 @@
-package com.bank.springbackend.communication;
+package com.bank.springbackend.communication.Request;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,9 +11,12 @@ import lombok.Data;
 @AllArgsConstructor
 public class TransactionRequest {
 
-    private LocalDate transactionDate;
     private String transactionType;
     private String transactionDesc;
     private double transactionAmount;
+    private String toAccount;
+    private String fromAccount;
+    private Date startDate;
+    private Date endDate;
     
 }

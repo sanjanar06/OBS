@@ -3,6 +3,8 @@ package com.bank.springbackend.entity;
 import java.util.Collection;
 import java.util.UUID;
 
+import com.bank.springbackend.entity.Enum.RoleEnum;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

@@ -6,7 +6,7 @@ import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.bank.springbackend.entity.Role;
-import com.bank.springbackend.entity.RoleEnum;
+import com.bank.springbackend.entity.Enum.RoleEnum;
 
 
 

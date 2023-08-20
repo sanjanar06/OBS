@@ -1,4 +1,4 @@
-package com.bank.springbackend.communication;
+package com.bank.springbackend.communication.Request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,9 +9,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class JWTResponse {
+public class JWTLoginRequest {
 
-    private String accessToken;
-    private String refreshToken;
-    
+    private String userId;
+
+    private String password;
+
 }

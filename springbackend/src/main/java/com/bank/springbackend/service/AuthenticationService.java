@@ -4,9 +4,9 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 
-import com.bank.springbackend.communication.JWTLoginRequest;
-import com.bank.springbackend.communication.JWTRefreshRequest;
-import com.bank.springbackend.communication.JWTResponse;
+import com.bank.springbackend.communication.Request.JWTLoginRequest;
+import com.bank.springbackend.communication.Request.JWTRefreshRequest;
+import com.bank.springbackend.communication.Response.JWTResponse;
 import com.bank.springbackend.entity.User;
 import com.bank.springbackend.repository.NetBankingRepository;
 
@@ -29,7 +29,7 @@ public class AuthenticationService {
             )
         );
 
-        User user = netBankingRepository.findById(Integer.parseInt(request.getUserId())).orElseThrow();
+        User user = netBankingRepository.findUserByUserId(request.getUserId()).orElseThrow();
         
         return authResponse(user);
     }
@@ -39,7 +39,7 @@ public class AuthenticationService {
         String userId = jwtService.extractUsername(refreshToken);
 
         if (userId != null) {
-            User user = netBankingRepository.findById(Integer.parseInt(userId)).orElseThrow();
+            User user = netBankingRepository.findUserByUserId(userId).orElseThrow();
 
             if (jwtService.isTokenValid(refreshToken, user)) {
                 return authRefreshResponse(user, refreshToken);

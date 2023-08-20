@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bank.springbackend.communication.JWTLoginRequest;
-import com.bank.springbackend.communication.JWTRefreshRequest;
-import com.bank.springbackend.communication.JWTResponse;
+import com.bank.springbackend.communication.Request.JWTLoginRequest;
+import com.bank.springbackend.communication.Request.JWTRefreshRequest;
+import com.bank.springbackend.communication.Response.JWTResponse;
 import com.bank.springbackend.service.AuthenticationService;
 
 import lombok.RequiredArgsConstructor;

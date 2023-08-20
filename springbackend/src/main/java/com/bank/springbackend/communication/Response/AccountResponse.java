@@ -1,6 +1,6 @@
-package com.bank.springbackend.communication;
+package com.bank.springbackend.communication.Response;
 
-import com.bank.springbackend.entity.AccountTypeEnum;
+import com.bank.springbackend.entity.Enum.AccountTypeEnum;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +11,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class AccountResponse {
     
-    private int accountNumber;
+    private String accountNumber;
     private String accountName;
     private AccountTypeEnum accountType;
     private Double balance;
