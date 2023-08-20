@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../style/AddBeneficiary.css'; // Import your custom CSS file for styling
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 
 function AddBeneficiary() {
@@ -22,15 +23,24 @@ function AddBeneficiary() {
   const navigate = useNavigate();
 
 
-  const handleProceedClick = () => {
-    console.log('Beneficiary Data:', beneficiaryData);
+  const handleProceedClick = async() => {
     if(beneficiaryData.accountNumber!=beneficiaryData.reenteredAccountNumber){
       alert("Account number not matched,Please re-enter!!");
 
     }
     else{
     //navigate("/fundtransfer");
-    alert(beneficiaryData.nickName + " added as beneficiary");}
+    try {
+      const response = await axios.post('http://localhost:3001/beneficiary', beneficiaryData);
+      console.log('Beneficiary saved:', response.data);
+      // Handle success or navigate to a different page
+    } catch (error) {
+      console.error('Error saving payment:', error);
+      // Handle error if needed
+    }
+
+    alert(beneficiaryData.nickName + " added as beneficiary");
+  }
   };
 
   return (

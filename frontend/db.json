@@ -8,5 +8,23 @@
       "confirmtransactionPassword": "haha",
       "id": 1
     }
+  ],
+  "beneficiary": [
+    {
+      "beneficiaryName": "abcd",
+      "accountNumber": "12345",
+      "reenteredAccountNumber": "12345",
+      "nickName": "abc",
+      "saveBeneficiary": true,
+      "id": 1
+    },
+    {
+      "beneficiaryName": "anshul",
+      "accountNumber": "123",
+      "reenteredAccountNumber": "123",
+      "nickName": "ansh",
+      "saveBeneficiary": true,
+      "id": 2
+    }
   ]
 }

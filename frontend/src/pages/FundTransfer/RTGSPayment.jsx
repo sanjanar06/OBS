@@ -3,8 +3,7 @@ import '../style/RTGS.css';
 import { Link } from 'react-router-dom';
 
 
-class RTGSPayment extends React.Component {
-  render() {
+function RTGSPayment() {
     return (
       <div className="RTGSPayment">
         <h2>Initiate RTGS Payment</h2>
@@ -26,7 +25,7 @@ class RTGSPayment extends React.Component {
           </div>
           <div className="form-group">
             <label htmlFor="transactionDate">Transaction Date:</label>
-            <input type="text" id="transactionDate" name="transactionDate" />
+            <input type="date" id="transactionDate" name="transactionDate" />
           </div>
           <div className="form-group">
             <label htmlFor="maturityInstruction">Maturity Instruction:</label>
@@ -48,7 +47,6 @@ class RTGSPayment extends React.Component {
         </form>
       </div>
     );
-  }
 }
 
 export default RTGSPayment;
