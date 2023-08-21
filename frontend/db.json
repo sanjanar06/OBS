@@ -85,5 +85,18 @@
       "remarks": "personal",
       "id": 1
     }
+  ],
+  "userprofile":[
+    {
+      "name": "sonu singh",
+      "accountNumber": "4y894739",
+      "dob": "02/03/2000",
+      "email": "mfg@gfn.com",
+      "mobileNumber": "57839705445",
+      "fatherName": "akhil singh",
+      "adharNumber": "458034307534940",
+      "panNumber": "AXGD97L",
+      "address":"hyderabad"
+    }
   ]
 }
