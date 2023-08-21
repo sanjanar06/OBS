@@ -37,6 +37,8 @@ function RTGSPayment() {
 
   return (
     <div className="RTGSPayment">
+      {/* <Sidebar></Sidebar> */}
+
       <h2>Initiate RTGS Payment</h2>
       <form>
         <div className="form-group">
