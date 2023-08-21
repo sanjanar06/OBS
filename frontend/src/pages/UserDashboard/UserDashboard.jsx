@@ -7,7 +7,25 @@ import AccountSummary from './AccountSummary';
 import UserProfile from './UserProfile';
 
 class UserDashboard extends Component {
+
+  
   render() {
+
+    // async function gtTrans() {
+    //   const res = await fetch("");
+    //   const data = res.json();
+
+    // }
+    var trans =  [{
+      "tran_date": '12/01/2001',
+      "balance": "₹ 200",
+      "account_no": 'fwe'
+    },
+    {
+      "tran_date": '12/01/2001',
+      "balance": "₹ 200"
+    }
+  ]
     return (
       <>
       <h1>Dashboard</h1>
@@ -31,12 +49,18 @@ class UserDashboard extends Component {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>John</td>
-                <td>123456789</td>
-                <td>Savings</td>
-                <td>10,000</td>
-              </tr>
+              {
+                trans.map(tran => {
+                  return (
+                    <tr>
+                     <td>{tran.balance}</td>
+                     <td>123456789</td>
+                     <td>Savings</td>
+                     <td>10,000</td>
+                   </tr>
+                  )
+                })
+              }
               {/* Add more rows for additional accounts */}
             </tbody>
           </table>

@@ -1,6 +1,7 @@
 import UserService from '../../services/UserService'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../style/Login.css'
 
 const Login = (props) => {
   const [credentials, setCredentials] = useState({
@@ -32,7 +33,9 @@ const Login = (props) => {
 
  }  ;
   return (
-    <div className="login-name" style={{'margin': '0 auto', 'marginTop': '200px', 'width': '600px'}}>
+    <div style={{'display': 'flex', 'justifyContent': 'center', 
+    'alignItems': 'center'}}>
+      <div className="Login">
         <h2>Login</h2>
         <div>{loginError}</div>
         <form onSubmit={handleLogin}>
@@ -58,6 +61,7 @@ const Login = (props) => {
                 <button type="submit">Login</button>
             </div>
         </form>
+    </div>
     </div>
   )
 }

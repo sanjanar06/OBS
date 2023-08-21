@@ -1,0 +1,12 @@
+.Login {
+    /*  */
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 30%;
+    margin-right: 30%;
+    /* margin-top: 50px; */
+    
+    align-items: center;
+    height: 100vh !important;
+}
