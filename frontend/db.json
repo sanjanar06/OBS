@@ -25,6 +25,14 @@
       "nickName": "ansh",
       "saveBeneficiary": true,
       "id": 2
+    },
+    {
+      "beneficiaryName": "anshul sharma",
+      "accountNumber": "12212",
+      "reenteredAccountNumber": "12212",
+      "nickName": "sharma",
+      "saveBeneficiary": false,
+      "id": 3
     }
   ],
   "rtgs": [
@@ -73,6 +81,15 @@
       "maturityInstruction": "regular",
       "remarks": "personal",
       "id": 1
+    },
+    {
+      "fromAccount": "1",
+      "toAccount": "1",
+      "amount": "12344",
+      "date": "2023-08-21",
+      "maturityInstruction": "late",
+      "remarks": "public",
+      "id": 2
     }
   ],
   "neft": [
@@ -84,6 +101,42 @@
       "maturityInstruction": "early",
       "remarks": "personal",
       "id": 1
+    },
+    {
+      "fromAccount": "1234567",
+      "toAccount": "1234567",
+      "amount": "12",
+      "date": "2023-08-21",
+      "maturityInstruction": "late",
+      "remarks": "public",
+      "id": 2
+    },
+    {
+      "fromAccount": "12345678",
+      "toAccount": "12345678",
+      "amount": "12",
+      "date": "2023-08-21",
+      "maturityInstruction": "late",
+      "remarks": "public",
+      "id": 3
+    },
+    {
+      "fromAccount": "12345678",
+      "toAccount": "12345678",
+      "amount": "12",
+      "date": "2023-08-21",
+      "maturityInstruction": "late",
+      "remarks": "public",
+      "id": 4
+    },
+    {
+      "fromAccount": "12345",
+      "toAccount": "12345",
+      "amount": "145",
+      "date": "2023-08-21",
+      "maturityInstruction": "late",
+      "remarks": "public",
+      "id": 5
     }
   ]
 }

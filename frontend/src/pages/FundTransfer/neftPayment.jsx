@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../style/NeftPayment.css'; // You can import your CSS file here for styling
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { sendRequestNeft } from "../../services/FundTransfer";
 
 function NeftPayment() {
   const [formData, setFormData] = useState({
@@ -21,15 +22,23 @@ function NeftPayment() {
   };
 
   const handleSaveClick = async() => {
-    try {
-      const response = await axios.post('http://localhost:3001/neft', formData);
-      console.log('NEFT Payment saved:', response.data);
-      alert("Data has been saved succesfully");
+   
+     // try {
+    //   const response = await axios.post('http://localhost:3001/neft', formData);
+    //   console.log('NEFT Payment saved:', response.data);
+    //   alert("Data has been saved succesfully");
       
-    } catch (error) {
-      console.error('Error saving transaction:', error);
+    // } catch (error) {
+      // console.error('Error saving transaction:', error);
       
-    }
+    // }
+   sendRequestNeft(formData).then((res) =>{
+      console.log('NEFT transaction data saved');
+      console.log(res.data);
+  })
+  .catch((error) =>{
+      console.log("Error in sending request");
+  });
   }
 
   const handleReset = () => {
