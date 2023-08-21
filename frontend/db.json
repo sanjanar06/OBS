@@ -74,5 +74,16 @@
       "remarks": "personal",
       "id": 1
     }
+  ],
+  "neft": [
+    {
+      "fromAccount": "1234",
+      "toAccount": "1234",
+      "amount": "2587",
+      "date": "2023-08-21",
+      "maturityInstruction": "early",
+      "remarks": "personal",
+      "id": 1
+    }
   ]
 }
