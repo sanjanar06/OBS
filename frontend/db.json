@@ -38,30 +38,52 @@
       "id": 1
     }
   ],
-  "dashboard":[
+  "dashboard": [
     {
-    "accountHolderName": "Manish Gautam",
-    "accountNumber": 498239865,
-    "accountType": "Savings",
-    "accountBalance": 489374
+      "accountHolderName": "Manish Gautam",
+      "accountNumber": 498239865,
+      "accountType": "Savings",
+      "accountBalance": 489374
     },
     {
       "accountHolderName": "Manish Gautam",
       "accountNumber": 498239865,
       "accountType": "Savings",
       "accountBalance": 489374
-      },
-      {
-        "accountHolderName": "Manish Gautam",
-        "accountNumber": 498239865,
-        "accountType": "Savings",
-        "accountBalance": 489374
-        },
-        {
-          "accountHolderName": "Sanajana",
-          "accountNumber": 58973556,
-          "accountType": "Current",
-          "accountBalance": 489374
-          }
+    },
+    {
+      "accountHolderName": "Manish Gautam",
+      "accountNumber": 498239865,
+      "accountType": "Savings",
+      "accountBalance": 489374
+    },
+    {
+      "accountHolderName": "Sanajana",
+      "accountNumber": 58973556,
+      "accountType": "Current",
+      "accountBalance": 489374
+    }
+  ],
+  "imps": [
+    {
+      "fromAccount": "1234",
+      "toAccount": "1234",
+      "amount": "2600",
+      "date": "2023-08-21",
+      "maturityInstruction": "regular",
+      "remarks": "personal",
+      "id": 1
+    }
+  ],
+  "neft": [
+    {
+      "fromAccount": "1234",
+      "toAccount": "1234",
+      "amount": "2587",
+      "date": "2023-08-21",
+      "maturityInstruction": "early",
+      "remarks": "personal",
+      "id": 1
+    }
   ]
 }
