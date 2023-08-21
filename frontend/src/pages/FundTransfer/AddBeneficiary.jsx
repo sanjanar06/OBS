@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../style/AddBeneficiary.css'; // Import your custom CSS file for styling
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -102,6 +102,11 @@ function AddBeneficiary() {
           <button type="button" className="button proceed-button" onClick={handleProceedClick}>
             Proceed
           </button>
+          <Link to="/displaybeneficiaries">
+          <button type="button" className="button proceed-button" >
+            Veiw already existing beneficiaries
+          </button>
+          </Link>
         </div>
       </form>
     </div>
