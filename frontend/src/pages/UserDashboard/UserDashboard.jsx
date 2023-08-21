@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import '../style/UserDashboard.css'; // Import your CSS file for styling
+import '../style/UserDashboard.css'; 
 import axios from 'axios';
 
 // Components for the left sidebar

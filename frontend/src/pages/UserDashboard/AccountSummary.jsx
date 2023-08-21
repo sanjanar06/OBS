@@ -1,11 +1,7 @@
 import React from 'react'
 
-function AccountSummary() {
+export default function AccountSummary() {
   return (
-    <div>
-      <h1>AccountSummary</h1>
-    </div>
+    <div>AccountSummary</div>
   )
 }
-
-export default AccountSummary

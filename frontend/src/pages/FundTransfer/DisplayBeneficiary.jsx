@@ -1,19 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../style/DisplayBeneficiary.css';
+import { getbeneficiary } from "../../services/FundTransfer";
 
 function DisplayBeneficiary() {
     const [beneficiaries, setBeneficiaries] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/beneficiary') 
-      .then(response => {
-        console.log(response.data);
-        setBeneficiaries(response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching beneficiaries:', error);
-      });
+    // axios.get('http://localhost:3001/beneficiary') 
+    //   .then(response => {
+    //     console.log(response.data);
+    //     setBeneficiaries(response.data);
+    //   })
+    //   .catch(error => {
+    //     console.error('Error fetching beneficiaries:', error);
+    //   });
+    getbeneficiary().then((response) =>{
+      console.log(response.data);
+      setBeneficiaries(response.data);
+  })
+  .catch((error) =>{
+      console.log("Error fetching beneficiaries");
+  });
   }, []);
 
   return (

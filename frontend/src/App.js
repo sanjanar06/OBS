@@ -49,6 +49,7 @@ function App() {
 
 
 
+
         <Route path="/accountDetails" element={<AccountDetails/>}/> 
         <Route path="/RTGSPayment" element={<RTGSPayment/>}/> 
         <Route path="/accountSummary" element={<AccountSummary/>}/> 

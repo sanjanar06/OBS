@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../style/IMPSPayment.css'; // You can import your CSS file here for styling
 import axios from 'axios';
+import {sendRequestImps} from "../../services/FundTransfer";
 
 function IMPSPayment() {
   const [formData, setFormData] = useState({
@@ -21,15 +22,23 @@ function IMPSPayment() {
   };
 
   const handleSaveClick = async() => {
-    try {
-      const response = await axios.post('http://localhost:3001/imps', formData);
-      console.log('IMPS Payment saved:', response.data);
-      alert("Data has been saved succesfully");
+    // try {
+    //   const response = await axios.post('http://localhost:3001/imps', formData);
+    //   console.log('IMPS Payment saved:', response.data);
+    //   alert("Data has been saved succesfully");
       
-    } catch (error) {
-      console.error('Error saving transaction:', error);
+    // } catch (error) {
+    //   console.error('Error saving transaction:', error);
       
-    }
+    // }
+    
+    sendRequestImps(formData).then((res) =>{
+      console.log('IMPS transaction data saved');
+      console.log(res.data);
+  })
+  .catch((error) =>{
+      console.log("Error in sending request");
+  });
   }
 
 
