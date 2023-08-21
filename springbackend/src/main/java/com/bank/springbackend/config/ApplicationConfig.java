@@ -24,8 +24,8 @@ public class ApplicationConfig {
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> netBankingRepository
-            .findById(Integer.parseInt(username))
-            .orElseThrow(() -> new UsernameNotFoundException("User with this Email not found"));
+            .findUserByUserId(username)
+            .orElseThrow(() -> new UsernameNotFoundException("User with this ID not found"));
     }
 
     @Bean

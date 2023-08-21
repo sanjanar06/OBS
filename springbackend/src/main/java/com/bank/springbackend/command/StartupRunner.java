@@ -8,8 +8,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.bank.springbackend.entity.Role;
-import com.bank.springbackend.entity.RoleEnum;
 import com.bank.springbackend.entity.User;
+import com.bank.springbackend.entity.Enum.RoleEnum;
 import com.bank.springbackend.repository.NetBankingRepository;
 import com.bank.springbackend.repository.RoleRepository;
 
@@ -25,7 +25,7 @@ public class StartupRunner implements CommandLineRunner {
     private final PasswordEncoder passwordEncoder;
 
     @Value("${bank.springbackend.superUser}")
-    private Integer superUser;
+    private String superUser;
 
     @Value("${bank.springbackend.superPass}")
     private String superUserPass;

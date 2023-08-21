@@ -1,8 +1,9 @@
 package com.bank.springbackend.entity;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
-import jakarta.persistence.Column;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,26 +20,24 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "transactions")
-public class Transactions {
+@Table(name = "transaction")
+public class Transaction {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long transactionId;
 	
-	@Column(name = "transactionDate", nullable = true)
-	private LocalDate transactionDate;
+	@JsonFormat(pattern="dd-mm-yyyy")
+	private Date transactionDate;
 
-	@Column(name = "transactionType", nullable = true)
 	private String transactionType;
 
-    @Column(name = "transactionDesc", nullable = true)
 	private String transactionDesc;
 
-    @Column(name = "transactionAmount", nullable = true)
 	private Double transactionAmount;
 
-    // @OneToOne(mappedBy = "user")
-	// private UserProfile userProfile;
+	private String toAccount;
+
+	private String fromAccount;
 	
 }

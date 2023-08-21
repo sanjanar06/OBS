@@ -34,7 +34,7 @@ public class SecurityConfig {
                         .requestMatchers("/error/**").permitAll()
                         .requestMatchers("/auth/login").permitAll()
                         .requestMatchers("/auth/refresh").permitAll()
-                        .requestMatchers("/userProfile/addProfile").permitAll()
+                        .requestMatchers("/account/create").permitAll()
                         .requestMatchers("/user/register").permitAll()
                         .anyRequest().authenticated()
                 )
