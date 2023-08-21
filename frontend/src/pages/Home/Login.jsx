@@ -1,9 +1,8 @@
-import UserService from '../../services/UserService'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../style/Login.css'
+import { apiLogin } from '../../services/auth';
 
-const Login = (props) => {
+const Login = () => {
   const [credentials, setCredentials] = useState({
     userId:'',
     password:''
@@ -20,22 +19,21 @@ const Login = (props) => {
     })
   }
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
-    UserService.loginUser(credentials).then((res) =>{
-        console.log('Logged in');
-        navigate("/userDashboard");
-        
-    })
-    .catch((error) =>{
-        setLoginError('Invalid credentials')
-    });
+    const res = await apiLogin(credentials);
+    
+    if(res)
+    {
+      navigate("/userDashboard")
+    }
+    else{
+      setLoginError("Invalid credentials")
+    }
 
- }  ;
+  }
   return (
-    <div style={{'display': 'flex', 'justifyContent': 'center', 
-    'alignItems': 'center'}}>
-      <div className="Login">
+    <div className="login-name" style={{'margin': '1px auto', 'marginTop': '1px', 'width': '1000px', 'height':'100vh'}}>
         <h2>Login</h2>
         <div>{loginError}</div>
         <form onSubmit={handleLogin}>
@@ -61,8 +59,9 @@ const Login = (props) => {
                 <button type="submit">Login</button>
             </div>
         </form>
+        {/* <img src={login_img} alt="img" /> */}
     </div>
-    </div>
+    // </div>
   )
 }
 

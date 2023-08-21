@@ -6,12 +6,9 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bank.springbackend.communication.UserDetailsRequest;
 import com.bank.springbackend.entity.UserProfile;
 import com.bank.springbackend.service.UserProfileService;
 
@@ -25,20 +22,14 @@ public class UserProfileController {
     
     private final UserProfileService userProfileService;
 
-    // User : Open an Account
-    @PostMapping("/addProfile")
-    public UserProfile addUserProfile(@RequestBody UserDetailsRequest accountRequest) {
-		  return userProfileService.createProfile(accountRequest);
-    }
-
     // Admin :Fetch all account opening forms
-    @GetMapping("/profiles")
+    @GetMapping("/view")
     public List<UserProfile> findAllUserProfiles(){
 		  return userProfileService.getAllUserProfiles();
     }
 
     // Admin :Delete rejected account opening forms
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteUserProfile(@PathVariable("id") Integer accountId)
     {
         userProfileService.deleteUserProfileById(accountId);

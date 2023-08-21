@@ -1,4 +1,4 @@
-package com.bank.springbackend.communication;
+package com.bank.springbackend.communication.Request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,8 @@ import lombok.Data;
 @AllArgsConstructor
 public class RegisterRequest {
     
-    private int accountNumber;
-    private int userId;
+    private String accountNumber;
+    private String userId;
     private String loginPassword;
     private String transactionPassword;
     

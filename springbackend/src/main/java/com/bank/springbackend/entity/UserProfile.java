@@ -2,7 +2,6 @@ package com.bank.springbackend.entity;
 
 import java.time.LocalDate;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,34 +19,39 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "users_profile")
+@Table(name = "user_profile")
 public class UserProfile {
 
     @Id
-    @Column(name="accountNumber", unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int accountNumber;
+    private int profileId;
 
     @Column(name = "title", length= 4)
     private String title;
 
     private String firstName;
+
     private String middleName;
+
     private String lastName;
+
     private String emailID;
+
     private String fatherName;
+
     private String motherName;
-    private String aadharNo;
+
+    private String aadhaarNo;
+
     private LocalDate dob;
+
     private String address;
+
     private String occupationType;
+
     private Double grossAnnualIncome;
-    private ProfileStatusEnum status;
 
-    @OneToOne(optional = true, cascade = CascadeType.ALL)
-    private User user;
-
-    @OneToOne(optional = true, cascade = CascadeType.ALL )
+    @OneToOne(mappedBy = "userProfile")
     private Account account;
 
 }

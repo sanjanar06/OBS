@@ -1,15 +1,16 @@
 package com.bank.springbackend.controller;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bank.springbackend.communication.RegisterRequest;
-import com.bank.springbackend.communication.RegisterResponse;
+import com.bank.springbackend.communication.Request.RegisterRequest;
+import com.bank.springbackend.communication.Response.RegisterResponse;
 import com.bank.springbackend.service.NetbankingService;
 
 import lombok.RequiredArgsConstructor;
@@ -27,12 +28,16 @@ public class NetBankingController {
 		return netbankingService.register(request);
     }
 
-    @PostMapping("/login")
-	public ResponseEntity<String> login(@RequestBody RegisterRequest request)
-	{
-		if(netbankingService.authenticateUser(request))
-			return ResponseEntity.ok("Login successful");
-		else
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid login credentials!");
-	}
+    @GetMapping("/view/{userId}")
+    public RegisterResponse getUser(@PathVariable String userId)
+    {
+      return netbankingService.getUser(userId);
+    }
+
+    @PutMapping("/update/{userId}")
+    public RegisterResponse updatePassword(@RequestBody RegisterRequest request)
+    {
+      return netbankingService.updatePassword(request);
+    }
+
 }

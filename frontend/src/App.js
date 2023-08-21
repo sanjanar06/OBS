@@ -1,28 +1,38 @@
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
-import { Routes, Route } from 'react-router-dom';
 
 import Login from './pages/Home/Login.jsx';
 import UserDashboard from './pages/UserDashboard/UserDashboard';
 
-import Home from './pages/Home/Home'; 
-import ForgotUserId from './pages/Home/ForgetUserId';
-import SetNewPassword from './pages/Home/SetNewPassword';
-import RTGSPayment from './pages/FundTransfer/RTGSPayment';
 import AddBeneficiary from './pages/FundTransfer/AddBeneficiary';
 import FundTransfer from './pages/FundTransfer/FundTransfer';
+import RTGSPayment from './pages/FundTransfer/RTGSPayment';
+import ForgotUserId from './pages/Home/ForgetUserId';
+import Home from './pages/Home/Home';
+import SetNewPassword from './pages/Home/SetNewPassword';
 
 
+import { useEffect } from 'react';
+import IMPSPayment from './pages/FundTransfer/impsPayment';
+import NeftPayment from './pages/FundTransfer/neftPayment';
 import AccountCreation from './pages/Home/AccountCreation';
 import Register from './pages/Home/Register';
 import AccountDetails from './pages/UserDashboard/AccountDetails.jsx';
 import AccountSummary from './pages/UserDashboard/AccountSummary.jsx';
-import ChangeUid_pass from './pages/Home/ForgotPassword.jsx';
 import UserProfile from './pages/UserDashboard/UserProfile.jsx';
-import ChangePassword from './pages/Home/changePassword';
-import NeftPayment from './pages/FundTransfer/neftPayment';
-import IMPSPayment from './pages/FundTransfer/impsPayment';
+import { isLoggedIn } from './services/auth';
 
 function App() {
+  const loggedIn = isLoggedIn();
+  const navigate = useNavigate();
+
+  useEffect(()=>{
+    if(!loggedIn)
+    {
+      navigate("/")
+    }
+      
+  }, [loggedIn, navigate]);
   return (
     <div className="App">
       <Routes>

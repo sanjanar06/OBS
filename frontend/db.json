@@ -9,42 +9,59 @@
       "id": 1
     }
   ],
-  "accounts": [
+  "beneficiary": [
     {
-      "Name": "Manish Gautam",
-      "AccountNumber":"4646676565",
-      "AccountType": "Savings",
-      "AccountBalance": "5408937"
+      "beneficiaryName": "abcd",
+      "accountNumber": "12345",
+      "reenteredAccountNumber": "12345",
+      "nickName": "abc",
+      "saveBeneficiary": true,
+      "id": 1
     },
     {
-      "Name": "Manish Gautam",
-      "AccountNumber":"4646676565",
-      "AccountType": "Savings",
-      "AccountBalance": "5408937"
-    },
-    {
-      "Name": "Manish Gautam",
-      "AccountNumber":"4646676565",
-      "AccountType": "Savings",
-      "AccountBalance": "5408937"
-    },
-    {
-      "Name": "Manish Gautam",
-      "AccountNumber":"4646676565",
-      "AccountType": "Savings",
-      "AccountBalance": "5408937"
-    },
-    {
-      "Name": "Manish Gautam",
-      "AccountNumber":"4646676565",
-      "AccountType": "Savings",
-      "AccountBalance": "5408937"
-    },
-    {
-      "Name": "Manish Gautam",
-      "AccountNumber":"4646676565",
-      "AccountType": "Savings",
-      "AccountBalance": "5408937"
+      "beneficiaryName": "anshul",
+      "accountNumber": "123",
+      "reenteredAccountNumber": "123",
+      "nickName": "ansh",
+      "saveBeneficiary": true,
+      "id": 2
     }
+  ],
+  "rtgs": [
+    {
+      "fromAccount": "123",
+      "toAccount": "123",
+      "amount": "123",
+      "transactionDate": "2023-08-20",
+      "maturityInstruction": "earle",
+      "remark": "personal",
+      "id": 1
+    }
+  ],
+  "dashboard":[
+    {
+    "accountHolderName": "Manish Gautam",
+    "accountNumber": 498239865,
+    "accountType": "Savings",
+    "accountBalance": 489374
+    },
+    {
+      "accountHolderName": "Manish Gautam",
+      "accountNumber": 498239865,
+      "accountType": "Savings",
+      "accountBalance": 489374
+      },
+      {
+        "accountHolderName": "Manish Gautam",
+        "accountNumber": 498239865,
+        "accountType": "Savings",
+        "accountBalance": 489374
+        },
+        {
+          "accountHolderName": "Sanajana",
+          "accountNumber": 58973556,
+          "accountType": "Current",
+          "accountBalance": 489374
+          }
   ]
 }

@@ -1,4 +1,4 @@
-package com.bank.springbackend.communication;
+package com.bank.springbackend.communication.Request;
 
 import java.time.LocalDate;
 
