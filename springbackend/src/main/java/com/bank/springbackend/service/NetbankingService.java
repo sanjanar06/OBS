@@ -13,7 +13,6 @@ import com.bank.springbackend.entity.UserProfile;
 import com.bank.springbackend.exception.ResourceNotFoundException;
 import com.bank.springbackend.repository.AccountRepository;
 import com.bank.springbackend.repository.NetBankingRepository;
-import com.bank.springbackend.repository.RoleRepository;
 import com.bank.springbackend.repository.UserProfileRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -24,7 +23,6 @@ public class NetbankingService {
 
     private final NetBankingRepository netBankingRepository;
     private final UserProfileRepository userProfileRepository;
-    private final RoleRepository roleRepository;
     private final AccountRepository accountRepository;
     private final PasswordEncoder passwordEncoder;
 
