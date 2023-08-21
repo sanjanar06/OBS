@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import '../style/AddBeneficiary.css'; // Import your custom CSS file for styling
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { addbeneficiary} from "../../services/FundTransfer";
 
 
 function AddBeneficiary() {
@@ -30,14 +31,21 @@ function AddBeneficiary() {
     }
     else{
     //navigate("/fundtransfer");
-    try {
-      const response = await axios.post('http://localhost:3001/beneficiary', beneficiaryData);
-      console.log('Beneficiary saved:', response.data);
-      // Handle success or navigate to a different page
-    } catch (error) {
-      console.error('Error saving payment:', error);
-      // Handle error if needed
-    }
+    // try {
+    //   const response = await axios.post('http://localhost:3001/beneficiary', beneficiaryData);
+    //   console.log('Beneficiary saved:', response.data);
+    //   // Handle success or navigate to a different page
+    // } catch (error) {
+    //   console.error('Error saving payment:', error);
+    //   // Handle error if needed
+    // }
+    addbeneficiary(beneficiaryData).then((res) =>{
+      console.log('Beneficiary data saved');
+      console.log(res.data);
+  })
+  .catch((error) =>{
+      console.log("Error in sending request");
+  });
 
     alert(beneficiaryData.nickName + " added as beneficiary");
   }
@@ -102,6 +110,11 @@ function AddBeneficiary() {
           <button type="button" className="button proceed-button" onClick={handleProceedClick}>
             Proceed
           </button>
+          <Link to="/displaybeneficiaries">
+          <button type="button" className="button proceed-button" >
+            Veiw already existing beneficiaries
+          </button>
+          </Link>
         </div>
       </form>
     </div>

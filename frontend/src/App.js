@@ -10,6 +10,7 @@ import RTGSPayment from './pages/FundTransfer/RTGSPayment';
 import ForgotUserId from './pages/Home/ForgetUserId';
 import Home from './pages/Home/Home';
 import SetNewPassword from './pages/Home/SetNewPassword';
+import DisplayBeneficiary from './pages/FundTransfer/DisplayBeneficiary';
 
 
 import { useEffect } from 'react';
@@ -44,6 +45,7 @@ function App() {
         <Route path="/account" element={<AccountCreation />}></Route>
         <Route path="/addbeneficiary" element={<AddBeneficiary />}></Route>
         <Route path="/fundtransfer" element={<FundTransfer />}></Route>
+        <Route path="/displaybeneficiaries" element={<DisplayBeneficiary />}></Route>
 
 
 

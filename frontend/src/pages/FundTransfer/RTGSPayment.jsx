@@ -21,6 +21,17 @@ function RTGSPayment() {
     });
   };
 
+  const handleReset = () => {
+    setFormData({
+      fromAccount: '',
+      toAccount: '',
+      amount: '',
+      date: '',
+      maturityInstruction: '',
+      remarks: '',
+    });
+  };
+
   const handleSaveClick = async() => {
     try {
       const response = await axios.post('http://localhost:3001/rtgs', formData);
@@ -106,7 +117,7 @@ function RTGSPayment() {
             Save
           </button>
           <span className="button-space"></span>
-          <button type="button" className="button reset-button">
+          <button type="button" className="button reset-button" onClick={handleReset}>
             Reset
           </button>
           <span className="button-space"></span>
