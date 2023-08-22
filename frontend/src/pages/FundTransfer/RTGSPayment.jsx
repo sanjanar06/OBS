@@ -19,30 +19,24 @@ function RTGSPayment() {
     });
   };
 
-  const handleSaveClick = async(event) => {
+  const handleSaveClick = async (event) => {
     event.preventDefault();
-    TransactionService.createTransaction(formData).then((res)=>{
+    TransactionService.createTransaction(formData).then((res) => {
       console.log("Fund transfer successful");
 
     })
-    .catch((error)=>{
-      console.log("FundtTransfer failed!!");
-    });
-    // try {
-    //   const response = await axios.post('http://localhost:3001/rtgs', formData);
-    //   console.log('RTGS Payment saved:', response.data);
-    //   alert("Data has been saved succesfully");
-      
-    // } catch (error) {
-    //   console.error('Error saving transaction:', error);
-      
-    // }
+      .catch((error) => {
+        console.log("Fund transfer failed!!");
+      });
+
   }
 
 
 
   return (
     <div className="RTGSPayment">
+      {/* <Sidebar></Sidebar> */}
+
       <h2>Initiate RTGS Payment</h2>
       <form>
         <div className="form-group">
@@ -52,7 +46,7 @@ function RTGSPayment() {
             id="toAccount"
             name="toAccount"
             value={formData.toAccount}
-            onChange={e => handleInputChange('toAccount', e.target.value)}          />
+            onChange={e => handleInputChange('toAccount', e.target.value)} />
           <Link to="/addbeneficiary">
             <button type="button" className="add-new-button">
               Add New +
@@ -66,7 +60,7 @@ function RTGSPayment() {
             id="transactionAmount"
             name="transactionAmount"
             value={formData.transactionAmount}
-            onChange={e => handleInputChange('transactionAmount', e.target.value)}          />
+            onChange={e => handleInputChange('transactionAmount', e.target.value)} />
         </div>
         <div className="form-group">
           <label htmlFor="transactionDesc">Transaction Desc:</label>
@@ -75,7 +69,7 @@ function RTGSPayment() {
             id="transactionDesc"
             name="transactionDesc"
             value={formData.transactionDesc}
-            onChange={e => handleInputChange('transactionDesc', e.target.value)}          />
+            onChange={e => handleInputChange('transactionDesc', e.target.value)} />
         </div>
         <div className="button-container">
           <button type="button" className="button save-button" onClick={handleSaveClick}>
