@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../style/UserProfile.css';
 
-const API_BASE_URL = "http://localhost:3001";
+const API_BASE_URL = "http://localhost:3000";
 function UserProfile() {
   const [editing, setEditing] = useState(false);
   const [name, setName] = useState("");
