@@ -27,20 +27,20 @@ function App() {
   const loggedIn = isLoggedIn();
   const navigate = useNavigate();
 
-  useEffect(()=>{
-    if(!loggedIn)
-    {
-      navigate("/")
+  useEffect(() => {
+
+    if (!loggedIn) {
+      navigate("/");
     }
-      
-  }, [loggedIn, navigate]);
+
+  }, [loggedIn]);
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/login" element={<Login />}></Route>
-        <Route path="/forgetId" element={<ForgotUserId/>}></Route>
-        <Route path="/resetPassword" element={<SetNewPassword/>}></Route>
+        <Route path="/forgetId" element={<ForgotUserId />}></Route>
+        <Route path="/resetPassword" element={<SetNewPassword />}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/account" element={<AccountCreation />}></Route>
         <Route path="/addbeneficiary" element={<AddBeneficiary />}></Route>
@@ -50,16 +50,16 @@ function App() {
 
 
 
-        <Route path="/accountDetails" element={<AccountDetails/>}/> 
-        <Route path="/RTGSPayment" element={<RTGSPayment/>}/> 
-        <Route path="/accountSummary" element={<AccountSummary/>}/> 
+        <Route path="/accountDetails" element={<AccountDetails />} />
+        <Route path="/RTGSPayment" element={<RTGSPayment />} />
+        <Route path="/accountSummary" element={<AccountSummary />} />
         {/* <Route path="/forgotPassword" element={<ForgotPassword/>}/>  */}
-        <Route path="/userDashboard" element={<UserDashboard/>}/> 
+        <Route path="/userDashboard" element={<UserDashboard />} />
         {/* <Route path="/Change" element={<ChangeUid_pass/>}/>  */}
-        <Route path="/userProfile" element={<UserProfile/>}/> 
+        <Route path="/userProfile" element={<UserProfile />} />
         {/* <Route path="/ChangePassword" element = {<ChangePassword/>} /> */}
-        <Route path = "/neftPayment" element={<NeftPayment/>}/>
-        <Route path = "/impsPayment" element={<IMPSPayment/>}/>
+        <Route path="/neftPayment" element={<NeftPayment />} />
+        <Route path="/impsPayment" element={<IMPSPayment />} />
       </Routes>
 
     </div>

@@ -18,26 +18,24 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/user")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin
 public class NetBankingController {
 
-    private final NetbankingService netbankingService;
+  private final NetbankingService netbankingService;
 
-    @PostMapping("/register")
-    public RegisterResponse register(@RequestBody RegisterRequest request) {
-		return netbankingService.register(request);
-    }
+  @PostMapping("/register")
+  public RegisterResponse register(@RequestBody RegisterRequest request) {
+    return netbankingService.register(request);
+  }
 
-    @GetMapping("/view/{userId}")
-    public RegisterResponse getUser(@PathVariable String userId)
-    {
-      return netbankingService.getUser(userId);
-    }
+  @GetMapping("/view/{userId}")
+  public RegisterResponse getUser(@PathVariable String userId) {
+    return netbankingService.getUser(userId);
+  }
 
-    @PutMapping("/update/{userId}")
-    public RegisterResponse updatePassword(@RequestBody RegisterRequest request)
-    {
-      return netbankingService.updatePassword(request);
-    }
+  @PutMapping("/update/{userId}")
+  public RegisterResponse updatePassword(@RequestBody RegisterRequest request) {
+    return netbankingService.updatePassword(request);
+  }
 
 }

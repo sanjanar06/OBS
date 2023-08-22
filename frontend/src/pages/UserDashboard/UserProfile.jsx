@@ -3,7 +3,7 @@ import axios from 'axios';
 import '../style/UserProfile.css';
 import { getUserProfile } from "../../services/UserDetails";
 
-const API_BASE_URL = "http://localhost:3001";
+const API_BASE_URL = "http://localhost:3000";
 function UserProfile() {
   const [profileData, setProfileData] = useState([]);
 
