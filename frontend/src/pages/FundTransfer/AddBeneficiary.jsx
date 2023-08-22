@@ -1,17 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import '../style/AddBeneficiary.css'; // Import your custom CSS file for styling
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { addbeneficiary} from "../../services/FundTransfer";
+import AccountService from '../../services/AccountService';
+import '../style/AddBeneficiary.css'; // Import your custom CSS file for styling
 
 
 function AddBeneficiary() {
   const [beneficiaryData, setBeneficiaryData] = useState({
     beneficiaryName: '',
-    accountNumber: '',
+    beneficiaryAccountNumber: '',
     reenteredAccountNumber: '',
-    nickName: '',
-    saveBeneficiary: false,
+    beneficiaryNickName: '',
   });
 
   const handleInputChange = (field, value) => {
@@ -24,32 +22,24 @@ function AddBeneficiary() {
   const navigate = useNavigate();
 
 
-  const handleProceedClick = async() => {
-    if(beneficiaryData.accountNumber!=beneficiaryData.reenteredAccountNumber){
+  const handleProceedClick = async (event) => {
+    if (beneficiaryData.beneficiaryAccountNumber != beneficiaryData.reenteredAccountNumber) {
       alert("Account number not matched,Please re-enter!!");
 
     }
-    else{
-    //navigate("/fundtransfer");
-    // try {
-    //   const response = await axios.post('http://localhost:3001/beneficiary', beneficiaryData);
-    //   console.log('Beneficiary saved:', response.data);
-    //   // Handle success or navigate to a different page
-    // } catch (error) {
-    //   console.error('Error saving payment:', error);
-    //   // Handle error if needed
-    // }
-    addbeneficiary(beneficiaryData).then((res) =>{
-      console.log('Beneficiary data saved');
-      console.log(res.data);
-  })
-  .catch((error) =>{
-      console.log("Error in sending request");
-  });
-
-    alert(beneficiaryData.nickName + " added as beneficiary");
+    else {
+      event.preventDefault();
+      AccountService.addBeneficiary(beneficiaryData).then((res) => {
+        console.log("Added beneficiary");
+        console.log(res.data);
+        alert("Added beneficiary");
+      })
+        .catch(() => {
+          console.log("Error adding beneficiary");
+        });
+    }
   }
-  };
+
 
   return (
     <div className="AddBeneficiary">
@@ -66,13 +56,13 @@ function AddBeneficiary() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="accountNumber">Beneficiary Account Number:</label>
+          <label htmlFor="beneficiaryAccountNumber">Beneficiary Account Number:</label>
           <input
             type="text"
-            id="accountNumber"
-            name="accountNumber"
-            value={beneficiaryData.accountNumber}
-            onChange={e => handleInputChange('accountNumber', e.target.value)}
+            id="beneficiaryAccountNumber"
+            name="beneficiaryAccountNumber"
+            value={beneficiaryData.beneficiaryAccountNumber}
+            onChange={e => handleInputChange('beneficiaryAccountNumber', e.target.value)}
           />
         </div>
         <div className="form-group">
@@ -86,34 +76,23 @@ function AddBeneficiary() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="nickName">Nick Name:</label>
+          <label htmlFor="beneficiaryNickName">Nick Name:</label>
           <input
             type="text"
-            id="nickName"
-            name="nickName"
-            value={beneficiaryData.nickName}
-            onChange={e => handleInputChange('nickName', e.target.value)}
+            id="beneficiaryNickName"
+            name="beneficiaryNickName"
+            value={beneficiaryData.beneficiaryNickName}
+            onChange={e => handleInputChange('beneficiaryNickName', e.target.value)}
           />
-        </div>
-        <div className="form-group">
-          <label>
-            <input
-              type="checkbox"
-              name="saveBeneficiary"
-              checked={beneficiaryData.saveBeneficiary}
-              onChange={e => handleInputChange('saveBeneficiary', e.target.checked)}
-            />
-            Save Beneficiary
-          </label>
         </div>
         <div className="button-container">
           <button type="button" className="button proceed-button" onClick={handleProceedClick}>
             Proceed
           </button>
           <Link to="/displaybeneficiaries">
-          <button type="button" className="button proceed-button" >
-            Veiw already existing beneficiaries
-          </button>
+            <button type="button" className="button proceed-button" >
+              VIEW BENEFICIARIES
+            </button>
           </Link>
         </div>
       </form>

@@ -1,4 +1,6 @@
 import api from './api';
+const accountNumber = localStorage.getItem("accountNumber")
+
 class AccountService {
 
     openAccount(details) {
@@ -17,6 +19,31 @@ class AccountService {
             grossAnnualIncome: details.grossAnnualIncome
         });
     }
+
+    addBeneficiary(details) {
+        return api.post("/beneficiary/create", {
+            senderAccount: accountNumber,
+            beneficiaryAccount: details.beneficiaryAccountNumber,
+            beneficiaryName: details.beneficiaryName,
+            beneficiaryNickName: details.beneficiaryNickName
+        });
+    }
+
+    viewBeneficiaries() {
+        return api.get("/beneficiary/view/")
+    }
+
+    createTransaction(details) {
+        return api.post("/transaction/create", {
+            transactionType: details.transactionType,
+            transactionDesc: details.transactionDesc,
+            transactionAmount: details.transactionAmount,
+            fromAccount: accountNumber,
+            toAccount: details.toAccount
+        });
+    }
+
+
 }
 
 export default new AccountService();

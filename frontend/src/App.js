@@ -10,16 +10,15 @@ import RTGSPayment from './pages/FundTransfer/RTGSPayment';
 import ForgotUserId from './pages/Home/ForgetUserId';
 import Home from './pages/Home/Home';
 import SetNewPassword from './pages/Home/SetNewPassword';
-import DisplayBeneficiary from './pages/FundTransfer/DisplayBeneficiary';
 
 
 import { useEffect } from 'react';
-import IMPSPayment from './pages/FundTransfer/impsPayment';
-import NeftPayment from './pages/FundTransfer/neftPayment';
+import IMPSPayment from './pages/FundTransfer/IMPSPayment';
+import NeftPayment from './pages/FundTransfer/NEFTPayment';
 import AccountCreation from './pages/Home/AccountCreation';
 import Register from './pages/Home/Register';
 import AccountDetails from './pages/UserDashboard/AccountDetails.jsx';
-import AccountSummary from './pages/UserDashboard/AccountSummary.jsx';
+import TransactionHistory from './pages/UserDashboard/TransactionHistory';
 import UserProfile from './pages/UserDashboard/UserProfile.jsx';
 import { isLoggedIn } from './services/auth';
 
@@ -43,23 +42,20 @@ function App() {
         <Route path="/resetPassword" element={<SetNewPassword />}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/account" element={<AccountCreation />}></Route>
-        <Route path="/addbeneficiary" element={<AddBeneficiary />}></Route>
-        <Route path="/fundtransfer" element={<FundTransfer />}></Route>
-        <Route path="/displaybeneficiaries" element={<DisplayBeneficiary />}></Route>
-
-
-
+        <Route path="/addBeneficiary" element={<AddBeneficiary />}></Route>
+        <Route path="/fundTransfer" element={<FundTransfer />}></Route>
+        {/* <Route path="/displayBeneficiaries" element={<DisplayBeneficiary />}></Route> */}
 
         <Route path="/accountDetails" element={<AccountDetails />} />
         <Route path="/RTGSPayment" element={<RTGSPayment />} />
-        <Route path="/accountSummary" element={<AccountSummary />} />
+        <Route path="/transactionHistory" element={<TransactionHistory />} />
         {/* <Route path="/forgotPassword" element={<ForgotPassword/>}/>  */}
         <Route path="/userDashboard" element={<UserDashboard />} />
         {/* <Route path="/Change" element={<ChangeUid_pass/>}/>  */}
         <Route path="/userProfile" element={<UserProfile />} />
         {/* <Route path="/ChangePassword" element = {<ChangePassword/>} /> */}
-        <Route path="/neftPayment" element={<NeftPayment />} />
-        <Route path="/impsPayment" element={<IMPSPayment />} />
+        <Route path="/NEFTPayment" element={<NeftPayment />} />
+        <Route path="/IMPSPayment" element={<IMPSPayment />} />
       </Routes>
 
     </div>

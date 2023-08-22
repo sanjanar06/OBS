@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import TransactionService from '../../services/TransactionService';
+import AccountService from '../../services/AccountService';
 import '../style/RTGS.css';
 
 
@@ -21,7 +21,7 @@ function RTGSPayment() {
 
   const handleSaveClick = async (event) => {
     event.preventDefault();
-    TransactionService.createTransaction(formData).then((res) => {
+    AccountService.createTransaction(formData).then((res) => {
       console.log("Fund transfer successful");
 
     })
