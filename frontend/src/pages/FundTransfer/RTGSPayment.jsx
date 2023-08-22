@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import TransactionService from '../../services/TransactionService';
 import '../style/RTGS.css';
-import axios from 'axios';
 
 
 function RTGSPayment() {
   const [formData, setFormData] = useState({
-    fromAccount: '',
     toAccount: '',
-    amount: '',
-    transactionDate: '',
-    maturityInstruction: '',
-    remark: '',
+    transactionAmount: '',
+    transactionDesc: '',
+    transactionType: 'RTGS',
   });
 
   const handleInputChange = (field, value) => {
@@ -21,16 +19,24 @@ function RTGSPayment() {
     });
   };
 
-  const handleSaveClick = async() => {
-    try {
-      const response = await axios.post('http://localhost:3001/rtgs', formData);
-      console.log('RTGS Payment saved:', response.data);
-      alert("Data has been saved succesfully");
+  const handleSaveClick = async(event) => {
+    event.preventDefault();
+    TransactionService.createTransaction(formData).then((res)=>{
+      console.log("Fund transfer successful");
+
+    })
+    .catch((error)=>{
+      console.log("FundtTransfer failed!!");
+    });
+    // try {
+    //   const response = await axios.post('http://localhost:3001/rtgs', formData);
+    //   console.log('RTGS Payment saved:', response.data);
+    //   alert("Data has been saved succesfully");
       
-    } catch (error) {
-      console.error('Error saving transaction:', error);
+    // } catch (error) {
+    //   console.error('Error saving transaction:', error);
       
-    }
+    // }
   }
 
 
@@ -39,16 +45,6 @@ function RTGSPayment() {
     <div className="RTGSPayment">
       <h2>Initiate RTGS Payment</h2>
       <form>
-        <div className="form-group">
-          <label htmlFor="fromAccount">From Account:</label>
-          <input
-            type="text"
-            id="fromAccount"
-            name="fromAccount"
-            value={formData.fromAccount}
-            onChange={e => handleInputChange('fromAccount', e.target.value)}
-          />
-        </div>
         <div className="form-group">
           <label htmlFor="toAccount">To Account:</label>
           <input
@@ -64,46 +60,28 @@ function RTGSPayment() {
           </Link>
         </div>
         <div className="form-group">
-          <label htmlFor="amount">Amount:</label>
+          <label htmlFor="transactionAmount">Amount:</label>
           <input
             type="text"
-            id="amount"
-            name="amount"
-            value={formData.amount}
-            onChange={e => handleInputChange('amount', e.target.value)}          />
+            id="transactionAmount"
+            name="transactionAmount"
+            value={formData.transactionAmount}
+            onChange={e => handleInputChange('transactionAmount', e.target.value)}          />
         </div>
         <div className="form-group">
-          <label htmlFor="transactionDate">Transaction Date:</label>
-          <input
-            type="date"
-            id="transactionDate"
-            name="transactionDate"
-            value={formData.transactionDate}
-            onChange={e => handleInputChange('transactionDate', e.target.value)}          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="maturityInstruction">Maturity Instruction:</label>
+          <label htmlFor="transactionDesc">Transaction Desc:</label>
           <input
             type="text"
-            id="maturityInstruction"
-            name="maturityInstruction"
-            value={formData.maturityInstruction}
-            onChange={e => handleInputChange('maturityInstruction', e.target.value)}          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="remark">Remark:</label>
-          <input
-            type="text"
-            id="remark"
-            name="remark"
-            value={formData.remark}
-            onChange={e => handleInputChange('remark', e.target.value)}          />
+            id="transactionDesc"
+            name="transactionDesc"
+            value={formData.transactionDesc}
+            onChange={e => handleInputChange('transactionDesc', e.target.value)}          />
         </div>
         <div className="button-container">
           <button type="button" className="button save-button" onClick={handleSaveClick}>
             Save
           </button>
-          <span className="button-space"></span>
+          {/* <span className="button-space"></span>
           <button type="button" className="button reset-button">
             Reset
           </button>
@@ -114,7 +92,7 @@ function RTGSPayment() {
           <span className="button-space"></span>
           <button type="button" className="button continue-button">
             Continue
-          </button>
+          </button> */}
         </div>
       </form>
     </div>
