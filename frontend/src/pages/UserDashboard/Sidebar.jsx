@@ -6,7 +6,10 @@ import {
     FaRegChartBar,
     FaCommentAlt,
     FaShoppingBag,
-    FaThList
+    FaThList,
+    FaPeopleArrows,
+    FaRegMoneyBillAlt
+    
 }from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
 
@@ -24,17 +27,17 @@ const Sidebar = ({children}) => {
             path:"/accountSummary",
             name:"Account Summary",
             icon:<FaUserAlt/>
+        },
+        {
+            path:"/fundTransfer",
+            name:"Fund Transfer",
+            icon:<FaRegMoneyBillAlt/>
+        },
+        {
+            path:"/addBeneficiary",
+            name:"Benificiary",
+            icon:<FaPeopleArrows/>
         }
-        // {
-        //     path:"/",
-        //     name:"Fund Transfer",
-        //     icon:<FaRegChartBar/>
-        // },
-        // {
-        //     path:"/comment",
-        //     name:"Comment",
-        //     icon:<FaCommentAlt/>
-        // },
         // {
         //     path:"/product",
         //     name:"Product",

@@ -9,23 +9,20 @@ import AccountDetails from './AccountDetails';
 import AccountSummary from './AccountSummary';
 import UserProfile from './UserProfile';
 import Sidebar from './Sidebar';
+import FundTransfer from '../FundTransfer/FundTransfer';
+import AddBeneficiary from '../FundTransfer/AddBeneficiary';
 function UserDashboard() {
   
 
   return (
-    <BrowserRouter>
       <Sidebar>
         <Routes>
           <Route path="/accountSummary" element={<AccountSummary />} />
-          <Route path="/userRPofile" element={<UserProfile />} />
-          {/* <Route path="/about" element={<About />} />
-          <Route path="/comment" element={<Comment />} />
-          <Route path="/analytics" element={<Analytics />} />
-          <Route path="/product" element={<Product />} />
-          <Route path="/productList" element={<ProductList />} /> */}
+          <Route path="/userProfile" element={<UserProfile />} />
+          <Route path="/fundTransfer" element={<FundTransfer />} />
+          <Route path="/addBeneficiary" element={<AddBeneficiary />} />
         </Routes>
       </Sidebar>
-    </BrowserRouter>
   );
 }
 
