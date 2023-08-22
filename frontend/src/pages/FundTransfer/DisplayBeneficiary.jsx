@@ -7,14 +7,7 @@ function DisplayBeneficiary() {
     const [beneficiaries, setBeneficiaries] = useState([]);
 
   useEffect(() => {
-    // axios.get('http://localhost:3001/beneficiary') 
-    //   .then(response => {
-    //     console.log(response.data);
-    //     setBeneficiaries(response.data);
-    //   })
-    //   .catch(error => {
-    //     console.error('Error fetching beneficiaries:', error);
-    //   });
+    
     getbeneficiary().then((response) =>{
       console.log(response.data);
       setBeneficiaries(response.data);

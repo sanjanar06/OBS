@@ -1,9 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../style/UserProfile.css';
+import { getUserProfile } from "../../services/UserDetails";
 
 const API_BASE_URL = "http://localhost:3001";
 function UserProfile() {
+  const [profileData, setProfileData] = useState([]);
+
+  useEffect(() => {
+    
+    getUserProfile().then((response) =>{
+      console.log(response.data);
+      setProfileData(response.data);
+  })
+  .catch((error) =>{
+      console.log("Error fetching User Profile");
+  });
+  }, []);
+
   const [editing, setEditing] = useState(false);
   const [name, setName] = useState("");
   const [accNumber, setaccNumber] = useState("");
@@ -32,7 +46,6 @@ function UserProfile() {
         setAdhar(userData[0].adharNumber);
         setPan(userData[0].panNumber);
         setAddress(userData[0].address);
-
       })
       .catch(error => {
         console.error('Error fetching user profile data:', error);

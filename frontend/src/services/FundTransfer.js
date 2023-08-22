@@ -21,5 +21,3 @@ export function addbeneficiary(details){
 export function getbeneficiary(){
     return axios.get(USER_API_BASE_URL + '/beneficiary');
 }
-
-
