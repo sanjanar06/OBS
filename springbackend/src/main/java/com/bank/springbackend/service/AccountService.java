@@ -33,7 +33,7 @@ public class AccountService {
                 .accountNumber(accountNumber)
                 .accountType(AccountTypeEnum.SAVINGS)
                 .accountBalance(2500.0)
-                .status(AccountStatusEnum.ACCEPTED)
+                .status(AccountStatusEnum.PENDING)
                 .build();
         UserProfile userProfile = UserProfile.builder()
                 .title(accountRequest.getTitle())
