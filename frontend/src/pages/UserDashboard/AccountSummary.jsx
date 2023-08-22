@@ -1,7 +1,6 @@
 // src/components/TableComponent.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
 const AccountSummary = () => {
   const [data, setData] = useState([]);
 
