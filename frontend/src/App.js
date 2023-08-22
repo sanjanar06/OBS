@@ -13,6 +13,7 @@ import SetNewPassword from './pages/Home/SetNewPassword';
 
 
 import { useEffect } from 'react';
+import DisplayBeneficiary from './pages/FundTransfer/DisplayBeneficiary';
 import IMPSPayment from './pages/FundTransfer/IMPSPayment';
 import NeftPayment from './pages/FundTransfer/NEFTPayment';
 import AccountCreation from './pages/Home/AccountCreation';
@@ -44,7 +45,7 @@ function App() {
         <Route path="/account" element={<AccountCreation />}></Route>
         <Route path="/addBeneficiary" element={<AddBeneficiary />}></Route>
         <Route path="/fundTransfer" element={<FundTransfer />}></Route>
-        {/* <Route path="/displayBeneficiaries" element={<DisplayBeneficiary />}></Route> */}
+        <Route path="/displayBeneficiaries" element={<DisplayBeneficiary />}></Route>
 
         <Route path="/accountDetails" element={<AccountDetails />} />
         <Route path="/RTGSPayment" element={<RTGSPayment />} />
