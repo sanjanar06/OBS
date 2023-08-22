@@ -1,9 +1,6 @@
-import axios from 'axios';
-
-
-const USER_API_BASE_URL = "http://localhost:8080";
+import api from './api';
 
 
 export function getaccounts(){
-    return axios.get(USER_API_BASE_URL + '/view');
+    return api.get('admin/view');
 }
