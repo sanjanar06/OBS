@@ -33,6 +33,14 @@
       "nickName": "sharma",
       "saveBeneficiary": false,
       "id": 3
+    },
+    {
+      "beneficiaryName": "sanjana",
+      "accountNumber": "123",
+      "reenteredAccountNumber": "123",
+      "nickName": "sanj",
+      "saveBeneficiary": false,
+      "id": 4
     }
   ],
   "rtgs": [
@@ -137,6 +145,23 @@
       "maturityInstruction": "late",
       "remarks": "public",
       "id": 5
+    }
+  ],
+  "account":[
+    {
+      "accountName": "John Doe", 
+      "accountNumber": "12345678", 
+      "status": "Pending"
+    },
+    {
+      "accountName": "John Doe", 
+      "accountNumber": "12345678", 
+      "status": "Pending"
+    },
+    {
+      "accountName": "John Doe", 
+      "accountNumber": "12345678", 
+      "status": "Pending"
     }
   ]
 }
