@@ -33,6 +33,14 @@
       "nickName": "sharma",
       "saveBeneficiary": false,
       "id": 3
+    },
+    {
+      "beneficiaryName": "sanjana",
+      "accountNumber": "123",
+      "reenteredAccountNumber": "123",
+      "nickName": "sanj",
+      "saveBeneficiary": false,
+      "id": 4
     }
   ],
   "rtgs": [
@@ -139,28 +147,21 @@
       "id": 5
     }
   ],
-  "userprofile":[
+  "account":[
     {
-      "name": "sonu singh",
-      "accountNumber": "4y894739",
-      "dob": "02/03/2000",
-      "email": "mfg@gfn.com",
-      "mobileNumber": "57839705445",
-      "fatherName": "akhil singh",
-      "adharNumber": "458034307534940",
-      "panNumber": "AXGD97L",
-      "address":"hyderabad"
-    }
-  ],
-  "transaction" : [
+      "accountName": "John Doe", 
+      "accountNumber": "12345678", 
+      "status": "Pending"
+    },
     {
-      "transactionType" : "neft",
-      "transactionDesc" : "Sent to mom!",
-      "transactionAmmount" : 200,
-      "toAccount" : 2,
-      "fromAccount" : 1,
-      "startDate" : "2012-12-12",
-      "endDate" : "2012-12-13"
+      "accountName": "John Doe", 
+      "accountNumber": "12345678", 
+      "status": "Pending"
+    },
+    {
+      "accountName": "John Doe", 
+      "accountNumber": "12345678", 
+      "status": "Pending"
     }
   ]
 
