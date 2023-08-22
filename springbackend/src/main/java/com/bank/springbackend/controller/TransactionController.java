@@ -18,32 +18,32 @@ import com.bank.springbackend.service.TransactionService;
 
 import lombok.RequiredArgsConstructor;
 
-
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/transaction")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin
 public class TransactionController {
 
-	private final TransactionService transactionService;
+    private final TransactionService transactionService;
 
     @PostMapping("/create")
-    public Transaction creaTransaction(@RequestBody TransactionRequest transaction){
+    public Transaction createTransaction(@RequestBody TransactionRequest transaction) {
         return transactionService.fundTransfer(transaction);
-         
+
     }
 
     @GetMapping("/view/history/{accountNumber}")
     public List<Transaction> readTransactionHistory(@PathVariable String accountNumber) {
         return transactionService.getTransactionHistory(accountNumber);
     }
+
     @GetMapping("/view/{date}")
-    public List<Transaction> searchByDate(@PathVariable("date") Date date){
+    public List<Transaction> searchByDate(@PathVariable("date") Date date) {
         return transactionService.getByDate(date);
     }
+
     @GetMapping("/view/between-dates")
-    public List<Transaction> getTransactionsBetweenDates(@RequestBody TransactionHistoryRequest request
-    ) {
+    public List<Transaction> getTransactionsBetweenDates(@RequestBody TransactionHistoryRequest request) {
         return transactionService.getByDateRange(request);
     }
 }

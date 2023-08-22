@@ -1,19 +1,44 @@
-import React, { useState } from 'react';
-import '../style/UserProfile.css'; // Import your CSS file for styling
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import '../style/UserProfile.css';
 
+const API_BASE_URL = "http://localhost:3000";
 function UserProfile() {
   const [editing, setEditing] = useState(false);
-  const [profileData, setProfileData] = useState({
-    name: 'John Doe',
-    accountNumber: '1234567890',
-    dob: '1990-01-01',
-    email: 'johndoe@example.com',
-    mobileNumber: '1234567890',
-    fatherName: 'David Doe',
-    adharNumber: '1234 5678 9012',
-    panNumber: 'ABCDE1234F',
-    address: '123, Main Street, City, Country',
-  });
+  const [name, setName] = useState("");
+  const [accNumber, setaccNumber] = useState("");
+  const [dob, setDob] = useState("");
+  const [email,setEmail] = useState("");
+  const [mobileNumber,setMobileNumber] = useState("") ;
+  const [fathername,setFathername] = useState();
+  const [adhar,setAdhar] = useState("");
+  const [pan,setPan] = useState("");
+  const [address,setAddress] = useState("");
+  // const [editing, setEditing] = useState(false);
+  // const [transactions, setTransactions] = useState([]);
+  useEffect(() => {
+    // Fetch data using axios or any other HTTP library
+    axios.get(API_BASE_URL+'/userprofile')
+      .then(response => {
+        const userData = response.data; // Assuming the structure of data
+        // setProfileData(userData);
+        console.log(userData[0])
+        setName(userData[0].name);
+        setaccNumber(userData[0].acccountNumber);
+        setDob(userData[0].dob);
+        setEmail(userData[0].email);
+        setMobileNumber(userData[0].mobileNumber);
+        setFathername(userData[0].fatherName);
+        setAdhar(userData[0].adharNumber);
+        setPan(userData[0].panNumber);
+        setAddress(userData[0].address);
+
+      })
+      .catch(error => {
+        console.error('Error fetching user profile data:', error);
+      });
+  }, []);
+
 
   const handleEdit = () => {
     setEditing(true);
@@ -23,13 +48,13 @@ function UserProfile() {
     setEditing(false);
   };
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setProfileData({
-      ...profileData,
-      [name]: value,
-    });
-  };
+  // const handleInputChange = (event) => {
+  //   const { name, value } = event.target;
+  //   setProfileData({
+  //     ...profileData,
+  //     [name]: value,
+  //   });
+  // };
 
   return (
     <div className="user-profile">
@@ -37,37 +62,46 @@ function UserProfile() {
       <form className="profile-form">
         <div className="input-group">
           <label>Name:</label>
-          <span>{profileData.name}</span>
+          {/* {editing ? (
+            <input
+              type="text"
+              name="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          ) : ( */}
+            <span>{name}</span>
+          {/* )} */}
         </div>
 
         <div className="input-group">
           <label>DOB:</label>
-          <span>{profileData.dob}</span>
+          <span>{dob}</span>
         </div>
 
         <div className="input-group">
           <label>Email ID:</label>
-          <span>{profileData.email}</span>
+          <span>{email}</span>
         </div>
 
         <div className="input-group">
           <label>Mobile Number:</label>
-          <span>{profileData.mobileNumber}</span>
+          <span>{mobileNumber}</span>
         </div>
 
         <div className="input-group">
           <label>Father Name:</label>
-          <span>{profileData.fatherName}</span>
+          <span>{fathername}</span>
         </div>
 
         <div className="input-group">
           <label>Adhar Number:</label>
-          <span>{profileData.adharNumber}</span>
+          <span>{adhar}</span>
         </div>
 
         <div className="input-group">
           <label>PAN Number:</label>
-          <span>{profileData.panNumber}</span>
+          <span>{pan}</span>
         </div>
 
         <div className="input-group">
@@ -75,19 +109,19 @@ function UserProfile() {
           {editing ? (
             <textarea
               name="address"
-              value={profileData.address}
-              onChange={handleInputChange}
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
             />
           ) : (
-            <span>{profileData.address}</span>
+            <span>{address}</span>
           )}
         </div>
-
+        
         <div className="button-group">
           {editing ? (
             <button type="button" onClick={handleSave}>Save</button>
           ) : (
-            <button type="button" onClick={handleEdit}>Edit Address</button>
+            <button type="button" onClick={handleEdit}>Edit Profile</button>
           )}
         </div>
       </form>

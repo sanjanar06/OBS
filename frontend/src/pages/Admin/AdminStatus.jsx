@@ -24,10 +24,10 @@ function AdminDashboard() {
   }, []);
 
   const handleApproval = (id) => {
-    setAccounts(prevAccounts =>
-      prevAccounts.map(account =>
+    setAccounts((prevAccounts) =>{
+      return prevAccounts.map(account =>
         account.id === id ? { ...account, status: 'Approved' } : account
-      )
+      )}
     );
   };
 

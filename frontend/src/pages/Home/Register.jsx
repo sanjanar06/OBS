@@ -1,8 +1,8 @@
-import "../style/AccountCreation.css"
-import React from 'react'
+import React from 'react';
 import { useForm } from "react-hook-form";
-import UserService from "../../services/UserService";
 import { useNavigate } from 'react-router-dom';
+import UserService from "../../services/UserService";
+import "../style/AccountCreation.css";
 
 
 const InternetBanking = () => {
@@ -14,6 +14,7 @@ const InternetBanking = () => {
   const onSubmit = (data) => {     
 
     UserService.registerUser(data).then((res) =>{
+        localStorage.setItem("accountNumber",data.accountNumber);
         console.log('Your netbanking account details will be sent shortly.')
         navigate("/login");
     })
