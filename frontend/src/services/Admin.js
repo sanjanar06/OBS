@@ -5,5 +5,5 @@ const USER_API_BASE_URL = "http://localhost:8080";
 
 
 export function getaccounts(){
-    return axios.get(USER_API_BASE_URL + '/veiw');
+    return axios.get(USER_API_BASE_URL + '/view');
 }
