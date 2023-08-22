@@ -18,5 +18,5 @@ public class TransactionRequest {
     private String fromAccount;
     private Date startDate;
     private Date endDate;
-    
+
 }

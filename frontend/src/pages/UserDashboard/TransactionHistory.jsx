@@ -1,20 +1,19 @@
 // src/components/TableComponent.js
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import AccountService from '../../services/AccountService';
 
-const AccountSummary = () => {
-  const [data, setData] = useState([]);
+const TransactionHistory = () => {
+  const [transactions, setTransactions] = useState([]);
 
   useEffect(() => {
-    // Fetch data from the API endpoint using Axios
-    axios.get('http://localhost:3000/transaction')
-      .then(response => {
-        setData(response.data);
-        console.log(data);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
+    AccountService.viewTransactions().then((res) => {
+      console.log("Transactions fetched successfully");
+      setTransactions(res.data);
+    })
+      .catch((error) => {
+        console.log("Error fetching transactions");
       });
+
   }, []);
 
   return (
@@ -23,25 +22,25 @@ const AccountSummary = () => {
       <table>
         <thead>
           <tr>
+            <th>Index</th>
+            <th>To Account</th>
+            <th>From Account</th>
+            <th>Date</th>
             <th>Transaction Type</th>
             <th>Transaction Description</th>
             <th>Transaction Amount</th>
-            <th>To Account</th>
-            <th>From Account</th>
-            <th>Start Date</th>
-            <th>End Date</th>
           </tr>
         </thead>
         <tbody>
-          {data.map(item => (
-            <tr key={item.id}>
+          {transactions.map((item, index) => (
+            <tr key={item.transactionId}>
+              <td>{index + 1}</td>
+              <td>{item.toAccount}</td>
+              <td>{item.fromAccount}</td>
+              <td>{item.transactionDate}</td>
               <td>{item.transactionType}</td>
               <td>{item.transactionDesc}</td>
               <td>{item.transactionAmount}</td>
-              <td>{item.toAccount}</td>
-              <td>{item.fromAccount}</td>
-              <td>{item.startDate}</td>
-              <td>{item.endDate}</td>
             </tr>
           ))}
         </tbody>
@@ -50,4 +49,4 @@ const AccountSummary = () => {
   );
 };
 
-export default AccountSummary;
+export default TransactionHistory;

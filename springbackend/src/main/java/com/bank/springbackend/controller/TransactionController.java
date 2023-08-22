@@ -1,6 +1,5 @@
 package com.bank.springbackend.controller;
 
-import java.sql.Date;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -32,14 +31,14 @@ public class TransactionController {
 
     }
 
-    @GetMapping("/view/history/{accountNumber}")
+    @GetMapping("/view/{accountNumber}")
     public List<Transaction> readTransactionHistory(@PathVariable String accountNumber) {
         return transactionService.getTransactionHistory(accountNumber);
     }
 
-    @GetMapping("/view/{date}")
-    public List<Transaction> searchByDate(@PathVariable("date") Date date) {
-        return transactionService.getByDate(date);
+    @GetMapping("/view/date}")
+    public List<Transaction> searchByDate(@RequestBody TransactionHistoryRequest request) {
+        return transactionService.getByDate(request);
     }
 
     @GetMapping("/view/between-dates")

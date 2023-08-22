@@ -43,6 +43,10 @@ class AccountService {
         });
     }
 
+    viewTransactions() {
+        return api.get(`/transaction/view/${accountNumber}`);
+    }
+
 
 }
 
