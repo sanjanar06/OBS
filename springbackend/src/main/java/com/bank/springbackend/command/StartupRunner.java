@@ -29,20 +29,27 @@ public class StartupRunner implements CommandLineRunner {
 
     @Value("${bank.springbackend.superPass}")
     private String superUserPass;
-    
+
     @Override
     public void run(String... args) throws Exception {
-        Role adminRole = new Role(RoleEnum.ADMIN);
-        roleRepository.save(adminRole);
+        Role adminRole = Role.builder()
+                .name(RoleEnum.ADMIN)
+                .build();
 
-        Role userRole = new Role(RoleEnum.USER);
-        roleRepository.save(userRole);
+        Role userRole = Role.builder()
+                .name(RoleEnum.USER)
+                .build();
+        // roleRepository.save(userRole);
 
-        User user = new User();
-        user.setUserId(superUser);
-        user.setLoginPassword(passwordEncoder.encode(superUserPass));
-        user.setRoles(List.of(adminRole, userRole));
+        User user = User.builder()
+                .userId(superUser)
+                .loginPassword(passwordEncoder.encode(superUserPass))
+                .roles(List.of(adminRole, userRole))
+                .build();
+        // user.setUserId(superUser);
+        // user.setLoginPassword(passwordEncoder.encode(superUserPass));
+        // user.setRoles(List.of(adminRole, userRole));
         netBankingRepository.save(user);
     }
-    
+
 }

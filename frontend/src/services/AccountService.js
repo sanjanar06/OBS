@@ -30,7 +30,11 @@ class AccountService {
     }
 
     viewBeneficiaries() {
-        return api.get(`/beneficiary/view/${accountNumber}`);
+        return api.get(`/beneficiary/view/all/${accountNumber}`);
+    }
+
+    viewBeneficiary(beneficiaryAccount) {
+        return api.get(`/beneficiary/view/${beneficiaryAccount}`);
     }
 
     createTransaction(details) {

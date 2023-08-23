@@ -36,7 +36,7 @@ public class TransactionController {
         return transactionService.getTransactionHistory(accountNumber);
     }
 
-    @GetMapping("/view/date}")
+    @GetMapping("/view/date/{date}")
     public List<Transaction> searchByDate(@RequestBody TransactionHistoryRequest request) {
         return transactionService.getByDate(request);
     }
