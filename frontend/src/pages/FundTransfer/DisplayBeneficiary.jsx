@@ -7,7 +7,7 @@ function DisplayBeneficiary() {
 
   useEffect(() => {
     
-    getbeneficiary().then((response) =>{
+    AccountService.viewBeneficiaries().then((response) =>{
       console.log(response.data);
       setBeneficiaries(response.data);
   })

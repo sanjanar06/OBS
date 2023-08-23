@@ -19,6 +19,7 @@ import UserProfile from './UserProfile';
 const UserDashboard = () => {
   const [activeComponent, setActiveComponent] = useState(<TransactionHistory />);
   const [fundTransferSubMenuOpen, setFundTransferSubMenuOpen] = useState(false);
+  const [beneficiariesSubMenuOpen, setBeneficiariesSubMenuOpen] = useState(false);
 
   const handleMenuItemClick = (component) => {
     setActiveComponent(component);
@@ -26,6 +27,10 @@ const UserDashboard = () => {
 
   const toggleFundTransferSubMenu = () => {
     setFundTransferSubMenuOpen(!fundTransferSubMenuOpen);
+  };
+
+  const toggleBeneficiariesSubMenu = () => {
+    setBeneficiariesSubMenuOpen(!beneficiariesSubMenuOpen);
   };
 
   return (
@@ -50,14 +55,18 @@ const UserDashboard = () => {
               </ul>
             )}
           </li>
-          <li onClick={() => handleMenuItemClick(<AddBeneficiary />)}>
+          <li onClick={toggleBeneficiariesSubMenu}>
             <FaUsers className="menu-icon" />
             Beneficiaries
-            <BsArrowRightShort className="submenu-icon" />
-            <ul>
-              <li onClick={() => handleMenuItemClick(<AddBeneficiary />)}>Add Beneficiary</li>
-              <li onClick={() => handleMenuItemClick(<DisplayBeneficiary />)}>View Beneficiary</li>
-            </ul>
+            <BsArrowRightShort
+              className={`submenu-icon ${beneficiariesSubMenuOpen ? 'open' : ''}`}
+            />
+            {beneficiariesSubMenuOpen && (
+              <ul className={`submenu ${beneficiariesSubMenuOpen ? 'open' : ''}`}>
+                <li onClick={() => handleMenuItemClick(<AddBeneficiary />)}>Add</li>
+                <li onClick={() => handleMenuItemClick(<DisplayBeneficiary />)}>View</li>
+              </ul>
+            )}
           </li>
         </ul>
       </div>
