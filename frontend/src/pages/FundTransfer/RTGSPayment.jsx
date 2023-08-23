@@ -2,12 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import AccountService from '../../services/AccountService';
 import '../style/RTGS.css';
-import BeneficiaryDropdown
- from './BeneficiaryDropdown';
+import BeneficiaryDropdown  from './BeneficiaryDropdown';
 
 function RTGSPayment() {
   const [beneficiaries, setBeneficiaries] = useState([]);
-  const [selectedBeneficiary, setSelectedBeneficiary] = useState('');
 
   useEffect(() => {
     async function fetchBeneficiaries() {
@@ -17,11 +15,9 @@ function RTGSPayment() {
     fetchBeneficiaries();
   }, []);
 
-  const handleBeneficiarySelect = (event) => {
-    setSelectedBeneficiary(event.target.value);
-  };
+ 
   const [formData, setFormData] = useState({
-    toAccount: selectedBeneficiary,
+    toAccount: '',
     transactionAmount: '',
     transactionDesc: '',
     transactionType: 'RTGS',
@@ -36,7 +32,7 @@ function RTGSPayment() {
 
   const handleSaveClick = async (event) => {
     event.preventDefault();
-    AccountService.viewBeneficiary(formData.toAccount).then((res) => {
+    AccountService.viewBeneficiary(formData).then((res) => {
 
       AccountService.createTransaction(formData).then((res) => {
         console.log("Fund transfer successful");
@@ -62,11 +58,13 @@ function RTGSPayment() {
       <h2>Initiate RTGS Payment</h2>
       <form>
         <div className="form-group">
-          <label htmlFor="toAccount">To Account:</label>
-          <BeneficiaryDropdown
-            beneficiaries={beneficiaries}
-            onSelect={handleBeneficiarySelect}
-          />
+        <label>
+            To Account:
+            <BeneficiaryDropdown
+              beneficiaries={beneficiaries}
+              onSelect={(event) => handleInputChange(event)}
+            />
+          </label>
           {/* <input
             type="text"
             id="toAccount"

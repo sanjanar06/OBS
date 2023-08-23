@@ -5,16 +5,16 @@ import '../style/DisplayBeneficiary.css';
 function DisplayBeneficiary() {
     const [beneficiaries, setBeneficiaries] = useState([]);
 
-  useEffect(() => {
-    
-    AccountService.viewBeneficiaries().then((response) =>{
-      console.log(response.data);
-      setBeneficiaries(response.data);
-  })
-  .catch((error) =>{
-      console.log("Error fetching beneficiaries");
-  });
-  }, []);
+    useEffect(() => {
+
+        AccountService.viewBeneficiaries().then((response) => {
+            console.log(response.data);
+            setBeneficiaries(response.data);
+        })
+            .catch((error) => {
+                console.log("Error fetching beneficiaries");
+            });
+    }, []);
 
     return (
         <div className="display-beneficiary">

@@ -22,7 +22,7 @@ class AccountService {
 
     addBeneficiary(details) {
         return api.post("/beneficiary/create", {
-            senderAccount: accountNumber,
+            senderAccount: localStorage.getItem("accountNumber"),
             beneficiaryAccount: details.beneficiaryAccountNumber,
             beneficiaryName: details.beneficiaryName,
             beneficiaryNickName: details.beneficiaryNickName
@@ -30,11 +30,11 @@ class AccountService {
     }
 
     viewBeneficiaries() {
-        return api.get(`/beneficiary/view/all/${accountNumber}`);
+        return api.get(`/beneficiary/view/${accountNumber}`);
     }
 
-    viewBeneficiary(beneficiaryAccount) {
-        return api.get(`/beneficiary/view/${beneficiaryAccount}`);
+    viewBeneficiary(details) {
+        return api.get(`/beneficiary/view?senderAccount=${details.fromAccount}&beneficiaryAccount=${details.toAccount}`);
     }
 
     createTransaction(details) {

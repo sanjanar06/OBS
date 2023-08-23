@@ -5,7 +5,6 @@ import '../style/NeftPayment.css'; // You can import your CSS file here for styl
 import BeneficiaryDropdown from './BeneficiaryDropdown';
 function NEFTPayment() {
   const [beneficiaries, setBeneficiaries] = useState([]);
-  const [selectedBeneficiary, setSelectedBeneficiary] = useState('');
 
   useEffect(() => {
     async function fetchBeneficiaries() {
@@ -15,11 +14,9 @@ function NEFTPayment() {
     fetchBeneficiaries();
   }, []);
 
-  const handleBeneficiarySelect = (event) => {
-    setSelectedBeneficiary(event.target.value);
-  };
+  
   const [formData, setFormData] = useState({
-    toAccount: selectedBeneficiary,
+    toAccount: '',
     transactionAmount: '',
     transactionDesc: '',
     transactionType: 'NEFT',
@@ -62,7 +59,7 @@ function NEFTPayment() {
           <label>To Account:</label>
           <BeneficiaryDropdown
             beneficiaries={beneficiaries}
-            onSelect={handleBeneficiarySelect}
+            onSelect={(event) => handleInputChange(event)}
           />
           {/* <input
             type="text"

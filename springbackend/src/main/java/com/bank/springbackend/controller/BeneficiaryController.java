@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bank.springbackend.communication.Request.BeneficiaryRequest;
@@ -36,9 +37,9 @@ public class BeneficiaryController {
         return beneficiaryService.getAllBeneficaries(accountNumber);
     }
 
-    @GetMapping("/view/{accountNumber}")
-    public Beneficiary getBeneficary(@PathVariable String accountNumber) {
-        return beneficiaryService.getBeneficiary(accountNumber);
+    @GetMapping("/view")
+    public Beneficiary getBeneficary(@RequestParam String senderAccount, @RequestParam String beneficiaryAccount) {
+        return beneficiaryService.getBeneficiary(senderAccount, beneficiaryAccount);
     }
 
 }

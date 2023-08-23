@@ -7,7 +7,6 @@ import BeneficiaryDropdown
 function IMPSPayment() {
 
   const [beneficiaries, setBeneficiaries] = useState([]);
-  const [selectedBeneficiary, setSelectedBeneficiary] = useState('');
 
   useEffect(() => {
     async function fetchBeneficiaries() {
@@ -17,12 +16,10 @@ function IMPSPayment() {
     fetchBeneficiaries();
   }, []);
 
-  const handleBeneficiarySelect = (event) => {
-    setSelectedBeneficiary(event.target.value);
-  };
+  
 
   const [formData, setFormData] = useState({
-    toAccount: selectedBeneficiary,
+    toAccount: '',
     transactionAmount: '',
     transactionDesc: '',
     transactionType: 'IMPS',
@@ -66,7 +63,7 @@ function IMPSPayment() {
           <label>To Account:</label>
           <BeneficiaryDropdown
             beneficiaries={beneficiaries}
-            onSelect={handleBeneficiarySelect}
+            onSelect={(event) => handleInputChange(event)}
           />
           {/* <input
             type="text"

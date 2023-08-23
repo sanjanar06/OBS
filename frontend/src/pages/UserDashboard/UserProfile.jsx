@@ -1,142 +1,113 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import UserService from '../../services/UserService';
 import '../style/UserProfile.css';
-import { getUserProfile } from "../../services/UserDetails";
 
-const API_BASE_URL = "http://localhost:3000";
 function UserProfile() {
-  const [profileData, setProfileData] = useState([]);
-
-  useEffect(() => {
-    
-    getUserProfile().then((response) =>{
-      console.log(response.data);
-      setProfileData(response.data);
-  })
-  .catch((error) =>{
-      console.log("Error fetching User Profile");
-  });
-  }, []);
-
-  const [editing, setEditing] = useState(false);
-  const [name, setName] = useState("");
-  const [accNumber, setaccNumber] = useState("");
+  const [title, setTitle] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [middleName, setMiddleName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [dob, setDob] = useState("");
-  const [email,setEmail] = useState("");
-  const [mobileNumber,setMobileNumber] = useState("") ;
-  const [fathername,setFathername] = useState();
-  const [adhar,setAdhar] = useState("");
-  const [pan,setPan] = useState("");
-  const [address,setAddress] = useState("");
-  // const [editing, setEditing] = useState(false);
-  // const [transactions, setTransactions] = useState([]);
+  const [emailID, setEmailID] = useState("");
+  const [fatherName, setFatherName] = useState();
+  const [motherName, setMotherName] = useState();
+  const [aadhaarNo, setAadhaarNo] = useState("");
+  const [address, setAddress] = useState("");
+  const [occupationType, setOccupationType] = useState("");
+  const [grossAnnualIncome, setGrossAnnualIncome] = useState("");
+
   useEffect(() => {
-    // Fetch data using axios or any other HTTP library
-    axios.get(API_BASE_URL+'/userprofile')
-      .then(response => {
-        const userData = response.data; // Assuming the structure of data
-        // setProfileData(userData);
-        console.log(userData[0])
-        setName(userData[0].name);
-        setaccNumber(userData[0].acccountNumber);
-        setDob(userData[0].dob);
-        setEmail(userData[0].email);
-        setMobileNumber(userData[0].mobileNumber);
-        setFathername(userData[0].fatherName);
-        setAdhar(userData[0].adharNumber);
-        setPan(userData[0].panNumber);
-        setAddress(userData[0].address);
-      })
+
+    UserService.viewProfile().then(response => {
+
+      console.log(response.data);
+      setTitle(response.data.title);
+      setFirstName(response.data.firstName);
+      setMiddleName(response.data.middleName);
+      setLastName(response.data.lastName);
+      setEmailID(response.data.emailID);
+      setFatherName(response.data.fatherName);
+      setMotherName(response.data.motherName);
+      setAadhaarNo(response.data.aadhaarNo);
+      setDob(response.data.dob);
+      setAddress(response.data.address);
+      setOccupationType(response.data.occupationType);
+      setGrossAnnualIncome(response.data.grossAnnualIncome);
+
+
+    })
       .catch(error => {
         console.error('Error fetching user profile data:', error);
       });
   }, []);
 
 
-  const handleEdit = () => {
-    setEditing(true);
-  };
-
-  const handleSave = () => {
-    setEditing(false);
-  };
-
-  // const handleInputChange = (event) => {
-  //   const { name, value } = event.target;
-  //   setProfileData({
-  //     ...profileData,
-  //     [name]: value,
-  //   });
-  // };
 
   return (
     <div className="user-profile">
       <h1>Profile</h1>
       <form className="profile-form">
+
         <div className="input-group">
-          <label>Name:</label>
-          {/* {editing ? (
-            <input
-              type="text"
-              name="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          ) : ( */}
-            <span>{name}</span>
-          {/* )} */}
+          <label>Title : </label>
+          <span>{title}</span>
         </div>
 
         <div className="input-group">
-          <label>DOB:</label>
+          <label>First Name : </label>
+          <span>{firstName}</span>
+        </div>
+
+        <div className="input-group">
+          <label>Middle Name : </label>
+          <span>{middleName}</span>
+        </div>
+
+        <div className="input-group">
+          <label>Last Name : </label>
+          <span>{lastName}</span>
+        </div>
+
+        <div className="input-group">
+          <label>EmailID : </label>
+          <span>{emailID}</span>
+        </div>
+
+        <div className="input-group">
+          <label>Father Name : </label>
+          <span>{fatherName}</span>
+        </div>
+
+        <div className="input-group">
+          <label>Mother Name :</label>
+          <span>{motherName}</span>
+        </div>
+
+        <div className="input-group">
+          <label>Aadhaar No : </label>
+          <span>{aadhaarNo}</span>
+        </div>
+
+        <div className="input-group">
+          <label>DOB : </label>
           <span>{dob}</span>
         </div>
 
         <div className="input-group">
-          <label>Email ID:</label>
-          <span>{email}</span>
+          <label>Address : </label>
+          <span>{address}</span>
         </div>
 
         <div className="input-group">
-          <label>Mobile Number:</label>
-          <span>{mobileNumber}</span>
+          <label>Occupation Type : </label>
+          <span>{occupationType}</span>
         </div>
 
         <div className="input-group">
-          <label>Father Name:</label>
-          <span>{fathername}</span>
+          <label>Gross Annual Income : </label>
+          <span>{grossAnnualIncome}</span>
         </div>
 
-        <div className="input-group">
-          <label>Adhar Number:</label>
-          <span>{adhar}</span>
-        </div>
-
-        <div className="input-group">
-          <label>PAN Number:</label>
-          <span>{pan}</span>
-        </div>
-
-        <div className="input-group">
-          <label>Address:</label>
-          {editing ? (
-            <textarea
-              name="address"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-            />
-          ) : (
-            <span>{address}</span>
-          )}
-        </div>
-        
-        <div className="button-group">
-          {editing ? (
-            <button type="button" onClick={handleSave}>Save</button>
-          ) : (
-            <button type="button" onClick={handleEdit}>Edit Profile</button>
-          )}
-        </div>
       </form>
     </div>
   );

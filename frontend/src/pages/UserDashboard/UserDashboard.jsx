@@ -8,7 +8,6 @@ import '../style/UserDashboard.css';
 // Components for the left sidebar
 import AddBeneficiary from '../FundTransfer/AddBeneficiary';
 import DisplayBeneficiary from '../FundTransfer/DisplayBeneficiary';
-import FundTransfer from '../FundTransfer/FundTransfer';
 import IMPSPayment from '../FundTransfer/impsPayment';
 import NEFTPayment from '../FundTransfer/neftPayment';
 import RTGSPayment from '../FundTransfer/RTGSPayment';
@@ -17,7 +16,7 @@ import TransactionHistory from './TransactionHistory';
 import UserProfile from './UserProfile';
 
 const UserDashboard = () => {
-  const [activeComponent, setActiveComponent] = useState(<TransactionHistory />);
+  const [activeComponent, setActiveComponent] = useState(<UserProfile />);
   const [fundTransferSubMenuOpen, setFundTransferSubMenuOpen] = useState(false);
   const [beneficiariesSubMenuOpen, setBeneficiariesSubMenuOpen] = useState(false);
 
@@ -46,7 +45,7 @@ const UserDashboard = () => {
           <li onClick={toggleFundTransferSubMenu}>
             <FaMoneyBillAlt className="menu-icon" />
             Fund Transfer
-            <BsArrowRightShort className={`submenu-icon ${fundTransferSubMenuOpen ? 'open' : ''}`}/>
+            <BsArrowRightShort className={`submenu-icon ${fundTransferSubMenuOpen ? 'open' : ''}`} />
             {fundTransferSubMenuOpen && (
               <ul className={`submenu ${fundTransferSubMenuOpen ? 'open' : ''}`}>
                 <li onClick={() => handleMenuItemClick(<IMPSPayment />)}>IMPS</li>
