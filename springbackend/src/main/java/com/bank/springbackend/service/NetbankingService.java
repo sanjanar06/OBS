@@ -29,7 +29,10 @@ public class NetbankingService {
 
     public RegisterResponse register(RegisterRequest request) {
         // To verify if the user has an account
-        Account account = accountRepository.findAccountByAccountNumber(request.getAccountNumber()).orElseThrow(() ->  new ResourceNotFoundException("Your account has not been approved yet!") );
+        Account account = accountRepository.findAccountByAccountNumber(request.getAccountNumber()).orElseThrow(() ->  new ResourceNotFoundException("Your account does not exist") );
+        if (account.getStatus() == AccountStatusEnum.PENDING){
+                throw new ResourceNotFoundException("Your account has not been approved yet!");
+        }
 
     
 

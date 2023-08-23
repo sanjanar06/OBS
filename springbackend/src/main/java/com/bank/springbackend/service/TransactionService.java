@@ -11,6 +11,8 @@ import com.bank.springbackend.communication.Request.TransactionHistoryRequest;
 import com.bank.springbackend.communication.Request.TransactionRequest;
 import com.bank.springbackend.entity.Account;
 import com.bank.springbackend.entity.Transaction;
+import com.bank.springbackend.exception.BalanceCheckException;
+import com.bank.springbackend.exception.ResourceNotFoundException;
 import com.bank.springbackend.repository.AccountRepository;
 import com.bank.springbackend.repository.TransactionRepository;
 
@@ -26,20 +28,22 @@ public class TransactionService {
         public Transaction fundTransfer(TransactionRequest request) {
 
                 // Update balance in accounts
-                Account toAccount = accountRepository.findAccountByAccountNumber(request.getToAccount()).orElse(null);
-                Account fromAccount = accountRepository.findAccountByAccountNumber(request.getFromAccount())
-                                .orElse(null);
-
-                if (toAccount != null) {
-                        Double newBalance = toAccount.getAccountBalance() + request.getTransactionAmount();
-                        toAccount.setAccountBalance(newBalance);
-                        accountRepository.save(toAccount);
+                Account toAccount = accountRepository.findAccountByAccountNumber(request.getToAccount()).orElseThrow(() -> new ResourceNotFoundException("Receiver Account does not exist!"));
+                Account fromAccount = accountRepository.findAccountByAccountNumber(request.getFromAccount()).orElseThrow(() -> new ResourceNotFoundException("Sender Account not found!"));
+                Double amount = request.getTransactionAmount();
+                
+                if (amount > fromAccount.getAccountBalance()){
+                        throw new BalanceCheckException("Insufficient Balance");
                 }
-                if (fromAccount != null) {
-                        Double newBalance = fromAccount.getAccountBalance() - request.getTransactionAmount();
-                        fromAccount.setAccountBalance(newBalance);
-                        accountRepository.save(fromAccount);
-                }
+                
+                Double  newBalanceTo= toAccount.getAccountBalance() + amount;
+                toAccount.setAccountBalance(newBalanceTo);
+                accountRepository.save(toAccount);
+        
+                Double newBalanceFrom = fromAccount.getAccountBalance() - amount;
+                fromAccount.setAccountBalance(newBalanceFrom);
+                accountRepository.save(fromAccount);
+                
 
                 Transaction transaction = Transaction.builder()
                                 .transactionDate(new Date(System.currentTimeMillis()))
