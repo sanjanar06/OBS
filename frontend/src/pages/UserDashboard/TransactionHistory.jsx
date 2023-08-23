@@ -7,7 +7,7 @@ const TransactionHistory = () => {
 
   useEffect(() => {
     AccountService.viewTransactions().then((res) => {
-      console.log("Transactions fetched successfully");
+      console.log(res.data);
       setTransactions(res.data);
     })
       .catch((error) => {
@@ -18,7 +18,7 @@ const TransactionHistory = () => {
 
   return (
     <div>
-      <h2>Data Table</h2>
+      <h2>TRANSACTION HISTORY</h2>
       <table>
         <thead>
           <tr>
@@ -26,9 +26,8 @@ const TransactionHistory = () => {
             <th>To Account</th>
             <th>From Account</th>
             <th>Date</th>
-            <th>Transaction Type</th>
-            <th>Transaction Description</th>
-            <th>Transaction Amount</th>
+            <th>Description</th>
+            <th>Amount</th>
           </tr>
         </thead>
         <tbody>
@@ -38,7 +37,6 @@ const TransactionHistory = () => {
               <td>{item.toAccount}</td>
               <td>{item.fromAccount}</td>
               <td>{item.transactionDate}</td>
-              <td>{item.transactionType}</td>
               <td>{item.transactionDesc}</td>
               <td>{item.transactionAmount}</td>
             </tr>

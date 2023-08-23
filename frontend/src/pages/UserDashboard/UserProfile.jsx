@@ -45,7 +45,7 @@ function UserProfile() {
 
   return (
     <div className="user-profile">
-      <h1>Profile</h1>
+      <h1>PROFILE</h1>
       <form className="profile-form">
 
         <div className="input-group">

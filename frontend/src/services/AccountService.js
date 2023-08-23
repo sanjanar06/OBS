@@ -20,6 +20,10 @@ class AccountService {
         });
     }
 
+    viewAccount() {
+        return api.get(`/account/view/${localStorage.getItem("accountNumber")}`);
+    }
+
     addBeneficiary(details) {
         return api.post("/beneficiary/create", {
             senderAccount: localStorage.getItem("accountNumber"),
@@ -30,7 +34,7 @@ class AccountService {
     }
 
     viewBeneficiaries() {
-        return api.get(`/beneficiary/view/${accountNumber}`);
+        return api.get(`/beneficiary/view/all/${localStorage.getItem("accountNumber")}`);
     }
 
     viewBeneficiary(details) {
@@ -42,13 +46,13 @@ class AccountService {
             transactionType: details.transactionType,
             transactionDesc: details.transactionDesc,
             transactionAmount: details.transactionAmount,
-            fromAccount: accountNumber,
+            fromAccount: localStorage.getItem("accountNumber"),
             toAccount: details.toAccount
         });
     }
 
     viewTransactions() {
-        return api.get(`/transaction/view/${accountNumber}`);
+        return api.get(`/transaction/view/${localStorage.getItem("accountNumber")}`);
     }
 
 

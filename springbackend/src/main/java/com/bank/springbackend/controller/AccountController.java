@@ -20,24 +20,23 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/account")
 @CrossOrigin(origins = "http://localhost:3000")
 public class AccountController {
-    
+
     private final AccountService accountService;
 
     // User : View account details
     @GetMapping("/view/{accountNumber}")
-    public AccountResponse viewAccount(@PathVariable String accountNumber ){
+    public AccountResponse viewAccount(@PathVariable String accountNumber) {
         return accountService.getAccountByAccountNumber(accountNumber);
     }
 
     @GetMapping("/view/balance/{accountNumber}")
-    public AccountResponse viewAccountBalance(@PathVariable String accountNumber ){
+    public AccountResponse viewAccountBalance(@PathVariable String accountNumber) {
         return accountService.getAccountByAccountNumber(accountNumber);
     }
 
     @PostMapping("/create")
-    public Account createAccount(@RequestBody UserDetailsRequest request){
+    public Account createAccount(@RequestBody UserDetailsRequest request) {
         return accountService.createAccount(request);
     }
 
- 
 }

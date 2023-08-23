@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import AccountService from '../../services/AccountService';
 import '../style/AddBeneficiary.css'; // Import your custom CSS file for styling
 
@@ -87,13 +87,9 @@ function AddBeneficiary() {
         </div>
         <div className="button-container">
           <button type="button" className="button proceed-button" onClick={handleProceedClick}>
-            Proceed
+            ADD
           </button>
-          <Link to="/displaybeneficiaries">
-            <button type="button" className="button proceed-button" >
-              VIEW BENEFICIARIES
-            </button>
-          </Link>
+
         </div>
       </form>
     </div>

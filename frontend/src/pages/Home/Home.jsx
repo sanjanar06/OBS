@@ -1,6 +1,6 @@
 import React from 'react';
-import '../style/Home.css';
 import { Link } from 'react-router-dom';
+import '../style/Home.css';
 
 
 class Home extends React.Component {
@@ -8,17 +8,17 @@ class Home extends React.Component {
     return (
       <div className="Home">
         <header className="Home-header">
-          <h1>Welcome to Our Banking App</h1>
+          <h1>WELCOME TO OUR BANKING APP</h1>
           <p>Your Trusted Banking Partner</p>
           <div className="Button-container">
-          <Link to="/login">
-            <button className="Button">Login</button>
+            <Link to="/login">
+              <button className="Button">Login</button>
             </Link>
             <Link to="/register">
-            <button className="Button">Register</button>
+              <button className="Button">Register</button>
             </Link>
             <Link to="/account">
-            <button className="Button">Apply Online for Account</button>
+              <button className="Button">Apply Online for Account</button>
             </Link>
           </div>
         </header>

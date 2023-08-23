@@ -32,3 +32,9 @@ export const apiLogin = async (data) => {
         return false;
     }
 }
+
+export const isAdmin = () => {
+    const roles = localStorage.getItem("roles");
+    const roleArray = roles?.split(",");
+    return roleArray?.includes("ADMIN");
+}
