@@ -1,11 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect  } from 'react';
 import { Link } from 'react-router-dom';
 import AccountService from '../../services/AccountService';
 import '../style/IMPSPayment.css'; // You can import your CSS file here for styling
-
+import BeneficiaryDropdown
+ from './BeneficiaryDropdown';
 function IMPSPayment() {
+
+  const [beneficiaries, setBeneficiaries] = useState([]);
+  const [selectedBeneficiary, setSelectedBeneficiary] = useState('');
+
+  useEffect(() => {
+    async function fetchBeneficiaries() {
+      const data = await AccountService.viewBeneficiaries();
+      setBeneficiaries(data);
+    }
+    fetchBeneficiaries();
+  }, []);
+
+  const handleBeneficiarySelect = (event) => {
+    setSelectedBeneficiary(event.target.value);
+  };
+
   const [formData, setFormData] = useState({
-    toAccount: '',
+    toAccount: selectedBeneficiary,
     transactionAmount: '',
     transactionDesc: '',
     transactionType: 'IMPS',
@@ -47,13 +64,17 @@ function IMPSPayment() {
       <form className="imps-form">
         <div className="form-group">
           <label>To Account:</label>
-          <input
+          <BeneficiaryDropdown
+            beneficiaries={beneficiaries}
+            onSelect={handleBeneficiarySelect}
+          />
+          {/* <input
             type="text"
             name="toAccount"
             required
             value={formData.toAccount}
             onChange={e => handleInputChange('toAccount', e.target.value)}
-          />
+          /> */}
           <Link to="/addbeneficiary">
             <button type="button" className="add-new-button">
               Add New +
