@@ -30,6 +30,14 @@ function RTGSPayment() {
     });
   };
 
+  const handleBeneficiarySelect = (event) => {
+    const selectedBeneficiaryId = event.target.value;
+    setFormData({
+      ...formData,
+      toAccount: selectedBeneficiaryId,
+    });
+  };
+
   const handleSaveClick = async (event) => {
     event.preventDefault();
     AccountService.viewBeneficiary(formData).then((res) => {
@@ -62,7 +70,7 @@ function RTGSPayment() {
             To Account:
             <BeneficiaryDropdown
               beneficiaries={beneficiaries}
-              onSelect={(event) => handleInputChange(event)}
+              onSelect={handleBeneficiarySelect}
             />
           </label>
           {/* <input

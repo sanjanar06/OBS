@@ -29,6 +29,14 @@ function NEFTPayment() {
     });
   };
 
+  const handleBeneficiarySelect = (event) => {
+    const selectedBeneficiaryId = event.target.value;
+    setFormData({
+      ...formData,
+      toAccount: selectedBeneficiaryId,
+    });
+  };
+
   const handleSaveClick = async (event) => {
     event.preventDefault();
     AccountService.createTransaction(formData).then((res) => {
@@ -59,7 +67,7 @@ function NEFTPayment() {
           <label>To Account:</label>
           <BeneficiaryDropdown
             beneficiaries={beneficiaries}
-            onSelect={(event) => handleInputChange(event)}
+            onSelect={handleBeneficiarySelect}
           />
           {/* <input
             type="text"
