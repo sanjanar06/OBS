@@ -2,8 +2,6 @@ package com.bank.springbackend.entity;
 
 import java.sql.Date;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,7 +12,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @Builder
 @NoArgsConstructor
@@ -22,12 +19,12 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "transaction")
 public class Transaction {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long transactionId;
-	
-	@JsonFormat(pattern="dd-mm-yyyy")
+
+	// @JsonFormat(pattern="dd-mm-yyyy")
 	private Date transactionDate;
 
 	private String transactionType;
@@ -39,5 +36,5 @@ public class Transaction {
 	private String toAccount;
 
 	private String fromAccount;
-	
+
 }

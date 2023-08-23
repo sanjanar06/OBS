@@ -1,51 +1,70 @@
-*{
-  margin:0;
-  padding:0;
-  text-decoration: none;
+/* styles.css */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
 }
-.container{
-  display:flex;
-}
-main{
-  width: 100%;
-  padding: 20px;
-}
-.sidebar{
-  background: #000;
-  color: #fff;
+
+.app-container {
+  display: flex;
   height: 100vh;
-  width: 200px;
-  transition: all 0.5s;
 }
-.top_section{
+
+.sidebar {
+  width: 300px;
+  background-color: #333;
+  color: white;
+}
+
+.sidebar-header {
   display: flex;
-  align-items:center;
-  padding:20px 15px;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #222;
+  color: white;
 }
-.logo{
-  font-size: 30px;
+
+.sidebar-header h1 {
+  margin: 0;
+  font-size: 1.5rem;
 }
-.bars{
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
   display: flex;
-  font-size: 25px;
-  margin-left: 50px;
+  align-items: center;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s;
 }
-.link{
-  display: flex;
-  color: #fff;
-  padding: 10px 15px;
-  gap: 15px;
-  transition: all 0.5s;
+
+.sidebar li:hover {
+  background-color: #555;
 }
-.link:hover{
-  background:lightskyblue;
-  color: #000;
-  transition: all 0.5s;
+
+.sidebar li .menu-icon {
+  margin-right: 10px;
+  font-size: 1.25rem;
 }
-.active{
-  background: lightskyblue;
-  color: #000;
+
+.sidebar li .submenu-icon {
+  margin-left: auto;
+  font-size: 0.8rem;
 }
-.icon, .link_text{
-  font-size: 20px;
+
+.content {
+  flex: 1;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 }
+
+/* ... (other styles) */
