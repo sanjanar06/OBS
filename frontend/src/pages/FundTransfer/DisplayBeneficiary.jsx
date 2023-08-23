@@ -5,6 +5,18 @@ import '../style/DisplayBeneficiary.css';
 function DisplayBeneficiary() {
     const [beneficiaries, setBeneficiaries] = useState([]);
 
+<<<<<<< HEAD
+  useEffect(() => {
+    
+    getbeneficiary().then((response) =>{
+      console.log(response.data);
+      setBeneficiaries(response.data);
+  })
+  .catch((error) =>{
+      console.log("Error fetching beneficiaries");
+  });
+  }, []);
+=======
     useEffect(() => {
         // axios.get('http://localhost:3001/beneficiary')
         //   .then(response => {
@@ -22,6 +34,7 @@ function DisplayBeneficiary() {
                 console.log("Error fetching beneficiaries");
             });
     }, []);
+>>>>>>> 9e648b8117371b4fe804249792473ef5030f126a
 
     return (
         <div className="display-beneficiary">

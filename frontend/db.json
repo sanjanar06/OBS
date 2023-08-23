@@ -54,7 +54,7 @@
       "id": 1
     }
   ],
-  "dashboard": [
+  "accountDetails": [
     {
       "accountHolderName": "Manish Gautam",
       "accountNumber": 498239865,
@@ -175,4 +175,6 @@
       "type": "Credit"
     }
   ]
+
+  
 }

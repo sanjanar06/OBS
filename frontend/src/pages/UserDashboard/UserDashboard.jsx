@@ -7,6 +7,11 @@ import '../style/UserDashboard.css';
 
 // Components for the left sidebar
 import AddBeneficiary from '../FundTransfer/AddBeneficiary';
+<<<<<<< HEAD
+
+function UserDashboard() {
+  
+=======
 import DisplayBeneficiary from '../FundTransfer/DisplayBeneficiary';
 import FundTransfer from '../FundTransfer/FundTransfer';
 import IMPSPayment from '../FundTransfer/IMPSPayment';
@@ -22,6 +27,7 @@ const UserDashboard = () => {
   const handleMenuItemClick = (component) => {
     setActiveComponent(component);
   };
+>>>>>>> 9e648b8117371b4fe804249792473ef5030f126a
 
   return (
     <div className="app-container">
