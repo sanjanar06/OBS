@@ -19,22 +19,25 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/userProfile")
 @CrossOrigin(origins = "http://localhost:3000")
 public class UserProfileController {
-    
+
     private final UserProfileService userProfileService;
 
     // Admin :Fetch all account opening forms
-    @GetMapping("/view")
-    public List<UserProfile> findAllUserProfiles(){
-		  return userProfileService.getAllUserProfiles();
+    @GetMapping("/view/all")
+    public List<UserProfile> findAllUserProfiles() {
+        return userProfileService.getAllUserProfiles();
+    }
+
+    @GetMapping("/view/{accountNumber}")
+    public UserProfile findUserByAccount(@PathVariable String accountNumber) {
+        return userProfileService.getUserProfile(accountNumber);
     }
 
     // Admin :Delete rejected account opening forms
     @DeleteMapping("/delete/{id}")
-    public String deleteUserProfile(@PathVariable("id") Integer accountId)
-    {
+    public String deleteUserProfile(@PathVariable("id") Integer accountId) {
         userProfileService.deleteUserProfileById(accountId);
         return "Deleted Profile Successfully";
     }
-
 
 }

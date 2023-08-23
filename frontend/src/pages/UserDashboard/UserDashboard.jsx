@@ -17,7 +17,7 @@ import TransactionHistory from './TransactionHistory';
 import UserProfile from './UserProfile';
 
 const UserDashboard = () => {
-  const [activeComponent, setActiveComponent] = useState(<TransactionHistory />);
+  const [activeComponent, setActiveComponent] = useState(<UserProfile />);
 
   const handleMenuItemClick = (component) => {
     setActiveComponent(component);

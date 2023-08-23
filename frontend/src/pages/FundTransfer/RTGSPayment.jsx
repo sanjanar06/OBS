@@ -6,6 +6,7 @@ import '../style/RTGS.css';
 
 function RTGSPayment() {
   const [formData, setFormData] = useState({
+    fromAccount: localStorage.getItem("accountNumber"),
     toAccount: '',
     transactionAmount: '',
     transactionDesc: '',
@@ -21,7 +22,7 @@ function RTGSPayment() {
 
   const handleSaveClick = async (event) => {
     event.preventDefault();
-    AccountService.viewBeneficiary(formData.toAccount).then((res) => {
+    AccountService.viewBeneficiary(formData).then((res) => {
 
       AccountService.createTransaction(formData).then((res) => {
         console.log("Fund transfer successful");

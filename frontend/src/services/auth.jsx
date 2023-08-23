@@ -5,7 +5,7 @@ export const isLoggedIn = () => {
     return (
         access != null
         || (
-            !window.location.href.includes("/login") ||
+            window.location.href.includes("/login") ||
             window.location.href.includes("/register") ||
             window.location.href.includes("/account")
         )
@@ -22,6 +22,10 @@ export const apiLogin = async (data) => {
         localStorage.setItem("refreshToken", res.data.refreshToken);
         localStorage.setItem("accountNumber", res.data.accountNumber);
 
+        const roles = res.data.userRoles
+            .map((role) => role.name)
+            .join();
+        localStorage.setItem("roles", roles);
 
         return true;
     } catch {

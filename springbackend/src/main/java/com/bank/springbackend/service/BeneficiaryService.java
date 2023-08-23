@@ -27,6 +27,7 @@ public class BeneficiaryService {
                 .beneficiaryName(request.getBeneficiaryName())
                 .beneficiaryNickName(request.getBeneficiaryNickName())
                 .beneficiaryAccount(request.getBeneficiaryAccount())
+                .senderAccount(account)
                 .build();
 
         beneficiaryRepository.save(beneficiary);
@@ -43,10 +44,11 @@ public class BeneficiaryService {
         return beneficiaries;
     }
 
-    public Beneficiary getBeneficiary(String beneficiaryAccountNumber) {
-        Beneficiary beneficiary = beneficiaryRepository.findBeneficiaryByBeneficiaryAccount(beneficiaryAccountNumber)
+    public Beneficiary getBeneficiary(String senderAccount, String beneficiaryAccount) {
+        Account account = accountRepository.findAccountByAccountNumber(senderAccount).orElseThrow();
+        return beneficiaryRepository
+                .findBeneficiaryBySenderAccountAndBeneficiaryAccount(account, beneficiaryAccount)
                 .orElseThrow();
-        return beneficiary;
     }
 
 }
