@@ -2,6 +2,8 @@ package com.bank.springbackend.entity;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,7 +28,7 @@ public class UserProfile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int profileId;
 
-    @Column(name = "title", length= 4)
+    @Column(name = "title", length = 4)
     private String title;
 
     private String firstName;
@@ -52,6 +54,7 @@ public class UserProfile {
     private Double grossAnnualIncome;
 
     @OneToOne(mappedBy = "userProfile")
+    @JsonBackReference
     private Account account;
 
 }

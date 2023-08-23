@@ -7,9 +7,7 @@ import org.springframework.stereotype.Service;
 import com.bank.springbackend.communication.Request.JWTLoginRequest;
 import com.bank.springbackend.communication.Request.JWTRefreshRequest;
 import com.bank.springbackend.communication.Response.JWTResponse;
-import com.bank.springbackend.entity.Account;
 import com.bank.springbackend.entity.User;
-import com.bank.springbackend.repository.AccountRepository;
 import com.bank.springbackend.repository.NetBankingRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -19,7 +17,6 @@ import lombok.RequiredArgsConstructor;
 public class AuthenticationService {
 
     private final NetBankingRepository netBankingRepository;
-    private final AccountRepository accountRepository;
 
     private final JWTService jwtService;
     private final AuthenticationManager authenticationManager;
@@ -31,9 +28,8 @@ public class AuthenticationService {
                         request.getPassword()));
 
         User user = netBankingRepository.findUserByUserId(request.getUserId()).orElseThrow();
-        Account account = accountRepository.findAccountByUser(user).orElseThrow();
 
-        return authResponse(account);
+        return authResponse(user);
     }
 
     public JWTResponse refresh(JWTRefreshRequest request) {
@@ -42,30 +38,29 @@ public class AuthenticationService {
 
         if (userId != null) {
             User user = netBankingRepository.findUserByUserId(userId).orElseThrow();
-            Account account = accountRepository.findAccountByUser(user).orElseThrow();
 
-            if (jwtService.isTokenValid(refreshToken, account.getUser())) {
-                return authRefreshResponse(account, refreshToken);
+            if (jwtService.isTokenValid(refreshToken, user)) {
+                return authRefreshResponse(user, refreshToken);
             }
         }
 
         return null;
     }
 
-    private JWTResponse authResponse(Account account) {
-        String jwtRefreshToken = jwtService.generateRefreshToken(account.getUser());
+    private JWTResponse authResponse(User user) {
+        String jwtRefreshToken = jwtService.generateRefreshToken(user);
 
-        return authRefreshResponse(account, jwtRefreshToken);
+        return authRefreshResponse(user, jwtRefreshToken);
     }
 
-    private JWTResponse authRefreshResponse(Account account, String refreshToken) {
-        String jwtToken = jwtService.generateToken(account.getUser());
+    private JWTResponse authRefreshResponse(User user, String refreshToken) {
+        String jwtToken = jwtService.generateToken(user);
 
         return JWTResponse.builder()
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
-                .accountNumber(account.getAccountNumber())
-                .userRoles(account.getUser().getRoles())
+                .accountNumber(user.getAccount() != null ? user.getAccount().getAccountNumber() : null)
+                .userRoles(user.getRoles())
                 .build();
     }
 

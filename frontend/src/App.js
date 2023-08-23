@@ -16,8 +16,8 @@ import AdminTransactionHistory from './pages/Admin/AdminTransaction';
 
 
 import { useEffect } from 'react';
-import IMPSPayment from './pages/FundTransfer/IMPSPayment';
-import NeftPayment from './pages/FundTransfer/NEFTPayment';
+import IMPSPayment from './pages/FundTransfer/impsPayment';
+import NeftPayment from './pages/FundTransfer/neftPayment';
 import AccountCreation from './pages/Home/AccountCreation';
 import Register from './pages/Home/Register';
 import AccountDetails from './pages/UserDashboard/AccountDetails.jsx';

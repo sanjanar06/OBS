@@ -9,9 +9,6 @@ export function getaccounts(){
     return api.get('admin/view');
 }
 
-// export function getaccounts(){
-//     return axios.get(USER_API_BASE_URL + '/account' /*'/view'*/);
-// }
 export const updateAccountStatusApprove = (accountId, status) => {
     const url = `/accept/${accountId}`; 
     return api.put(url, { status: status })
