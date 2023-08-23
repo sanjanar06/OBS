@@ -8,6 +8,7 @@ import com.bank.springbackend.communication.Request.BeneficiaryRequest;
 import com.bank.springbackend.communication.Response.BeneficiaryResponse;
 import com.bank.springbackend.entity.Account;
 import com.bank.springbackend.entity.Beneficiary;
+import com.bank.springbackend.exception.ResourceNotFoundException;
 import com.bank.springbackend.repository.AccountRepository;
 import com.bank.springbackend.repository.BeneficiaryRepository;
 
@@ -21,7 +22,8 @@ public class BeneficiaryService {
     private final AccountRepository accountRepository;
 
     public BeneficiaryResponse createBeneficiary(BeneficiaryRequest request) {
-        Account account = accountRepository.findById(request.getSenderAccount()).orElseThrow();
+        Account account = accountRepository.findById(request.getSenderAccount())
+                .orElseThrow(() -> new ResourceNotFoundException("Account not found"));
 
         Beneficiary beneficiary = Beneficiary.builder()
                 .beneficiaryName(request.getBeneficiaryName())

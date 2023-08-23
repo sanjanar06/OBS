@@ -54,7 +54,7 @@
       "id": 1
     }
   ],
-  "dashboard": [
+  "accountDetails": [
     {
       "accountHolderName": "Manish Gautam",
       "accountNumber": 498239865,
@@ -147,21 +147,32 @@
       "id": 5
     }
   ],
-  "account":[
+  "account": [
     {
-      "accountName": "John Doe", 
-      "accountNumber": "12345678", 
-      "status": "Pending"
+      "status": "Approved",
+      "id": "1"
     },
     {
-      "accountName": "John Doe", 
-      "accountNumber": "12345678", 
-      "status": "Pending"
+      "status": "Rejected",
+      "id": "2"
     },
     {
-      "accountName": "John Doe", 
-      "accountNumber": "12345678", 
-      "status": "Pending"
+      "status": "Approved",
+      "id": "3"
+    }
+  ],
+  "transaction": [
+    {
+      "id": "1",
+      "accountNumber": "1234567890",
+      "amount": 1000,
+      "type": "Credit"
+    },
+    {
+      "id": "2",
+      "accountNumber": "1234567890",
+      "amount": 100,
+      "type": "Credit"
     }
   ]
 

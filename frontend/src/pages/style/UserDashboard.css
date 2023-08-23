@@ -67,4 +67,17 @@ body {
   border-radius: 10px;
 }
 
+.submenu-icon.open {
+  transform: rotate(90deg);
+}
+
+.submenu {
+  list-style: none;
+  padding-left: 20px;
+  display: none;
+}
+
+.submenu.open {
+  display: block;
+}
 /* ... (other styles) */

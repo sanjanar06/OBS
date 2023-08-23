@@ -11,12 +11,13 @@ import RTGSPayment from './pages/FundTransfer/RTGSPayment';
 import ForgotUserId from './pages/Home/ForgetUserId';
 import Home from './pages/Home/Home';
 import SetNewPassword from './pages/Home/SetNewPassword';
+import DisplayBeneficiary from './pages/FundTransfer/DisplayBeneficiary';
+import AdminTransactionHistory from './pages/Admin/AdminTransaction';
 
 
 import { useEffect } from 'react';
-import DisplayBeneficiary from './pages/FundTransfer/DisplayBeneficiary';
-import IMPSPayment from './pages/FundTransfer/IMPSPayment';
-import NeftPayment from './pages/FundTransfer/NEFTPayment';
+import IMPSPayment from './pages/FundTransfer/impsPayment';
+import NeftPayment from './pages/FundTransfer/neftPayment';
 import AccountCreation from './pages/Home/AccountCreation';
 import Register from './pages/Home/Register';
 import AccountDetails from './pages/UserDashboard/AccountDetails.jsx';
@@ -48,6 +49,7 @@ function App() {
         <Route path="/fundtransfer" element={<FundTransfer />}></Route>
         <Route path="/displaybeneficiaries" element={<DisplayBeneficiary />}></Route>
         <Route path="/admin" element={<AdminDashboard />}></Route>
+        <Route path="/admintransaction" element={<AdminTransactionHistory />}></Route>
 
 
 
