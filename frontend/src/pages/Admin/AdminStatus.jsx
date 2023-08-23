@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../style/AdminStatus.css';
-import {getaccounts} from '../../services/Admin.js';
+import {getaccounts,updateAccountStatusApprove,updateAccountStatusReject} from '../../services/Admin.js';
 
 function AdminDashboard() {
   const [accounts, setAccounts] = useState([]);
@@ -24,20 +24,35 @@ function AdminDashboard() {
   }, []);
 
   const handleApproval = (id) => {
-    setAccounts((prevAccounts) =>{
-      return prevAccounts.map(account =>
-        account.id === id ? { ...account, status: 'Approved' } : account
-      )}
-    );
-    
+    updateAccountStatusApprove(id, 'Approved') 
+      .then((response) => {
+        if (response.status === 200) {
+          setAccounts((prevAccounts) =>
+            prevAccounts.map((account) =>
+              account.id === id ? { ...account, status: 'Approved' } : account
+            )
+          );
+        }
+      })
+      .catch((error) => {
+        console.log("Error updating account status");
+      });
   };
 
   const handleRejection = (id) => {
-    setAccounts(prevAccounts =>
-      prevAccounts.map(account =>
-        account.id === id ? { ...account, status: 'Rejected' } : account
-      )
-    );
+    updateAccountStatusReject(id, 'Rejected')
+      .then((response) => {
+        if (response.status === 200) {
+          setAccounts((prevAccounts) =>
+            prevAccounts.map((account) =>
+              account.id === id ? { ...account, status: 'Rejected' } : account
+            )
+          );
+        }
+      })
+      .catch((error) => {
+        console.log("Error updating account status");
+      });
   };
 
   return (
