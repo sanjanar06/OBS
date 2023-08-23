@@ -11,6 +11,7 @@ import UserProfile from './UserProfile';
 import Sidebar from './Sidebar';
 import FundTransfer from '../FundTransfer/FundTransfer';
 import AddBeneficiary from '../FundTransfer/AddBeneficiary';
+
 function UserDashboard() {
   
 
