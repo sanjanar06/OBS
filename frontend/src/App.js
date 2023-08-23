@@ -4,7 +4,6 @@ import './App.css';
 import Login from './pages/Home/Login.jsx';
 import UserDashboard from './pages/UserDashboard/UserDashboard';
 
-import AdminDashboard from './pages/Admin/AdminStatus';
 import AddBeneficiary from './pages/FundTransfer/AddBeneficiary';
 import FundTransfer from './pages/FundTransfer/FundTransfer';
 import RTGSPayment from './pages/FundTransfer/RTGSPayment';
@@ -12,7 +11,6 @@ import ForgotUserId from './pages/Home/ForgetUserId';
 import Home from './pages/Home/Home';
 import SetNewPassword from './pages/Home/SetNewPassword';
 import DisplayBeneficiary from './pages/FundTransfer/DisplayBeneficiary';
-import AdminTransactionHistory from './pages/Admin/AdminTransaction';
 
 
 import { useEffect } from 'react';
@@ -24,6 +22,7 @@ import AccountDetails from './pages/UserDashboard/AccountDetails.jsx';
 import TransactionHistory from './pages/UserDashboard/TransactionHistory';
 import UserProfile from './pages/UserDashboard/UserProfile.jsx';
 import { isLoggedIn } from './services/auth';
+import AdminDashboard from './pages/Admin/AdminDashboard';
 
 function App() {
   const loggedIn = isLoggedIn();
@@ -49,11 +48,6 @@ function App() {
         <Route path="/fundtransfer" element={<FundTransfer />}></Route>
         <Route path="/displaybeneficiaries" element={<DisplayBeneficiary />}></Route>
         <Route path="/admin" element={<AdminDashboard />}></Route>
-        <Route path="/admintransaction" element={<AdminTransactionHistory />}></Route>
-
-
-
-
         <Route path="/accountDetails" element={<AccountDetails />} />
         <Route path="/RTGSPayment" element={<RTGSPayment />} />
         <Route path="/transactionHistory" element={<TransactionHistory />} />

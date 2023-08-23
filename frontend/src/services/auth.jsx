@@ -5,7 +5,7 @@ export const isLoggedIn = () => {
     return (
         access != null
         || (
-            window.location.href.includes("/login") ||
+            !window.location.href.includes("/login") ||
             window.location.href.includes("/register") ||
             window.location.href.includes("/account")
         )

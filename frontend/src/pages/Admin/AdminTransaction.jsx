@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../style/AdminTransaction.css';
 import { gettransactions } from '../../services/Admin';
 
-function AdminTransactionHistory() {
+function AdminTransaction() {
   const [searchAccountNumber, setSearchAccountNumber] = useState('');
   const [transactions, setTransactions] = useState([]);
 
@@ -59,4 +59,4 @@ function AdminTransactionHistory() {
   );
 }
 
-export default AdminTransactionHistory;
+export default AdminTransaction;
