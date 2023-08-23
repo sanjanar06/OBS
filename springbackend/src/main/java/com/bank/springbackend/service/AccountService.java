@@ -23,7 +23,6 @@ public class AccountService {
     private final UserProfileRepository userProfileRepository;
     private final SecureRandom secureRandom = new SecureRandom();
 
-
     public Account createAccount(UserDetailsRequest accountRequest) {
 
         long randomValue = (long) (secureRandom.nextDouble() * 1000000000000L);
@@ -33,7 +32,7 @@ public class AccountService {
                 .accountNumber(accountNumber)
                 .accountType(AccountTypeEnum.SAVINGS)
                 .accountBalance(2500.0)
-                .status(AccountStatusEnum.PENDING)
+                .status(AccountStatusEnum.ACCEPTED)
                 .build();
         UserProfile userProfile = UserProfile.builder()
                 .title(accountRequest.getTitle())
@@ -70,13 +69,13 @@ public class AccountService {
 
     }
 
-    public AccountResponse viewAccountBalance(String accountNumber ){
+    public AccountResponse viewAccountBalance(String accountNumber) {
         Account account = accountRepository.findAccountByAccountNumber(accountNumber).orElseThrow();
 
         return AccountResponse.builder()
                 .balance(account.getAccountBalance())
                 .build();
-        
+
     }
 
 }

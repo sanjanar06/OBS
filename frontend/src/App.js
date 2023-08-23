@@ -4,6 +4,7 @@ import './App.css';
 import Login from './pages/Home/Login.jsx';
 import UserDashboard from './pages/UserDashboard/UserDashboard';
 
+import AdminDashboard from './pages/Admin/AdminStatus';
 import AddBeneficiary from './pages/FundTransfer/AddBeneficiary';
 import FundTransfer from './pages/FundTransfer/FundTransfer';
 import RTGSPayment from './pages/FundTransfer/RTGSPayment';
@@ -16,12 +17,13 @@ import AdminTransactionHistory from './pages/Admin/AdminTransaction';
 
 
 import { useEffect } from 'react';
-import IMPSPayment from './pages/FundTransfer/impsPayment';
-import NeftPayment from './pages/FundTransfer/neftPayment';
+import DisplayBeneficiary from './pages/FundTransfer/DisplayBeneficiary';
+import IMPSPayment from './pages/FundTransfer/IMPSPayment';
+import NeftPayment from './pages/FundTransfer/NEFTPayment';
 import AccountCreation from './pages/Home/AccountCreation';
 import Register from './pages/Home/Register';
 import AccountDetails from './pages/UserDashboard/AccountDetails.jsx';
-import AccountSummary from './pages/UserDashboard/AccountSummary.jsx';
+import TransactionHistory from './pages/UserDashboard/TransactionHistory';
 import UserProfile from './pages/UserDashboard/UserProfile.jsx';
 import { isLoggedIn } from './services/auth';
 
@@ -56,14 +58,14 @@ function App() {
 
         <Route path="/accountDetails" element={<AccountDetails />} />
         <Route path="/RTGSPayment" element={<RTGSPayment />} />
-        <Route path="/accountSummary" element={<AccountSummary />} />
+        <Route path="/transactionHistory" element={<TransactionHistory />} />
         {/* <Route path="/forgotPassword" element={<ForgotPassword/>}/>  */}
         <Route path="/userDashboard" element={<UserDashboard />} />
         {/* <Route path="/Change" element={<ChangeUid_pass/>}/>  */}
         <Route path="/userProfile" element={<UserProfile />} />
         {/* <Route path="/ChangePassword" element = {<ChangePassword/>} /> */}
-        <Route path="/neftPayment" element={<NeftPayment />} />
-        <Route path="/impsPayment" element={<IMPSPayment />} />
+        <Route path="/NEFTPayment" element={<NeftPayment />} />
+        <Route path="/IMPSPayment" element={<IMPSPayment />} />
       </Routes>
 
     </div>

@@ -14,5 +14,6 @@ public class TransactionHistoryRequest {
     private String account;
     private Date startDate;
     private Date endDate;
-    
+    private Date queryDate;
+
 }

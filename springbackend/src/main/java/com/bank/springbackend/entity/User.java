@@ -8,6 +8,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -30,34 +33,31 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "netbanking_user")
 public class User implements UserDetails {
-	
+
 	@Id
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
-	@Column(length=40, nullable = false)
+	@Column(length = 40, nullable = false)
 	private String userId;
-	
+
 	@Column(name = "login_password", nullable = true)
 	private String loginPassword;
 
 	@Column(name = "trans_password", nullable = true)
 	private String transactionPassword;
-	
+
 	@OneToOne(mappedBy = "user")
 	private Account account;
 
-	@ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-        name = "user_roles",
-        joinColumns = @JoinColumn(name="user_id"),
-        inverseJoinColumns = @JoinColumn(name="role_id")
-    )
-    private List<Role> roles;
+	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST })
+	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	@JsonManagedReference
+	private List<Role> roles;
 
 	@Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName().name())).toList();
-    }
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName().name())).toList();
+	}
 
 	@Override
 	public String getPassword() {
@@ -89,5 +89,4 @@ public class User implements UserDetails {
 		return true;
 	}
 
-	
 }

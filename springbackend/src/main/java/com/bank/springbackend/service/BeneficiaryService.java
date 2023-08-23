@@ -20,15 +20,14 @@ public class BeneficiaryService {
     private final BeneficiaryRepository beneficiaryRepository;
     private final AccountRepository accountRepository;
 
-    public BeneficiaryResponse createBeneficiary(BeneficiaryRequest request)
-    {
+    public BeneficiaryResponse createBeneficiary(BeneficiaryRequest request) {
         Account account = accountRepository.findById(request.getSenderAccount()).orElseThrow();
 
         Beneficiary beneficiary = Beneficiary.builder()
-            .beneficiaryName(request.getBeneficiaryName())
-            .beneficiaryNickName(request.getBeneficiaryNickName())
-            .beneficiaryAccount(request.getBeneficiaryAccount())
-            .build();
+                .beneficiaryName(request.getBeneficiaryName())
+                .beneficiaryNickName(request.getBeneficiaryNickName())
+                .beneficiaryAccount(request.getBeneficiaryAccount())
+                .build();
 
         beneficiaryRepository.save(beneficiary);
 
@@ -38,10 +37,16 @@ public class BeneficiaryService {
         return new BeneficiaryResponse(beneficiary.getBeneficiaryId());
     }
 
-    public List<Beneficiary> getAllBeneficaries(String accountNumber)
-    {
+    public List<Beneficiary> getAllBeneficaries(String accountNumber) {
         Account account = accountRepository.findAccountByAccountNumber(accountNumber).orElseThrow();
         List<Beneficiary> beneficiaries = account.getBeneficiaries();
         return beneficiaries;
     }
+
+    public Beneficiary getBeneficiary(String beneficiaryAccountNumber) {
+        Beneficiary beneficiary = beneficiaryRepository.findBeneficiaryByBeneficiaryAccount(beneficiaryAccountNumber)
+                .orElseThrow();
+        return beneficiary;
+    }
+
 }

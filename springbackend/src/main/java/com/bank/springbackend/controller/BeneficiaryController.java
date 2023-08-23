@@ -22,19 +22,23 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/beneficiary")
 @CrossOrigin(origins = "http://localhost:3000")
 public class BeneficiaryController {
-    
+
     private final BeneficiaryService beneficiaryService;
 
     @PostMapping("/create")
-    public BeneficiaryResponse createBeneficary(@RequestBody BeneficiaryRequest request ){
+    public BeneficiaryResponse createBeneficary(@RequestBody BeneficiaryRequest request) {
         return beneficiaryService.createBeneficiary(request);
-         
+
     }
-    
-    @GetMapping("/view/{accountNumber}")
-    public List<Beneficiary> getAllBeneficaries(@PathVariable String accountNumber){
+
+    @GetMapping("/view/all/{accountNumber}")
+    public List<Beneficiary> getAllBeneficaries(@PathVariable String accountNumber) {
         return beneficiaryService.getAllBeneficaries(accountNumber);
     }
 
- 
+    @GetMapping("/view/{accountNumber}")
+    public Beneficiary getBeneficary(@PathVariable String accountNumber) {
+        return beneficiaryService.getBeneficiary(accountNumber);
+    }
+
 }

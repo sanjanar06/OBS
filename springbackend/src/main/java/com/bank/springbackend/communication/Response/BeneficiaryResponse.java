@@ -8,6 +8,7 @@ import lombok.Data;
 @Builder
 @AllArgsConstructor
 public class BeneficiaryResponse {
-    
+
     private Integer beneficiaryId;
+
 }

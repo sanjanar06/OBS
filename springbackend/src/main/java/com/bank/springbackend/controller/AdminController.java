@@ -2,17 +2,18 @@ package com.bank.springbackend.controller;
 
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import com.bank.springbackend.communication.Response.AccountResponse;
-import com.bank.springbackend.repository.AccountRepository;
-import com.bank.springbackend.service.AccountService;
-import com.bank.springbackend.service.AdminService;
-import com.bank.springbackend.entity.Account;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.bank.springbackend.communication.Request.AdminRequest;
+import com.bank.springbackend.entity.Account;
+import com.bank.springbackend.repository.AccountRepository;
+import com.bank.springbackend.service.AdminService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -25,7 +26,7 @@ public class AdminController {
     private final AccountRepository accountRepository;
 
     @GetMapping("/view")
-    public List<Account> allAccounts(){
+    public List<Account> allAccounts() {
         return accountRepository.findAll();
     }
 

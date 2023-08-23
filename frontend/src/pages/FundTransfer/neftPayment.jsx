@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
-import '../style/NeftPayment.css'; // You can import your CSS file here for styling
 import { Link } from 'react-router-dom';
-import axios from 'axios';
-import { sendRequestNeft } from "../../services/FundTransfer";
+import AccountService from '../../services/AccountService';
+import '../style/NeftPayment.css'; // You can import your CSS file here for styling
 
-function NeftPayment() {
+function NEFTPayment() {
   const [formData, setFormData] = useState({
-    fromAccount: '',
     toAccount: '',
-    amount: '',
-    date: '',
-    maturityInstruction: '',
-    remarks: '',
+    transactionAmount: '',
+    transactionDesc: '',
+    transactionType: 'NEFT',
   });
 
   const handleInputChange = (field, value) => {
@@ -21,24 +18,15 @@ function NeftPayment() {
     });
   };
 
-  const handleSaveClick = async() => {
-   
-     // try {
-    //   const response = await axios.post('http://localhost:3001/neft', formData);
-    //   console.log('NEFT Payment saved:', response.data);
-    //   alert("Data has been saved succesfully");
-      
-    // } catch (error) {
-      // console.error('Error saving transaction:', error);
-      
-    // }
-   sendRequestNeft(formData).then((res) =>{
-      console.log('NEFT transaction data saved');
-      console.log(res.data);
-  })
-  .catch((error) =>{
-      console.log("Error in sending request");
-  });
+  const handleSaveClick = async (event) => {
+    event.preventDefault();
+    AccountService.createTransaction(formData).then((res) => {
+      console.log("Fund transfer successful");
+
+    })
+      .catch((error) => {
+        console.log("Fund transfer failed!!");
+      });
   }
 
   const handleReset = () => {
@@ -57,17 +45,6 @@ function NeftPayment() {
       <h1>Initiate NEFT Payment</h1>
       <form className="neft-form">
         <div className="form-group">
-          <label>From Account:</label>
-          <input
-            type="text"
-            name="fromAccount"
-            required
-            value={formData.fromAccount}
-            onChange={e => handleInputChange('fromAccount', e.target.value)}
-          />
-        </div>
-
-        <div className="form-group">
           <label>To Account:</label>
           <input
             type="text"
@@ -84,66 +61,46 @@ function NeftPayment() {
         </div>
 
         <div className="form-group">
-          <label>Amount:</label>
+          <label htmlFor="transactionAmount">Amount:</label>
           <input
             type="text"
-            name="amount"
+            id="transactionAmount"
+            name="transactionAmount"
             required
-            value={formData.amount}
-            onChange={e => handleInputChange('amount', e.target.value)}
+            value={formData.transactionAmount}
+            onChange={e => handleInputChange('transactionAmount', e.target.value)}
           />
         </div>
 
         <div className="form-group">
-          <label> Date:</label>
-          <input
-            type="date"
-            name="date"
-            required
-            value={formData.transactionDate}
-            onChange={e => handleInputChange('date', e.target.value)}
-          />
-        </div>
-
-        <div className="form-group">
-          <label>Maturity Instruction:</label>
+          <label> Transaction Desc:</label>
           <input
             type="text"
-            name="maturityInstruction"
+            id="transactionDesc"
+            name="transactionDesc"
             required
-            value={formData.maturityInstruction}
-            onChange={e => handleInputChange('maturityInstruction', e.target.value)} 
+            value={formData.transactionDesc}
+            onChange={e => handleInputChange('transactionDesc', e.target.value)}
           />
         </div>
-
-        <div className="form-group">
-          <label>Remarks:</label>
-          <input
-            type="text"
-            name="remarks"
-            value={formData.remarks}
-            onChange={e => handleInputChange('remarks', e.target.value)}
-          />
-        </div>
-
-        <div className="form-group">
+        {/* <div className="form-group">
           <p>
-             *Transaction will be executed on the next working day if they are
+            *Transaction will be executed on the next working day if they are
             scheduled for Sundays, National Holidays, NEFT Holidays (as declared by RBI)
           </p>
-        </div>
+        </div> */}
 
         <div className="form-group">
-          <button type="submit">Continue</button>
-          <button type="button" onClick={handleSaveClick}>Save</button>
-          <button type="button" onClick={handleReset}>
-              Reset
-            </button>
-          <button type="button">Save as Template</button>
+          {/* <button type="submit">Continue</button> */}
+          <button type="button" className="button save-button" onClick={handleSaveClick}>Save</button>
+          {/* <button type="button" onClick={handleReset}>
+            Reset
+          </button>
+          <button type="button">Save as Template</button> */}
         </div>
       </form>
     </div>
   );
 }
 
-export default NeftPayment;
+export default NEFTPayment;

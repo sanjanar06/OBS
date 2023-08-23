@@ -1,7 +1,5 @@
 package com.bank.springbackend.communication.Request;
 
-import java.time.LocalDate;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,6 +10,5 @@ import lombok.Data;
 public class AdminRequest {
 
     private String accountNumber;
-    
-    
+
 }

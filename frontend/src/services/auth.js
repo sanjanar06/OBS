@@ -14,12 +14,14 @@ export const isLoggedIn = () => {
 
 export const apiLogin = async (data) => {
     try {
-        // localStorage.clear();
+        localStorage.clear();
 
         const res = await api.post("/auth/login", data);
 
         localStorage.setItem("accessToken", res.data.accessToken);
         localStorage.setItem("refreshToken", res.data.refreshToken);
+        localStorage.setItem("accountNumber", res.data.accountNumber);
+
 
         return true;
     } catch {
