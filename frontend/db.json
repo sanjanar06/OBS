@@ -147,39 +147,34 @@
       "id": 5
     }
   ],
-  "account":[
+  "account": [
     {
-      "id": "1", 
-      "accountName": "John Doe", 
-      "accountNumber": "12345768", 
-      "status": "Pending"
+      "status": "Approved",
+      "id": "1"
     },
     {
-      "id": "2", 
-      "accountName": "Manish", 
-      "accountNumber": "12345678", 
-      "status": "Pending"
+      "status": "Rejected",
+      "id": "2"
     },
     {
-      "id": "3", 
-      "accountName": "Anshul", 
-      "accountNumber": "12354678", 
-      "status": "Pending"
+      "status": "Approved",
+      "id": "3"
     }
   ],
- "transaction" :[
+  "transaction": [
     {
-     "id": "1", 
-     "accountNumber": "1234567890", 
-     "amount": 1000, 
-     "type": "Credit" 
+      "id": "1",
+      "accountNumber": "1234567890",
+      "amount": 1000,
+      "type": "Credit"
     },
     {
-      "id": "2", 
-      "accountNumber": "1234567890", 
-      "amount": 100, 
-      "type": "Credit" 
+      "id": "2",
+      "accountNumber": "1234567890",
+      "amount": 100,
+      "type": "Credit"
     }
   ]
-    
+
+  
 }
