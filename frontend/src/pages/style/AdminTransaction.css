@@ -1,0 +1,41 @@
+.admin-transaction-history {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  
+  .admin-transaction-history h2 {
+    margin-bottom: 20px;
+  }
+  
+  .search-box {
+    margin-bottom: 20px;
+  }
+  
+  .search-box input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  td {
+    vertical-align: middle;
+  }
+  
+  

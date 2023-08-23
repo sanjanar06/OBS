@@ -29,6 +29,7 @@ function AdminDashboard() {
         account.id === id ? { ...account, status: 'Approved' } : account
       )}
     );
+    
   };
 
   const handleRejection = (id) => {
