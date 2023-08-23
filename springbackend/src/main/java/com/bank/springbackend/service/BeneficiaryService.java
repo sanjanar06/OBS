@@ -10,7 +10,7 @@ import com.bank.springbackend.entity.Account;
 import com.bank.springbackend.entity.Beneficiary;
 import com.bank.springbackend.repository.AccountRepository;
 import com.bank.springbackend.repository.BeneficiaryRepository;
-
+import com.bank.springbackend.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -21,7 +21,7 @@ public class BeneficiaryService {
     private final AccountRepository accountRepository;
 
     public BeneficiaryResponse createBeneficiary(BeneficiaryRequest request) {
-        Account account = accountRepository.findById(request.getSenderAccount()).orElseThrow();
+        Account account = accountRepository.findById(request.getSenderAccount()).orElseThrow(()-> new ResourceNotFoundException("Account not found"));
 
         Beneficiary beneficiary = Beneficiary.builder()
                 .beneficiaryName(request.getBeneficiaryName())
@@ -45,7 +45,7 @@ public class BeneficiaryService {
 
     public Beneficiary getBeneficiary(String beneficiaryAccountNumber) {
         Beneficiary beneficiary = beneficiaryRepository.findBeneficiaryByBeneficiaryAccount(beneficiaryAccountNumber)
-                .orElseThrow();
+                .orElseThrow(() -> new ResourceNotFoundException(String.format("Benificiary with %s was not found!", beneficiaryAccountNumber)));
         return beneficiary;
     }
 

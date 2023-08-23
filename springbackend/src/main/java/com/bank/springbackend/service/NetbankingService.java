@@ -29,11 +29,9 @@ public class NetbankingService {
 
     public RegisterResponse register(RegisterRequest request) {
         // To verify if the user has an account
-        Account account = accountRepository.findAccountByAccountNumber(request.getAccountNumber()).orElseThrow();
+        Account account = accountRepository.findAccountByAccountNumber(request.getAccountNumber()).orElseThrow(() ->  new ResourceNotFoundException("Your account has not been approved yet!") );
 
-        if (account.getStatus() == AccountStatusEnum.PENDING) {
-            throw new ResourceNotFoundException("Your account has not been approved yet!");
-        }
+    
 
         User user = User.builder()
                 .loginPassword(passwordEncoder.encode(request.getLoginPassword()))
@@ -54,7 +52,7 @@ public class NetbankingService {
     }
 
     public RegisterResponse getUser(String userId) {
-        User user = netBankingRepository.findUserByUserId(userId).orElseThrow();
+        User user = netBankingRepository.findUserByUserId(userId).orElseThrow(() -> new ResourceNotFoundException(String.format("Account %s does not exist!", userId)));
         RegisterResponse res = RegisterResponse.builder()
                 .userId(user.getUserId())
                 .build();
@@ -63,7 +61,7 @@ public class NetbankingService {
     }
 
     public RegisterResponse updatePassword(RegisterRequest request) {
-        User user = netBankingRepository.findUserByUserId(request.getUserId()).orElseThrow();
+        User user = netBankingRepository.findUserByUserId(request.getUserId()).orElseThrow(() -> new ResourceNotFoundException("Your netbanking account does not exist!"));
         user.setLoginPassword(request.getLoginPassword());
         netBankingRepository.save(user);
 

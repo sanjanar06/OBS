@@ -10,6 +10,7 @@ import com.bank.springbackend.entity.Account;
 import com.bank.springbackend.entity.UserProfile;
 import com.bank.springbackend.entity.Enum.AccountStatusEnum;
 import com.bank.springbackend.entity.Enum.AccountTypeEnum;
+import com.bank.springbackend.exception.ResourceNotFoundException;
 import com.bank.springbackend.repository.AccountRepository;
 import com.bank.springbackend.repository.UserProfileRepository;
 
@@ -58,7 +59,7 @@ public class AccountService {
 
     public AccountResponse getAccountByAccountNumber(String accountNumber) {
 
-        Account account = accountRepository.findAccountByAccountNumber(accountNumber).orElseThrow();
+        Account account = accountRepository.findAccountByAccountNumber(accountNumber).orElseThrow(() -> new ResourceNotFoundException("Account not found!"));
 
         return AccountResponse.builder()
                 .accountName(account.getUserProfile().getFirstName())

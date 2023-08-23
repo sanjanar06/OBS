@@ -7,15 +7,10 @@ import '../style/UserDashboard.css';
 
 // Components for the left sidebar
 import AddBeneficiary from '../FundTransfer/AddBeneficiary';
-<<<<<<< HEAD
-
-function UserDashboard() {
-  
-=======
 import DisplayBeneficiary from '../FundTransfer/DisplayBeneficiary';
 import FundTransfer from '../FundTransfer/FundTransfer';
-import IMPSPayment from '../FundTransfer/IMPSPayment';
-import NEFTPayment from '../FundTransfer/NEFTPayment';
+import IMPSPayment from '../FundTransfer/impsPayment';
+import NEFTPayment from '../FundTransfer/neftPayment';
 import RTGSPayment from '../FundTransfer/RTGSPayment';
 import AccountDetails from './AccountDetails';
 import TransactionHistory from './TransactionHistory';
@@ -23,11 +18,15 @@ import UserProfile from './UserProfile';
 
 const UserDashboard = () => {
   const [activeComponent, setActiveComponent] = useState(<TransactionHistory />);
+  const [fundTransferSubMenuOpen, setFundTransferSubMenuOpen] = useState(false);
 
   const handleMenuItemClick = (component) => {
     setActiveComponent(component);
   };
->>>>>>> 9e648b8117371b4fe804249792473ef5030f126a
+
+  const toggleFundTransferSubMenu = () => {
+    setFundTransferSubMenuOpen(!fundTransferSubMenuOpen);
+  };
 
   return (
     <div className="app-container">
@@ -39,15 +38,17 @@ const UserDashboard = () => {
           <li onClick={() => handleMenuItemClick(<UserProfile />)}><FaUser className="menu-icon" />Account Profile</li>
           <li onClick={() => handleMenuItemClick(<AccountDetails />)}><FaFileAlt className="menu-icon" />Account Details</li>
           <li onClick={() => handleMenuItemClick(<TransactionHistory />)}><FaMoneyBillAlt className="menu-icon" />Transaction History</li>
-          <li onClick={() => handleMenuItemClick(<FundTransfer />)}>
+          <li onClick={toggleFundTransferSubMenu}>
             <FaMoneyBillAlt className="menu-icon" />
             Fund Transfer
-            <BsArrowRightShort className="submenu-icon" />
-            <ul>
-              <li onClick={() => handleMenuItemClick(<IMPSPayment />)}>IMPS</li>
-              <li onClick={() => handleMenuItemClick(<NEFTPayment />)}>NEFT</li>
-              <li onClick={() => handleMenuItemClick(<RTGSPayment />)}>RTGS</li>
-            </ul>
+            <BsArrowRightShort className={`submenu-icon ${fundTransferSubMenuOpen ? 'open' : ''}`}/>
+            {fundTransferSubMenuOpen && (
+              <ul className={`submenu ${fundTransferSubMenuOpen ? 'open' : ''}`}>
+                <li onClick={() => handleMenuItemClick(<IMPSPayment />)}>IMPS</li>
+                <li onClick={() => handleMenuItemClick(<NEFTPayment />)}>NEFT</li>
+                <li onClick={() => handleMenuItemClick(<RTGSPayment />)}>RTGS</li>
+              </ul>
+            )}
           </li>
           <li onClick={() => handleMenuItemClick(<AddBeneficiary />)}>
             <FaUsers className="menu-icon" />
