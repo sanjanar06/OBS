@@ -100,7 +100,7 @@ function NEFTPayment() {
           <BeneficiaryDropdown
             beneficiaries={beneficiaries}
             onSelect={e => {
-              handleBeneficiarySelect(e)
+              handleBeneficiarySelect(e);
               setErrors({ ...errors, toAccount: '' });
             }}
           />

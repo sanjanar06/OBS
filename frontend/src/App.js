@@ -12,8 +12,8 @@ import UserDashboard from './pages/UserDashboard/UserDashboard';
 import AddBeneficiary from './pages/FundTransfer/AddBeneficiary';
 import DisplayBeneficiary from './pages/FundTransfer/DisplayBeneficiary';
 import FundTransfer from './pages/FundTransfer/FundTransfer';
-import IMPSPayment from './pages/FundTransfer/IMPSPayment';
-import NEFTPayment from './pages/FundTransfer/NEFTPayment';
+import IMPSPayment from './pages/FundTransfer/impsPayment';
+import NEFTPayment from './pages/FundTransfer/neftPayment';
 import RTGSPayment from './pages/FundTransfer/RTGSPayment';
 
 import AccountDetails from './pages/UserDashboard/AccountDetails.jsx';

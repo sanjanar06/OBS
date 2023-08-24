@@ -8,8 +8,8 @@ import '../style/UserDashboard.css';
 // Components for the left sidebar
 import AddBeneficiary from '../FundTransfer/AddBeneficiary';
 import DisplayBeneficiary from '../FundTransfer/DisplayBeneficiary';
-import IMPSPayment from '../FundTransfer/IMPSPayment';
-import NEFTPayment from '../FundTransfer/NEFTPayment';
+import IMPSPayment from '../FundTransfer/impsPayment';
+import NEFTPayment from '../FundTransfer/neftPayment';
 import RTGSPayment from '../FundTransfer/RTGSPayment';
 import AccountDetails from './AccountDetails';
 import TransactionHistory from './TransactionHistory';

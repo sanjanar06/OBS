@@ -1,8 +1,8 @@
 // src/components/TableComponent.js
 import React, { useEffect, useState } from 'react';
-import { RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri'; // Example icons, you can replace them
+import { IoArrowUpCircleSharp, IoArrowDownCircleSharp } from 'react-icons/io5'; // Colorful icons from react-icons/io5
 import AccountService from '../../services/AccountService';
-
+import '../style/TransactionHistory.css' 
 const TransactionHistory = () => {
   const [transactions, setTransactions] = useState([]);
 
@@ -62,9 +62,9 @@ const TransactionHistory = () => {
               <td>{item.amount}</td>
               <td>
                 {item.isDebit ? (
-                  <RiArrowDownSLine className="debit-icon" />
+                  <IoArrowDownCircleSharp className="icon debit-icon" />
                 ) : item.isCredit ? (
-                  <RiArrowUpSLine className="credit-icon" />
+                  <IoArrowUpCircleSharp className="icon credit-icon" />
                 ) : (
                   'N/A'
                 )}
