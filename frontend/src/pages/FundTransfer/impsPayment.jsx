@@ -4,9 +4,13 @@ import AccountService from '../../services/AccountService';
 import '../style/IMPSPayment.css'; // You can import your CSS file here for styling
 import BeneficiaryDropdown
  from './BeneficiaryDropdown';
+import { getAccountDetails } from '../../services/UserDetails';
+
 function IMPSPayment() {
 
   const [beneficiaries, setBeneficiaries] = useState([]);
+  const [errors, setErrors] = useState({});
+  const [account,setAccount]= useState({});
 
   useEffect(() => {
     async function fetchBeneficiaries() {
@@ -14,9 +18,16 @@ function IMPSPayment() {
       setBeneficiaries(data);
     }
     fetchBeneficiaries();
-  }, []);
+     getAccountDetails().then((response) => {
+      console.log(response.data);
+      setAccount(response.data);
+  })
+      .catch((error) => {
+          console.log("Error fetching account details");
+      });
 
-  
+    
+  }, []);
 
   const [formData, setFormData] = useState({
     toAccount: '',
@@ -24,6 +35,33 @@ function IMPSPayment() {
     transactionDesc: '',
     transactionType: 'IMPS',
   });
+
+  const validateForm = () => {
+    let isValid = true;
+    const newErrors = {};
+
+    if (!formData.toAccount) {
+      newErrors.toAccount = '*To Account is required';
+      isValid = false;
+    }
+
+    if (!formData.transactionAmount) {
+      newErrors.transactionAmount = '*Amount is required';
+      isValid = false; 
+    }
+
+    if (formData.transactionAmount<account.balance) {
+      newErrors.transactionAmount = '*Account have insufficent balance';
+      isValid = false;
+    }
+    if(formData.transactionAmount>=10000){
+      newErrors.transactionAmount = '*Entered amount exceeds the limits';
+      isValid = false;
+    }
+
+    setErrors(newErrors);
+    return isValid;
+  };
 
   const handleInputChange = (field, value) => {
     setFormData({
@@ -34,6 +72,7 @@ function IMPSPayment() {
 
   const handleSaveClick = async (event) => {
     event.preventDefault();
+    if(validateForm()){
     AccountService.createTransaction(formData).then((res) => {
       console.log("Fund transfer successful");
 
@@ -41,17 +80,15 @@ function IMPSPayment() {
       .catch((error) => {
         console.log("Fund transfer failed!!");
       });
+    }
   }
 
 
   const handleReset = () => {
     setFormData({
-      fromAccount: '',
       toAccount: '',
-      amount: '',
-      date: '',
-      maturityInstruction: '',
-      remarks: '',
+      transactionAmount: '',
+      transactionDesc: '',
     });
   };
 
@@ -63,7 +100,9 @@ function IMPSPayment() {
           <label>To Account:</label>
           <BeneficiaryDropdown
             beneficiaries={beneficiaries}
-            onSelect={(event) => handleInputChange(event)}
+            onSelect={e => {handleInputChange('toAccount', e.target.value)
+              setErrors({ ...errors, toAccount: '' });
+            }}
           />
           {/* <input
             type="text"
@@ -87,7 +126,9 @@ function IMPSPayment() {
             name="transactionAmount"
             required
             value={formData.transactionAmount}
-            onChange={e => handleInputChange('transactionAmount', e.target.value)}
+            onChange={e => {handleInputChange('transactionAmount', e.target.value)
+            setErrors({ ...errors, transactionAmount: '' });}
+          }
           />
         </div>
 
