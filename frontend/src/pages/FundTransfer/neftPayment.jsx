@@ -67,6 +67,14 @@ function NEFTPayment() {
     });
   };
 
+  const handleBeneficiarySelect = (event) => {
+    const selectedBeneficiaryId = event.target.value;
+    setFormData({
+      ...formData,
+      toAccount: selectedBeneficiaryId,
+    });
+  };
+
   const handleSaveClick = async (event) => {
     event.preventDefault();
     if(validateForm()){
@@ -98,9 +106,9 @@ function NEFTPayment() {
           <label>To Account:</label>
           <BeneficiaryDropdown
             beneficiaries={beneficiaries}
-            onSelect={e => {handleInputChange('toAccount', e.target.value)
+            onSelect={e => {handleBeneficiarySelect
               setErrors({ ...errors, toAccount: '' });
-  }}
+            }}
           />
           {/* <input
             type="text"

@@ -68,6 +68,14 @@ function RTGSPayment() {
     });
   };
 
+  const handleBeneficiarySelect = (event) => {
+    const selectedBeneficiaryId = event.target.value;
+    setFormData({
+      ...formData,
+      toAccount: selectedBeneficiaryId,
+    });
+  };
+
   const handleSaveClick = async (event) => {
     event.preventDefault();
     if(validateForm()){
@@ -101,9 +109,9 @@ function RTGSPayment() {
             To Account:
             <BeneficiaryDropdown
               beneficiaries={beneficiaries}
-              onSelect={e => {handleInputChange('toAccount', e.target.value)
-              setErrors({ ...errors, toAccount: '' });
-            }}
+              onSelect={e => {handleBeneficiarySelect
+                setErrors({ ...errors, toAccount: '' });
+              }}
             />
           </label>
           {/* <input

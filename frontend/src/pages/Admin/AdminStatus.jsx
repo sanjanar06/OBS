@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../style/AdminStatus.css';
 import {getaccounts,updateAccountStatusApprove,updateAccountStatusReject} from '../../services/Admin.js';
 
-function AdminDashboard() {
+function AdminStatus() {
   const [accounts, setAccounts] = useState([]);
 
   useEffect(() => {
@@ -89,4 +89,4 @@ function AdminDashboard() {
   );
 }
 
-export default AdminDashboard;
+export default AdminStatus;
