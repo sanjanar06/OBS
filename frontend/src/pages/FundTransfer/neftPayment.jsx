@@ -5,13 +5,27 @@ import '../style/NeftPayment.css'; // You can import your CSS file here for styl
 import BeneficiaryDropdown from './BeneficiaryDropdown';
 function NEFTPayment() {
   const [beneficiaries, setBeneficiaries] = useState([]);
+  const [errors, setErrors] = useState({});
+  const [account, setAccount] = useState({});
 
   useEffect(() => {
-    async function fetchBeneficiaries() {
-      const data = await AccountService.viewBeneficiaries();
-      setBeneficiaries(data);
-    }
-    fetchBeneficiaries();
+
+    AccountService.viewBeneficiaries().then((response) => {
+      console.log(response.data);
+      setBeneficiaries(response.data);
+    })
+      .catch((error) => {
+        console.log("Error fetching beneficiaries");
+      });
+
+    AccountService.viewAccount().then((response) => {
+      console.log(response.data);
+      setAccount(response.data);
+    })
+      .catch((error) => {
+        console.log("Error fetching account details");
+      });
+
   }, []);
 
 
@@ -22,6 +36,34 @@ function NEFTPayment() {
     transactionType: 'NEFT',
   });
 
+
+  const validateForm = () => {
+    let isValid = true;
+    const newErrors = {};
+
+    if (!formData.toAccount) {
+      newErrors.toAccount = '*To Account is required';
+      isValid = false;
+    }
+
+    if (!formData.transactionAmount) {
+      newErrors.transactionAmount = '*Amount is required';
+      isValid = false;
+    }
+
+    if (formData.transactionAmount < account.balance) {
+      newErrors.transactionAmount = '*Account have insufficent balance';
+      isValid = false;
+    }
+    if (formData.transactionAmount >= 10000) {
+      newErrors.transactionAmount = '*Entered amount exceeds the limits';
+      isValid = false;
+    }
+
+    setErrors(newErrors);
+    return true;
+  };
+
   const handleInputChange = (field, value) => {
     setFormData({
       ...formData,
@@ -29,33 +71,25 @@ function NEFTPayment() {
     });
   };
 
+  const handleBeneficiarySelect = (event) => {
+    const selectedBeneficiaryId = event.target.value;
+    setFormData({
+      ...formData,
+      toAccount: selectedBeneficiaryId,
+    });
+  };
+
   const handleSaveClick = async (event) => {
     event.preventDefault();
-    AccountService.viewBeneficiary(formData).then((res) => {
-
+    if (validateForm()) {
       AccountService.createTransaction(formData).then((res) => {
-        console.log("Fund transfer successful");
-
+        alert("Fund transfer successful");
       })
         .catch((error) => {
           console.log("Fund transfer failed!!");
         });
-    })
-      .catch(() => {
-        console.log("Beneficiary entered doesnt exist");
-      });
+    }
   }
-
-  const handleReset = () => {
-    setFormData({
-      fromAccount: '',
-      toAccount: '',
-      amount: '',
-      date: '',
-      maturityInstruction: '',
-      remarks: '',
-    });
-  };
 
   return (
     <div>
@@ -65,7 +99,10 @@ function NEFTPayment() {
           <label>To Account:</label>
           <BeneficiaryDropdown
             beneficiaries={beneficiaries}
-            onSelect={(event) => handleInputChange(event)}
+            onSelect={e => {
+              handleBeneficiarySelect(e)
+              setErrors({ ...errors, toAccount: '' });
+            }}
           />
           {/* <input
             type="text"
@@ -89,7 +126,10 @@ function NEFTPayment() {
             name="transactionAmount"
             required
             value={formData.transactionAmount}
-            onChange={e => handleInputChange('transactionAmount', e.target.value)}
+            onChange={e => {
+              handleInputChange('transactionAmount', e.target.value)
+              setErrors({ ...errors, transactionAmount: '' });
+            }}
           />
         </div>
 

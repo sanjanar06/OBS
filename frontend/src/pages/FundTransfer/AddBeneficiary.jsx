@@ -41,7 +41,7 @@ function AddBeneficiary() {
       newErrors.reenteredAccountNumber = '*Account numbers do not match';
       isValid = false;
     }
-    if(beneficiaryData.beneficiaryAccountNumber.length!=12){
+    if (beneficiaryData.beneficiaryAccountNumber.length != 12) {
       newErrors.beneficiaryAccountNumber = '*Enter a valid account number';
       isValid = false;
     }
@@ -51,10 +51,10 @@ function AddBeneficiary() {
   };
 
   const handleProceedClick = async (event) => {
-    
-      event.preventDefault();
 
-      if (validateForm()) {
+    event.preventDefault();
+
+    if (validateForm()) {
 
       AccountService.addBeneficiary(beneficiaryData).then((res) => {
         console.log("Added beneficiary");
@@ -64,8 +64,8 @@ function AddBeneficiary() {
         .catch(() => {
           console.log("Error adding beneficiary");
         });
-      }
-    
+    }
+
   }
 
 
@@ -86,9 +86,9 @@ function AddBeneficiary() {
               setErrors({ ...errors, beneficiaryName: '' });
             }}
           />
-           {errors.beneficiaryName && (
-          <div className="error">{errors.beneficiaryName}</div>
-           )}
+          {errors.beneficiaryName && (
+            <div className="error">{errors.beneficiaryName}</div>
+          )}
 
         </div>
         <div className="form-group">
@@ -103,27 +103,27 @@ function AddBeneficiary() {
               setErrors({ ...errors, beneficiaryAccountNumber: '' });
             }}
           />
-           {errors.beneficiaryAccountNumber && (
-          <div className="error">{errors.beneficiaryAccountNumber}</div>
-        )}
-        
+          {errors.beneficiaryAccountNumber && (
+            <div className="error">{errors.beneficiaryAccountNumber}</div>
+          )}
+
         </div>
-      <div className="form-group">
-        <label htmlFor="reenteredAccountNumber">Re-enter Account Number:</label>
-        <input
-          type="text"
-          id="reenteredAccountNumber"
-          name="reenteredAccountNumber"
-          value={beneficiaryData.reenteredAccountNumber}
-          onChange={(e) => {
-            handleInputChange('reenteredAccountNumber', e.target.value);
-            setErrors({ ...errors, reenteredAccountNumber: '' }); // Clear validation error
-          }}
-        />
-        {errors.reenteredAccountNumber && (
-          <div className="error">{errors.reenteredAccountNumber}</div>
-        )}
-      </div>
+        <div className="form-group">
+          <label htmlFor="reenteredAccountNumber">Re-enter Account Number:</label>
+          <input
+            type="text"
+            id="reenteredAccountNumber"
+            name="reenteredAccountNumber"
+            value={beneficiaryData.reenteredAccountNumber}
+            onChange={(e) => {
+              handleInputChange('reenteredAccountNumber', e.target.value);
+              setErrors({ ...errors, reenteredAccountNumber: '' }); // Clear validation error
+            }}
+          />
+          {errors.reenteredAccountNumber && (
+            <div className="error">{errors.reenteredAccountNumber}</div>
+          )}
+        </div>
         <div className="form-group">
           <label htmlFor="beneficiaryNickName">Nick Name:</label>
           <input
