@@ -8,6 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
@@ -46,7 +47,8 @@ public class User implements UserDetails {
 	@Column(name = "trans_password", nullable = true)
 	private String transactionPassword;
 
-	@OneToOne(mappedBy = "user")
+	@OneToOne(mappedBy = "user", optional = true)
+	@JsonBackReference
 	private Account account;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST })

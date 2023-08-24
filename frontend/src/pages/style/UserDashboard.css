@@ -79,5 +79,8 @@ body {
 
 .submenu.open {
   display: block;
+  position: relative; /* Add relative positioning */
+  top: -5px; /* Adjust this value as needed */
+  left: 0;
 }
 /* ... (other styles) */

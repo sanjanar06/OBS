@@ -2,7 +2,6 @@ package com.bank.springbackend.command;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -22,12 +21,6 @@ public class StartupRunner implements CommandLineRunner {
 
         private final PasswordEncoder passwordEncoder;
 
-        @Value("${bank.springbackend.superUser}")
-        private String superUser;
-
-        @Value("${bank.springbackend.superPass}")
-        private String superUserPass;
-
         @Override
         public void run(String... args) throws Exception {
                 Role adminRole = Role.builder()
@@ -37,11 +30,9 @@ public class StartupRunner implements CommandLineRunner {
                 Role userRole = Role.builder()
                                 .name(RoleEnum.USER)
                                 .build();
-                // roleRepository.save(userRole);
 
                 User user = User.builder()
-                                .userId(superUser)
-                                .loginPassword(passwordEncoder.encode(superUserPass))
+                                .loginPassword(passwordEncoder.encode("#120221"))
                                 .roles(List.of(adminRole, userRole))
                                 .build();
 

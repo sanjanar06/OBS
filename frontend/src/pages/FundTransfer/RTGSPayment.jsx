@@ -1,12 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import AccountService from '../../services/AccountService';
 import '../style/RTGS.css';
-
+import BeneficiaryDropdown  from './BeneficiaryDropdown';
 
 function RTGSPayment() {
+  const [beneficiaries, setBeneficiaries] = useState([]);
+
+  useEffect(() => {
+    async function fetchBeneficiaries() {
+      const data = await AccountService.viewBeneficiaries();
+      setBeneficiaries(data);
+    }
+    fetchBeneficiaries();
+  }, []);
+
+ 
   const [formData, setFormData] = useState({
-    fromAccount: localStorage.getItem("accountNumber"),
     toAccount: '',
     transactionAmount: '',
     transactionDesc: '',
@@ -48,13 +58,19 @@ function RTGSPayment() {
       <h2>Initiate RTGS Payment</h2>
       <form>
         <div className="form-group">
-          <label htmlFor="toAccount">To Account:</label>
-          <input
+        <label>
+            To Account:
+            <BeneficiaryDropdown
+              beneficiaries={beneficiaries}
+              onSelect={(event) => handleInputChange(event)}
+            />
+          </label>
+          {/* <input
             type="text"
             id="toAccount"
             name="toAccount"
             value={formData.toAccount}
-            onChange={e => handleInputChange('toAccount', e.target.value)} />
+            onChange={e => handleInputChange('toAccount', e.target.value)} /> */}
           <Link to="/addbeneficiary">
             <button type="button" className="add-new-button">
               Add New +

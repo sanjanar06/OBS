@@ -7,22 +7,21 @@ import Home from './pages/Home/Home';
 import Login from './pages/Home/Login.jsx';
 import Register from './pages/Home/Register';
 import SetNewPassword from './pages/Home/SetNewPassword';
-
-import AccountDetails from './pages/UserDashboard/AccountDetails.jsx';
-import TransactionHistory from './pages/UserDashboard/TransactionHistory';
 import UserDashboard from './pages/UserDashboard/UserDashboard';
-import UserProfile from './pages/UserDashboard/UserProfile.jsx';
 
 import AddBeneficiary from './pages/FundTransfer/AddBeneficiary';
 import DisplayBeneficiary from './pages/FundTransfer/DisplayBeneficiary';
 import FundTransfer from './pages/FundTransfer/FundTransfer';
-import RTGSPayment from './pages/FundTransfer/RTGSPayment';
-
-import AdminDashboard from './pages/Admin/AdminStatus';
-import AdminTransactionHistory from './pages/Admin/AdminTransaction';
-
 import IMPSPayment from './pages/FundTransfer/IMPSPayment';
 import NEFTPayment from './pages/FundTransfer/NEFTPayment';
+import RTGSPayment from './pages/FundTransfer/RTGSPayment';
+
+import AccountDetails from './pages/UserDashboard/AccountDetails.jsx';
+import TransactionHistory from './pages/UserDashboard/TransactionHistory';
+import UserProfile from './pages/UserDashboard/UserProfile.jsx';
+
+import AdminDashboard from './pages/Admin/AdminDashboard';
+import AdminTransactionHistory from './pages/Admin/AdminTransaction';
 
 import { useEffect } from 'react';
 import { isAdmin, isLoggedIn } from './services/auth';

@@ -1,27 +1,29 @@
-{"properties": [
-  {
-    "name": "bank.springbackend.jwtSecret",
-    "type": "java.lang.String",
-    "description": "A description for 'bank.springbackend.jwtSecret'"
-  },
-  {
-    "name": "bank.springbackend.refreshExpirationTime",
-    "type": "java.lang.Integer",
-    "description": "A description for 'bank.springbackend.refreshExpirationTime'"
-  },
-  {
-    "name": "bank.springbackend.accessExpirationTime",
-    "type": "java.lang.Integer",
-    "description": "A description for 'bank.springbackend.accessExpirationTime'"
-  },
-  {
-    "name": "bank.springbackend.superUser",
-    "type": "java.lang.Integer",
-    "description": "A description for 'bank.springbackend.superUser'"
-  },
-  {
-    "name": "bank.springbackend.superPass",
-    "type": "java.lang.String",
-    "description": "A description for 'bank.springbackend.superPass'"
-  }
-]}
+{
+  "properties": [
+    {
+      "name": "bank.springbackend.jwtSecret",
+      "type": "java.lang.String",
+      "description": "A description for 'bank.springbackend.jwtSecret'"
+    },
+    {
+      "name": "bank.springbackend.refreshExpirationTime",
+      "type": "java.lang.Integer",
+      "description": "A description for 'bank.springbackend.refreshExpirationTime'"
+    },
+    {
+      "name": "bank.springbackend.accessExpirationTime",
+      "type": "java.lang.Integer",
+      "description": "A description for 'bank.springbackend.accessExpirationTime'"
+    },
+    {
+      "name": "bank.springbackend.superUser",
+      "type": "java.lang.String",
+      "description": "A description for 'bank.springbackend.superUser'"
+    },
+    {
+      "name": "bank.springbackend.superPass",
+      "type": "java.lang.String",
+      "description": "A description for 'bank.springbackend.superPass'"
+    }
+  ]
+}

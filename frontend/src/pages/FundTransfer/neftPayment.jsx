@@ -1,9 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import AccountService from '../../services/AccountService';
 import '../style/NeftPayment.css'; // You can import your CSS file here for styling
-
+import BeneficiaryDropdown from './BeneficiaryDropdown';
 function NEFTPayment() {
+  const [beneficiaries, setBeneficiaries] = useState([]);
+
+  useEffect(() => {
+    async function fetchBeneficiaries() {
+      const data = await AccountService.viewBeneficiaries();
+      setBeneficiaries(data);
+    }
+    fetchBeneficiaries();
+  }, []);
+
+
   const [formData, setFormData] = useState({
     toAccount: '',
     transactionAmount: '',
@@ -52,13 +63,17 @@ function NEFTPayment() {
       <form className="neft-form">
         <div className="form-group">
           <label>To Account:</label>
-          <input
+          <BeneficiaryDropdown
+            beneficiaries={beneficiaries}
+            onSelect={(event) => handleInputChange(event)}
+          />
+          {/* <input
             type="text"
             name="toAccount"
             required
             value={formData.toAccount}
             onChange={e => handleInputChange('toAccount', e.target.value)}
-          />
+          /> */}
           <Link to="/addbeneficiary">
             <button type="button" className="add-new-button">
               Add New +
