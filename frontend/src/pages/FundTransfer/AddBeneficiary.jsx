@@ -39,6 +39,11 @@ function AddBeneficiary() {
       isValid = false;
     }
 
+    if (beneficiaryData.beneficiaryAccountNumber === localStorage.getItem('accountNumber')){
+      newErrors.beneficiaryAccountNumber = "You cannot add yourself as a beneficiary!";
+      isValid = false;
+    }
+
     if (beneficiaryData.beneficiaryAccountNumber !== beneficiaryData.reenteredAccountNumber) {
       newErrors.reenteredAccountNumber = '*Account numbers do not match';
       isValid = false;

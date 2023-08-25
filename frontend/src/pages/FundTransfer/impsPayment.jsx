@@ -16,6 +16,9 @@ function IMPSPayment() {
     transactionType: 'IMPS',
   });
 
+  const [responseError, setReponseError] = useState('');
+  const [responseSuccess, setResponseSuccess] = useState('');
+
   useEffect(() => {
 
     AccountService.viewBeneficiaries().then((response) => {
@@ -26,13 +29,13 @@ function IMPSPayment() {
         console.log("Error fetching beneficiaries");
       });
 
-    AccountService.viewAccount().then((response) => {
-      console.log(response.data);
-      setAccount(response.data);
-    })
-      .catch((error) => {
-        console.log("Error fetching account details");
-      });
+    // AccountService.viewAccount().then((response) => {
+    //   console.log(response.data);
+    //   setAccount(response.data);
+    // })
+    //   .catch((error) => {
+    //     console.log("Error fetching account details");
+    //   });
 
   }, []);
 
@@ -80,12 +83,15 @@ function IMPSPayment() {
     event.preventDefault();
     if (validateForm()) {
       AccountService.createTransaction(formData).then((res) => {
-        alert("Fund transfer successful");
-
+        setResponseSuccess("Transfer Successfull!")
+        setReponseError('');
       })
-        .catch((error) => {
-          console.log("Fund transfer failed!!");
-        });
+      .catch((error) => {
+        if (error.response.data.status === 500 && error.response.data.message === "Insufficient Balance"){
+          setReponseError(error.response.data.message);
+          setResponseSuccess('')
+        }
+      });
 
     }
   }
@@ -154,12 +160,8 @@ function IMPSPayment() {
             <div className="error">{errors.transactionDesc}</div>
           )}
          <div className="form-group">
-          {/* <button type="submit">Continue</button> */}
           <button type="button" className="button save-button" onClick={handleSaveClick}>Transfer</button>
-          {/* <button type="button" onClick={handleReset}>
-            Reset
-          </button>
-          <button type="button">Save as Template</button> */}
+          
         </div>
       </form>
     </div>

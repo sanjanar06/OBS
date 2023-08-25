@@ -8,6 +8,9 @@ function NEFTPayment() {
   const [errors, setErrors] = useState({});
   const [account, setAccount] = useState({});
 
+  const [responseError, setReponseError] = useState('');
+  const [responseSuccess, setResponseSuccess] = useState('');
+
   useEffect(() => {
 
     AccountService.viewBeneficiaries().then((response) => {
@@ -79,11 +82,16 @@ function NEFTPayment() {
     event.preventDefault();
     if (validateForm()) {
       AccountService.createTransaction(formData).then((res) => {
-        alert("Fund transfer successful");
+        setResponseSuccess("Transfer Successfull!")
+        setReponseError('');
       })
-        .catch((error) => {
-          console.log("Fund transfer failed!!");
-        });
+      .catch((error) => {
+        if (error.response.data.status === 500 && error.response.data.message === "Insufficient Balance"){
+          setReponseError(error.response.data.message);
+          setResponseSuccess('')
+        }
+      });
+
     }
   }
 
@@ -159,10 +167,8 @@ function NEFTPayment() {
         <div className="form-group">
           {/* <button type="submit">Continue</button> */}
           <button type="button" className="button save-button" onClick={handleSaveClick}>Transfer</button>
-          {/* <button type="button" onClick={handleReset}>
-            Reset
-          </button>
-          <button type="button">Save as Template</button> */}
+          {responseSuccess && <div className="success-message">{responseSuccess}</div>}
+          {responseError && <div className="error-message">{responseError}</div>}
         </div>
       </form>
     </div>
