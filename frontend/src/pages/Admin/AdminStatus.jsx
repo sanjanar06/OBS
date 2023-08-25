@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { updateAccountStatusApprove, updateAccountStatusReject } from '../../services/AdminService.js';
+import AdminService from '../../services/AdminService';
 import '../style/AdminStatus.css';
 
 function AdminStatus() {
@@ -16,7 +16,7 @@ function AdminStatus() {
   }, []);
 
   const handleApproval = (id) => {
-    updateAccountStatusApprove(localStorage.getItem("accountNumber"))
+    AdminService.updateAccountStatusApprove(localStorage.getItem("accountNumber"))
       .then((response) => {
         if (response.status === 200) {
           setAccounts((prevAccounts) =>
@@ -32,7 +32,7 @@ function AdminStatus() {
   };
 
   const handleRejection = (id) => {
-    updateAccountStatusReject(localStorage.getItem("accountNumber"))
+    AdminService.updateAccountStatusReject(localStorage.getItem("accountNumber"))
       .then((response) => {
         if (response.status === 200) {
           setAccounts((prevAccounts) =>

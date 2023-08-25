@@ -14,6 +14,10 @@ class AdminService {
     return api.put(`/admin/delete/${accountNumber}`);
 
   }
+
+  viewTransactions() {
+    return api.get(`/transaction/view/${localStorage.getItem("accountNumber")}`);
+  }
 }
 
 export default new AdminService();
