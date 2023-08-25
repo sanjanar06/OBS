@@ -22,6 +22,9 @@ function RTGSPayment() {
     });
   };
 
+  const [responseError, setReponseError] = useState('');
+  const [responseSuccess, setResponseSuccess] = useState('');
+
   useEffect(() => {
 
     AccountService.viewBeneficiaries().then((response) => {
@@ -46,27 +49,23 @@ function RTGSPayment() {
     let isValid = true;
     const newErrors = {};
 
+    if (!formData.toAccount) {
+      newErrors.toAccount = '*To Account is required';
+      isValid = false;
+    }
+
     if (!formData.transactionAmount) {
       newErrors.transactionAmount = '*Amount is required';
-      console.log("Amount required");
       isValid = false;
     }
 
-    if (formData.transactionAmount < account.balance) {
-      newErrors.transactionAmount = '*Account have insufficent balance';
-      console.log("Insufficient");
-
+    if (!formData.transactionDesc) {
+      newErrors.transactionDesc = '*Please add transaction Descreption';
       isValid = false;
-    }
-    if (formData.transactionAmount >= 10000) {
-      newErrors.transactionAmount = '*Entered amount exceeds the limits';
-      isValid = false;
-      console.log("Exceeds");
-
     }
 
     setErrors(newErrors);
-    return true;
+    return isValid;
   };
 
 
@@ -85,16 +84,18 @@ function RTGSPayment() {
   const handleSaveClick = async (event) => {
     event.preventDefault();
     if (validateForm()) {
-
       AccountService.createTransaction(formData).then((res) => {
-        alert("Fund transfer successful");
-
+        setResponseSuccess("Transfer Successfull!")
+        setReponseError('');
       })
-        .catch((error) => {
-          console.log("Fund transfer failed!!");
-        });
-    }
+      .catch((error) => {
+        if (error.response.data.status === 500 && error.response.data.message === "Insufficient Balance"){
+          setReponseError(error.response.data.message);
+          setResponseSuccess('')
+        }
+      });
 
+    }
   }
 
 
@@ -113,6 +114,9 @@ function RTGSPayment() {
                 setErrors({ ...errors, toAccount: '' });
               }}
             />
+            {errors.toAccount && (
+            <div className="error">{errors.toAccount}</div>
+          )}
           </label>
           {/* <input
             type="text"
@@ -137,6 +141,9 @@ function RTGSPayment() {
               handleInputChange('transactionAmount', e.target.value)
               setErrors({ ...errors, transactionAmount: '' });
             }} />
+            {errors.transactionAmount && (
+            <div className="error">{errors.transactionAmount}</div>
+          )}
         </div>
         <div className="form-group">
           <label htmlFor="transactionDesc">Transaction Desc:</label>
@@ -146,23 +153,15 @@ function RTGSPayment() {
             name="transactionDesc"
             value={formData.transactionDesc}
             onChange={e => handleInputChange('transactionDesc', e.target.value)} />
+            {errors.transactionDesc && (
+            <div className="error">{errors.transactionDesc}</div>
+          )}
         </div>
-        <div className="button-container">
-          <button type="button" className="button save-button" onClick={handleSaveClick}>
-            Save
-          </button>
-          {/* <span className="button-space"></span>
-          <button type="button" className="button reset-button">
-            Reset
-          </button>
-          <span className="button-space"></span>
-          <button type="button" className="button save-template-button">
-            Save as Template
-          </button>
-          <span className="button-space"></span>
-          <button type="button" className="button continue-button">
-            Continue
-          </button> */}
+        <div className="form-group">
+          {/* <button type="submit">Continue</button> */}
+          <button type="button" className="button save-button" onClick={handleSaveClick}>Transfer</button>
+          {responseSuccess && <div className="success-message">{responseSuccess}</div>}
+          {responseError && <div className="error-message">{responseError}</div>}
         </div>
       </form>
     </div>

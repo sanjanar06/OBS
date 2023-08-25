@@ -13,6 +13,8 @@ function AddBeneficiary() {
   });
 
   const [errors, setErrors] = useState({});
+  const [responseErrors, setResponseErrors] = useState();
+  const [success, setSuccess] = useState('');
 
   const handleInputChange = (field, value) => {
     setBeneficiaryData({
@@ -37,6 +39,11 @@ function AddBeneficiary() {
       isValid = false;
     }
 
+    if (beneficiaryData.beneficiaryAccountNumber === localStorage.getItem('accountNumber')){
+      newErrors.beneficiaryAccountNumber = "You cannot add yourself as a beneficiary!";
+      isValid = false;
+    }
+
     if (beneficiaryData.beneficiaryAccountNumber !== beneficiaryData.reenteredAccountNumber) {
       newErrors.reenteredAccountNumber = '*Account numbers do not match';
       isValid = false;
@@ -55,15 +62,17 @@ function AddBeneficiary() {
     event.preventDefault();
 
     if (validateForm()) {
-
+      
       AccountService.addBeneficiary(beneficiaryData).then((res) => {
         console.log("Added beneficiary");
-        console.log(res.data);
-        alert("Added beneficiary");
-      })
-        .catch(() => {
-          console.log("Error adding beneficiary");
-        });
+        console.log(res.status);
+        // alert("Added beneficiary");
+        // const status = res.status;
+        // if (status === 200) {
+        //   setSuccess("Beneficiary Added");
+        // }
+                       
+      });
     }
 
   }
@@ -138,11 +147,15 @@ function AddBeneficiary() {
           <button type="button" className="button proceed-button" onClick={handleProceedClick}>
             ADD
           </button>
+          {responseErrors && <div className="error-message">{responseErrors}</div>}
+          {success && <div className="success-message">{success}</div>}
+
 
         </div>
       </form>
     </div>
   );
 }
+
 
 export default AddBeneficiary;
