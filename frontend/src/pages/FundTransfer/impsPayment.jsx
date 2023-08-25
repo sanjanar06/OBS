@@ -52,17 +52,13 @@ function IMPSPayment() {
       isValid = false;
     }
 
-    if (formData.transactionAmount < account.balance) {
-      newErrors.transactionAmount = '*Account have insufficent balance';
-      isValid = false;
-    }
-    if (formData.transactionAmount >= 10000) {
-      newErrors.transactionAmount = '*Entered amount exceeds the limits';
+    if (!formData.transactionDesc) {
+      newErrors.transactionDesc = '*Please add transaction Descreption';
       isValid = false;
     }
 
     setErrors(newErrors);
-    return true;
+    return isValid;
   };
 
   const handleInputChange = (field, value) => {
@@ -107,6 +103,9 @@ function IMPSPayment() {
               setErrors({ ...errors, toAccount: '' });
             }}
           />
+          {errors.toAccount && (
+            <div className="error">{errors.toAccount}</div>
+          )}
           {/* <input
             type="text"
             name="toAccount"
@@ -136,6 +135,9 @@ function IMPSPayment() {
             }
           />
         </div>
+        {errors.transactionAmount && (
+            <div className="error">{errors.transactionAmount}</div>
+          )}
 
         <div className="form-group">
           <label>Transaction Desc:</label>
@@ -148,15 +150,16 @@ function IMPSPayment() {
             onChange={e => handleInputChange('transactionDesc', e.target.value)}
           />
         </div>
-        <div className="form-group">
-          <div className="buttons">
-            {/* <button type="submit">Continue</button> */}
-            {/* <button type="button" onClick={handleReset}>
-              Reset
-            </button> */}
-            <button type="button" onClick={handleSaveClick}>Save</button>
-            {/* <button type="button">Save as Template</button> */}
-          </div>
+        {errors.transactionDesc && (
+            <div className="error">{errors.transactionDesc}</div>
+          )}
+         <div className="form-group">
+          {/* <button type="submit">Continue</button> */}
+          <button type="button" className="button save-button" onClick={handleSaveClick}>Transfer</button>
+          {/* <button type="button" onClick={handleReset}>
+            Reset
+          </button>
+          <button type="button">Save as Template</button> */}
         </div>
       </form>
     </div>

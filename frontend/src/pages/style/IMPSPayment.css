@@ -60,3 +60,10 @@
   div1 {
     display: flex;
   }
+
+  .error {
+    color: red;
+    font-size: 14px;
+    margin-top: 2px;
+  }
+  
