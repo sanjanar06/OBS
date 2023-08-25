@@ -1,5 +1,4 @@
 import api from './api';
-const accountNumber = localStorage.getItem("accountNumber")
 
 class AccountService {
 

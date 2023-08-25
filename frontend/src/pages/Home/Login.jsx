@@ -22,12 +22,13 @@ const Login = () => {
   const handleLogin = async (event) => {
     event.preventDefault();
     const res = await apiLogin(credentials);
+    const admin = isAdmin();
 
     if (res) {
-      if (isAdmin) {
+      if (!admin) {
         navigate("/userDashboard")
       } else {
-        navigate("/admin")
+        navigate("/admin/adminDashboard")
 
       }
 

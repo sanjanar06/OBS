@@ -26,7 +26,7 @@ public class AccountController {
     private final AccountService accountService;
 
     @GetMapping("/view/all")
-    public List<Account> viewAccounts() {
+    public List<AccountResponse> viewAccounts() {
         return accountService.getAccounts();
     }
 

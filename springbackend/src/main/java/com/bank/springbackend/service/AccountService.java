@@ -1,6 +1,7 @@
 package com.bank.springbackend.service;
 
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -34,7 +35,7 @@ public class AccountService {
                 .accountNumber(accountNumber)
                 .accountType(AccountTypeEnum.SAVINGS)
                 .accountBalance(2500.0)
-                .status(AccountStatusEnum.ACCEPTED)
+                .status(AccountStatusEnum.PENDING)
                 .build();
         UserProfile userProfile = UserProfile.builder()
                 .title(accountRequest.getTitle())
@@ -81,8 +82,23 @@ public class AccountService {
 
     }
 
-    public List<Account> getAccounts() {
-        return accountRepository.findAll();
+    public List<AccountResponse> getAccounts() {
+        List<Account> accounts = accountRepository.findAll();
+        List<AccountResponse> accountResponses = new ArrayList<>();
+
+        for (Account account : accounts) {
+            AccountResponse accountResponse = AccountResponse.builder()
+                    .accountName(account.getUserProfile().getFirstName())
+                    .accountNumber(account.getAccountNumber())
+                    .accountType(account.getAccountType())
+                    .balance(account.getAccountBalance())
+                    .status(account.getStatus())
+                    .build();
+
+            accountResponses.add(accountResponse);
+        }
+
+        return accountResponses;
     }
 
 }

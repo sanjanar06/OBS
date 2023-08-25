@@ -38,3 +38,13 @@ export const isAdmin = () => {
     const roleArray = roles?.split(",");
     return roleArray?.includes("ADMIN");
 }
+
+export const logout = () => {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    localStorage.removeItem("accountNumber");
+    localStorage.removeItem("roles");
+
+    window.location.reload();
+
+}

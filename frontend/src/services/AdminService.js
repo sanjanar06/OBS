@@ -11,12 +11,16 @@ class AdminService {
   }
 
   updateAccountStatusReject(accountNumber) {
-    return api.put(`/admin/delete/${accountNumber}`);
+    return api.put(`/admin/reject/${accountNumber}`);
 
   }
 
-  viewTransactions() {
-    return api.get(`/transaction/view/${localStorage.getItem("accountNumber")}`);
+  viewTransactions(accountNumber) {
+    return api.get(`/transaction/view/${accountNumber}`);
+  }
+
+  viewUserProfile(accountNumber) {
+    return api.get(`/userProfile/view/${accountNumber}`);
   }
 }
 

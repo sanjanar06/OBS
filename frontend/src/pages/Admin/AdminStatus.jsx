@@ -6,7 +6,7 @@ function AdminStatus() {
   const [accounts, setAccounts] = useState([]);
 
   useEffect(() => {
-    AdminService.viewAllaccounts().then((response) => {
+    AdminService.viewAllAccounts().then((response) => {
       console.log(response.data);
       setAccounts(response.data);
     })
@@ -15,13 +15,13 @@ function AdminStatus() {
       });
   }, []);
 
-  const handleApproval = (id) => {
-    AdminService.updateAccountStatusApprove(localStorage.getItem("accountNumber"))
+  const handleApproval = (accountNumber) => {
+    AdminService.updateAccountStatusApprove(accountNumber)
       .then((response) => {
         if (response.status === 200) {
           setAccounts((prevAccounts) =>
             prevAccounts.map((account) =>
-              account.id === id ? { ...account, status: 'ACCEPTED' } : account
+              account.accountNumber === accountNumber ? { ...account, status: 'ACCEPTED' } : account
             )
           );
         }
@@ -31,13 +31,14 @@ function AdminStatus() {
       });
   };
 
-  const handleRejection = (id) => {
-    AdminService.updateAccountStatusReject(localStorage.getItem("accountNumber"))
+  const handleRejection = (accountNumber) => {
+    console.log(accountNumber);
+    AdminService.updateAccountStatusReject(accountNumber)
       .then((response) => {
         if (response.status === 200) {
           setAccounts((prevAccounts) =>
             prevAccounts.map((account) =>
-              account.id === id ? { ...account, status: 'REJECTED' } : account
+              account.accountNumber === accountNumber ? { ...account, status: 'REJECTED' } : account
             )
           );
         }
@@ -49,7 +50,7 @@ function AdminStatus() {
 
   return (
     <div className="admin-dashboard">
-      <h2>Admin Dashboard</h2>
+      <h2>USER ACCOUNTS</h2>
       <table>
         <thead>
           <tr>
@@ -66,12 +67,12 @@ function AdminStatus() {
               <td>{account.accountNumber}</td>
               <td>{account.status}</td>
               <td className="actions">
-                {account.status === 'Pending' && (
-                  <>
-                    <button className="approve-btn" onClick={() => handleApproval(account.id)}>Approve</button>
-                    <button className="reject-btn" onClick={() => handleRejection(account.id)}>Reject</button>
-                  </>
-                )}
+                {/* {account.status === 'PENDING' && ( */}
+                {/* <> */}
+                <button className="approve-btn" onClick={() => handleApproval(account.accountNumber)} disabled={account.status == 'ACCEPTED'}>Approve</button>
+                <button className="reject-btn" onClick={() => handleRejection(account.accountNumber)} disabled={account.status == 'REJECTED'}>Reject</button>
+                {/* </>
+                )} */}
               </td>
             </tr>
           ))}

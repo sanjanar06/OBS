@@ -5,6 +5,7 @@ import '../style/UserDashboard.css';
 
 
 // Components for the left sidebar
+import { logout } from '../../services/auth';
 import AdminStatus from './AdminStatus';
 import AdminTransaction from './AdminTransaction';
 const AdminDashboard = () => {
@@ -26,6 +27,7 @@ const AdminDashboard = () => {
         <ul>
           <li onClick={() => handleMenuItemClick(<AdminStatus />)}><FaUser className="menu-icon" />Status</li>
           <li onClick={() => handleMenuItemClick(<AdminTransaction />)}><FaFileAlt className="menu-icon" />Search Transaction</li>
+          <li onClick={() => logout()}><FaUser className="menu-icon" />Logout</li>
 
         </ul>
       </div>

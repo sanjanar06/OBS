@@ -6,11 +6,12 @@ import '../style/UserDashboard.css';
 
 
 // Components for the left sidebar
+import { logout } from '../../services/auth';
 import AddBeneficiary from '../FundTransfer/AddBeneficiary';
 import DisplayBeneficiary from '../FundTransfer/DisplayBeneficiary';
+import RTGSPayment from '../FundTransfer/RTGSPayment';
 import IMPSPayment from '../FundTransfer/impsPayment';
 import NEFTPayment from '../FundTransfer/neftPayment';
-import RTGSPayment from '../FundTransfer/RTGSPayment';
 import AccountDetails from './AccountDetails';
 import TransactionHistory from './TransactionHistory';
 import UserProfile from './UserProfile';
@@ -67,6 +68,7 @@ const UserDashboard = () => {
               </ul>
             )}
           </li>
+          <li onClick={() => logout()}><FaUser className="menu-icon" />Logout</li>
         </ul>
       </div>
       <div className="content">{activeComponent}</div>
