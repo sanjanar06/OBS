@@ -22,7 +22,7 @@ function DisplayBeneficiary() {
             <table>
                 <thead>
                     <tr>
-                        <th>Serial Number</th>
+                        <th>SNo.</th>
                         <th>Beneficiary Name</th>
                         <th>Beneficiary Account Number</th>
                         <th>Nick Name</th>

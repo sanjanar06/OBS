@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.bank.springbackend.entity.Enum.AccountStatusEnum;
 import com.bank.springbackend.entity.Enum.AccountTypeEnum;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
@@ -39,6 +40,7 @@ public class Account {
     private AccountStatusEnum status;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
+    @JsonBackReference
     private User user;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

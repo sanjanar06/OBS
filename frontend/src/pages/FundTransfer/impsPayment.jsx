@@ -1,40 +1,42 @@
-import React, { useState, useEffect  } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import AccountService from '../../services/AccountService';
 import '../style/IMPSPayment.css'; // You can import your CSS file here for styling
-import BeneficiaryDropdown
- from './BeneficiaryDropdown';
-import { getAccountDetails } from '../../services/UserDetails';
+import BeneficiaryDropdown from './BeneficiaryDropdown';
 
 function IMPSPayment() {
 
   const [beneficiaries, setBeneficiaries] = useState([]);
   const [errors, setErrors] = useState({});
-  const [account,setAccount]= useState({});
-
-  useEffect(() => {
-    async function fetchBeneficiaries() {
-      const data = await AccountService.viewBeneficiaries();
-      setBeneficiaries(data);
-    }
-    fetchBeneficiaries();
-     getAccountDetails().then((response) => {
-      console.log(response.data);
-      setAccount(response.data);
-  })
-      .catch((error) => {
-          console.log("Error fetching account details");
-      });
-
-    
-  }, []);
-
+  const [account, setAccount] = useState({});
   const [formData, setFormData] = useState({
     toAccount: '',
     transactionAmount: '',
     transactionDesc: '',
     transactionType: 'IMPS',
   });
+
+  useEffect(() => {
+
+    AccountService.viewBeneficiaries().then((response) => {
+      console.log(response.data);
+      setBeneficiaries(response.data);
+    })
+      .catch((error) => {
+        console.log("Error fetching beneficiaries");
+      });
+
+    AccountService.viewAccount().then((response) => {
+      console.log(response.data);
+      setAccount(response.data);
+    })
+      .catch((error) => {
+        console.log("Error fetching account details");
+      });
+
+  }, []);
+
+
 
   const validateForm = () => {
     let isValid = true;
@@ -47,20 +49,20 @@ function IMPSPayment() {
 
     if (!formData.transactionAmount) {
       newErrors.transactionAmount = '*Amount is required';
-      isValid = false; 
+      isValid = false;
     }
 
-    if (formData.transactionAmount<account.balance) {
+    if (formData.transactionAmount < account.balance) {
       newErrors.transactionAmount = '*Account have insufficent balance';
       isValid = false;
     }
-    if(formData.transactionAmount>=10000){
+    if (formData.transactionAmount >= 10000) {
       newErrors.transactionAmount = '*Entered amount exceeds the limits';
       isValid = false;
     }
 
     setErrors(newErrors);
-    return isValid;
+    return true;
   };
 
   const handleInputChange = (field, value) => {
@@ -80,25 +82,17 @@ function IMPSPayment() {
 
   const handleSaveClick = async (event) => {
     event.preventDefault();
-    if(validateForm()){
-    AccountService.createTransaction(formData).then((res) => {
-      console.log("Fund transfer successful");
+    if (validateForm()) {
+      AccountService.createTransaction(formData).then((res) => {
+        alert("Fund transfer successful");
 
-    })
-      .catch((error) => {
-        console.log("Fund transfer failed!!");
-      });
+      })
+        .catch((error) => {
+          console.log("Fund transfer failed!!");
+        });
+
     }
   }
-
-
-  const handleReset = () => {
-    setFormData({
-      toAccount: '',
-      transactionAmount: '',
-      transactionDesc: '',
-    });
-  };
 
   return (
     <div>
@@ -108,7 +102,8 @@ function IMPSPayment() {
           <label>To Account:</label>
           <BeneficiaryDropdown
             beneficiaries={beneficiaries}
-            onSelect={e => {handleBeneficiarySelect
+            onSelect={e => {
+              handleBeneficiarySelect(e);
               setErrors({ ...errors, toAccount: '' });
             }}
           />
@@ -134,9 +129,11 @@ function IMPSPayment() {
             name="transactionAmount"
             required
             value={formData.transactionAmount}
-            onChange={e => {handleInputChange('transactionAmount', e.target.value)
-            setErrors({ ...errors, transactionAmount: '' });}
-          }
+            onChange={e => {
+              handleInputChange('transactionAmount', e.target.value)
+              setErrors({ ...errors, transactionAmount: '' });
+            }
+            }
           />
         </div>
 

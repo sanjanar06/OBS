@@ -30,7 +30,8 @@ public class AdminService {
         Account account = accountRepository.findAccountByAccountNumber(accountId)
                 .orElseThrow(() -> new ResourceNotFoundException(String.format("Account %s not found", accountId)));
 
-        accountRepository.delete(account);
+        account.setStatus(AccountStatusEnum.REJECTED); // Update status to rejected
+        accountRepository.save(account);
     }
 
 }

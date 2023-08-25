@@ -36,7 +36,7 @@ const UserDashboard = () => {
     <div className="app-container">
       <div className="sidebar">
         <div className="sidebar-header">
-          <h1>My App</h1>
+          <h1>USER</h1>
         </div>
         <ul>
           <li onClick={() => handleMenuItemClick(<UserProfile />)}><FaUser className="menu-icon" />Account Profile</li>

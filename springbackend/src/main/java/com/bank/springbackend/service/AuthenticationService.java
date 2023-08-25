@@ -8,6 +8,7 @@ import com.bank.springbackend.communication.Request.JWTLoginRequest;
 import com.bank.springbackend.communication.Request.JWTRefreshRequest;
 import com.bank.springbackend.communication.Response.JWTResponse;
 import com.bank.springbackend.entity.User;
+import com.bank.springbackend.exception.ResourceNotFoundException;
 import com.bank.springbackend.repository.NetBankingRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -22,12 +23,14 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
     public JWTResponse login(JWTLoginRequest request) {
+
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getUserId(),
                         request.getPassword()));
 
-        User user = netBankingRepository.findUserByUserId(request.getUserId()).orElseThrow();
+        User user = netBankingRepository.findUserByUserId(request.getUserId())
+                .orElseThrow(() -> new ResourceNotFoundException("Credentials not found"));
 
         return authResponse(user);
     }

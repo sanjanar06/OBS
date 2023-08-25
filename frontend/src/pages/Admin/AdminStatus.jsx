@@ -1,35 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import AdminService from '../../services/AdminService';
 import '../style/AdminStatus.css';
-import {getaccounts,updateAccountStatusApprove,updateAccountStatusReject} from '../../services/Admin.js';
 
 function AdminStatus() {
   const [accounts, setAccounts] = useState([]);
 
   useEffect(() => {
-    // axios.get('http://localhost:3001/beneficiary') 
-    //   .then(response => {
-    //     console.log(response.data);
-    //     setBeneficiaries(response.data);
-    //   })
-    //   .catch(error => {
-    //     console.error('Error fetching beneficiaries:', error);
-    //   });
-    getaccounts().then((response) =>{
+    AdminService.viewAllaccounts().then((response) => {
       console.log(response.data);
       setAccounts(response.data);
-  })
-  .catch((error) =>{
-      console.log("Error fetching account details");
-  });
+    })
+      .catch((error) => {
+        console.log("Error fetching account details");
+      });
   }, []);
 
   const handleApproval = (id) => {
-    updateAccountStatusApprove(id, 'Approved') 
+    AdminService.updateAccountStatusApprove(localStorage.getItem("accountNumber"))
       .then((response) => {
         if (response.status === 200) {
           setAccounts((prevAccounts) =>
             prevAccounts.map((account) =>
-              account.id === id ? { ...account, status: 'Approved' } : account
+              account.id === id ? { ...account, status: 'ACCEPTED' } : account
             )
           );
         }
@@ -40,12 +32,12 @@ function AdminStatus() {
   };
 
   const handleRejection = (id) => {
-    updateAccountStatusReject(id, 'Rejected')
+    AdminService.updateAccountStatusReject(localStorage.getItem("accountNumber"))
       .then((response) => {
         if (response.status === 200) {
           setAccounts((prevAccounts) =>
             prevAccounts.map((account) =>
-              account.id === id ? { ...account, status: 'Rejected' } : account
+              account.id === id ? { ...account, status: 'REJECTED' } : account
             )
           );
         }
@@ -69,7 +61,7 @@ function AdminStatus() {
         </thead>
         <tbody>
           {accounts.map(account => (
-            <tr key={account.id}>
+            <tr key={account.accountNumber}>
               <td>{account.accountName}</td>
               <td>{account.accountNumber}</td>
               <td>{account.status}</td>

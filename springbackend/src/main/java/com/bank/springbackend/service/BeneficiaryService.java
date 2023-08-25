@@ -8,6 +8,7 @@ import com.bank.springbackend.communication.Request.BeneficiaryRequest;
 import com.bank.springbackend.communication.Response.BeneficiaryResponse;
 import com.bank.springbackend.entity.Account;
 import com.bank.springbackend.entity.Beneficiary;
+import com.bank.springbackend.exception.BeneficiaryAlreadyExists;
 import com.bank.springbackend.exception.ResourceNotFoundException;
 import com.bank.springbackend.repository.AccountRepository;
 import com.bank.springbackend.repository.BeneficiaryRepository;
@@ -24,6 +25,17 @@ public class BeneficiaryService {
     public BeneficiaryResponse createBeneficiary(BeneficiaryRequest request) {
         Account account = accountRepository.findById(request.getSenderAccount())
                 .orElseThrow(() -> new ResourceNotFoundException("Account not found"));
+
+        // TO check if the beneficiary already exists
+
+        Beneficiary check = beneficiaryRepository
+                .findBeneficiaryBySenderAccountAndBeneficiaryAccount(account, request.getBeneficiaryAccount())
+                .orElse(null);
+
+        if (check != null) {
+            throw new BeneficiaryAlreadyExists(String.format("Beneficiary Account Number %s Already Exists!",
+                    check.getBeneficiaryAccount()));
+        }
 
         Beneficiary beneficiary = Beneficiary.builder()
                 .beneficiaryName(request.getBeneficiaryName())

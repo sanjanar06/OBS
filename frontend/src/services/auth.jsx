@@ -5,7 +5,7 @@ export const isLoggedIn = () => {
     return (
         access != null
         || (
-            !window.location.href.includes("/login") ||
+            window.location.href.includes("/login") ||
             window.location.href.includes("/register") ||
             window.location.href.includes("/account")
         )
@@ -31,4 +31,10 @@ export const apiLogin = async (data) => {
     } catch {
         return false;
     }
+}
+
+export const isAdmin = () => {
+    const roles = localStorage.getItem("roles");
+    const roleArray = roles?.split(",");
+    return roleArray?.includes("ADMIN");
 }
