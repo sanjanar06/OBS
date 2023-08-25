@@ -1,5 +1,7 @@
 package com.bank.springbackend.controller;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +24,11 @@ import lombok.RequiredArgsConstructor;
 public class AccountController {
 
     private final AccountService accountService;
+
+    @GetMapping("/view/all")
+    public List<Account> viewAccounts() {
+        return accountService.getAccounts();
+    }
 
     // User : View account details
     @GetMapping("/view/{accountNumber}")

@@ -9,6 +9,7 @@ import com.bank.springbackend.communication.Request.RegisterRequest;
 import com.bank.springbackend.communication.Response.RegisterResponse;
 import com.bank.springbackend.entity.Account;
 import com.bank.springbackend.entity.User;
+import com.bank.springbackend.entity.Enum.AccountStatusEnum;
 import com.bank.springbackend.entity.Enum.RoleEnum;
 import com.bank.springbackend.exception.ResourceNotFoundException;
 import com.bank.springbackend.repository.AccountRepository;
@@ -29,7 +30,13 @@ public class NetbankingService {
         public RegisterResponse register(RegisterRequest request) {
                 // To verify if the user has an account
                 Account account = accountRepository.findAccountByAccountNumber(request.getAccountNumber()).orElseThrow(
-                                () -> new ResourceNotFoundException("Your account has not been approved yet!"));
+                                () -> new ResourceNotFoundException("Account does not exist"));
+
+                if (account.getStatus() == AccountStatusEnum.PENDING) {
+                        throw new ResourceNotFoundException("Your account has not been approved yet!");
+                } else if (account.getStatus() == AccountStatusEnum.REJECTED) {
+                        throw new ResourceNotFoundException("Your account has been rejected");
+                }
 
                 User user = User.builder()
                                 .loginPassword(passwordEncoder.encode(request.getLoginPassword()))

@@ -1,6 +1,7 @@
 package com.bank.springbackend.service;
 
 import java.security.SecureRandom;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -59,7 +60,8 @@ public class AccountService {
 
     public AccountResponse getAccountByAccountNumber(String accountNumber) {
 
-        Account account = accountRepository.findAccountByAccountNumber(accountNumber).orElseThrow(() -> new ResourceNotFoundException("Account not found!"));
+        Account account = accountRepository.findAccountByAccountNumber(accountNumber)
+                .orElseThrow(() -> new ResourceNotFoundException("Account not found!"));
 
         return AccountResponse.builder()
                 .accountName(account.getUserProfile().getFirstName())
@@ -77,6 +79,10 @@ public class AccountService {
                 .balance(account.getAccountBalance())
                 .build();
 
+    }
+
+    public List<Account> getAccounts() {
+        return accountRepository.findAll();
     }
 
 }

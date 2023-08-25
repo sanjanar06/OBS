@@ -1,7 +1,6 @@
 package com.bank.springbackend.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -27,12 +26,15 @@ public class BeneficiaryService {
         Account account = accountRepository.findById(request.getSenderAccount())
                 .orElseThrow(() -> new ResourceNotFoundException("Account not found"));
 
-        //TO check if the beneficiary already exists 
+        // TO check if the beneficiary already exists
 
-        Optional<Beneficiary> check = beneficiaryRepository.findBeneficiaryBySenderAccountAndBeneficiaryAccount(account, request.getBeneficiaryAccount() );
+        Beneficiary check = beneficiaryRepository
+                .findBeneficiaryBySenderAccountAndBeneficiaryAccount(account, request.getBeneficiaryAccount())
+                .orElse(null);
 
-        if (check != null){
-            throw new BeneficiaryAlreadyExists(String.format("Beneficiary Account Number %s Already Exists!", check.get().getBeneficiaryAccount()));
+        if (check != null) {
+            throw new BeneficiaryAlreadyExists(String.format("Beneficiary Account Number %s Already Exists!",
+                    check.getBeneficiaryAccount()));
         }
 
         Beneficiary beneficiary = Beneficiary.builder()
