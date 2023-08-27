@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <div className="Home">
       <header className="Home-header">
-        <h1>Welcome to Our Banking App</h1>
+        <h1>WELCOME TO OUR BANK</h1>
         <p>Your Trusted Banking Partner</p>
         <div className="Button-container">
           <Link to="/login">
@@ -15,7 +15,7 @@ const Home = () => {
           <Link to="/register">
             <button className="Button">Register</button>
           </Link>
-          <Link to="/account">
+          <Link to="/accountCreation">
             <button className="Button">Apply Online for Account</button>
           </Link>
         </div>

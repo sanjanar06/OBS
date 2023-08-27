@@ -29,13 +29,13 @@ function IMPSPayment() {
         console.log("Error fetching beneficiaries");
       });
 
-    // AccountService.viewAccount().then((response) => {
-    //   console.log(response.data);
-    //   setAccount(response.data);
-    // })
-    //   .catch((error) => {
-    //     console.log("Error fetching account details");
-    //   });
+    AccountService.viewAccount().then((response) => {
+      console.log(response.data);
+      setAccount(response.data);
+    })
+      .catch((error) => {
+        console.log("Error fetching account details");
+      });
 
   }, []);
 
@@ -161,6 +161,8 @@ function IMPSPayment() {
           )}
          <div className="form-group">
           <button type="button" className="button save-button" onClick={handleSaveClick}>Transfer</button>
+          {responseSuccess && <div className="success-message">{responseSuccess}</div>}
+          {responseError && <div className="error-message">{responseError}</div>}
           
         </div>
       </form>

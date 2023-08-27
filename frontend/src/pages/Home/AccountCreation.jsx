@@ -1,10 +1,10 @@
 import '../style/AccountCreation.css';
 
 import { useState } from 'react';
-import AccountService from '../../services/AccountService'
 import { useForm } from "react-hook-form";
-import { Form, Button } from 'semantic-ui-react';
 import { useNavigate } from 'react-router-dom';
+import { Button, Form } from 'semantic-ui-react';
+import AccountService from '../../services/AccountService';
 
 const AccountCreation = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -39,7 +39,7 @@ const AccountCreation = () => {
     
     <div className='form-box'>        
         <Form onSubmit={handleSubmit(onSubmit)} noValidate>
-        <h2>Open a Savings Account</h2>
+        <h2>SAVINGS ACCOUNT FORM</h2>
             <Form.Field>
                 <label>Title</label>
                 <input type = "text" 
@@ -93,7 +93,7 @@ const AccountCreation = () => {
             <label>Aadhar Number:</label>
                 <input 
                     type="text"
-                    {...register("aadharNo", {required: "Enter a valid Adhaar Number", pattern: /^\d{12}$/})}
+                    {...register("aadharNo", {required: "Enter a valid Aadhaar Number", pattern: /^\d{12}$/})}
                 />
             {errors.aadharNo && <p style = {{ color: 'red'}}>Enter valid Adhaar Number</p>}
             </Form.Field>
