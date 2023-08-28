@@ -69,6 +69,7 @@ public class AccountService {
                 .accountNumber(account.getAccountNumber())
                 .accountType(account.getAccountType())
                 .balance(account.getAccountBalance())
+                .status(account.getStatus())
                 .build();
 
     }

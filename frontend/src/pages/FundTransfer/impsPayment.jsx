@@ -8,7 +8,6 @@ function IMPSPayment() {
 
   const [beneficiaries, setBeneficiaries] = useState([]);
   const [errors, setErrors] = useState({});
-  const [account, setAccount] = useState({});
   const [formData, setFormData] = useState({
     toAccount: '',
     transactionAmount: '',
@@ -86,12 +85,12 @@ function IMPSPayment() {
         setResponseSuccess("Transfer Successfull!")
         setReponseError('');
       })
-      .catch((error) => {
-        if (error.response.data.status === 500 && error.response.data.message === "Insufficient Balance"){
-          setReponseError(error.response.data.message);
-          setResponseSuccess('')
-        }
-      });
+        .catch((error) => {
+          if (error.response.data.status === 500 && error.response.data.message === "Insufficient Balance") {
+            setReponseError(error.response.data.message);
+            setResponseSuccess('')
+          }
+        });
 
     }
   }
@@ -121,6 +120,7 @@ function IMPSPayment() {
           /> */}
           <Link to="/addbeneficiary">
             <button type="button" className="add-new-button">
+
               Add New +
             </button>
           </Link>
@@ -142,8 +142,8 @@ function IMPSPayment() {
           />
         </div>
         {errors.transactionAmount && (
-            <div className="error">{errors.transactionAmount}</div>
-          )}
+          <div className="error">{errors.transactionAmount}</div>
+        )}
 
         <div className="form-group">
           <label>Transaction Desc:</label>
@@ -157,13 +157,12 @@ function IMPSPayment() {
           />
         </div>
         {errors.transactionDesc && (
-            <div className="error">{errors.transactionDesc}</div>
-          )}
-         <div className="form-group">
+          <div className="error">{errors.transactionDesc}</div>
+        )}
+        <div className="form-group">
           <button type="button" className="button save-button" onClick={handleSaveClick}>Transfer</button>
           {responseSuccess && <div className="success-message">{responseSuccess}</div>}
           {responseError && <div className="error-message">{responseError}</div>}
-          
         </div>
       </form>
     </div>

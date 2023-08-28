@@ -28,7 +28,6 @@ import lombok.NoArgsConstructor;
 public class Account {
 
     @Id
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String accountNumber;
 
     private Double accountBalance;

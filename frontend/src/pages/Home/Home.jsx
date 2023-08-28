@@ -10,10 +10,10 @@ const Home = () => {
         <p>Your Trusted Banking Partner</p>
         <div className="Button-container">
           <Link to="/login">
-            <button className="Button">Login</button>
+            <button className="Button">LOGIN</button>
           </Link>
           <Link to="/register">
-            <button className="Button">Register</button>
+            <button className="Button">REGISTER</button>
           </Link>
           <Link to="/accountCreation">
             <button className="Button">Apply Online for Account</button>
