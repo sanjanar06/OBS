@@ -4,16 +4,38 @@ import '../style/AdminStatus.css';
 
 function AdminStatus() {
   const [accounts, setAccounts] = useState([]);
+  const [searchAccountNumber, setSearchAccountNumber] = useState('');
+
+
+  const loadAccounts = async () => {
+    if (searchAccountNumber !== '') {
+      await AdminService.viewAccount(searchAccountNumber)
+        .then((response) => {
+          setAccounts([response.data]);
+          console.log(accounts)
+        })
+        .catch((error) => {
+          console.log("Error fetching account details:", error);
+        });
+    }
+  };
 
   useEffect(() => {
-    AdminService.viewAllAccounts().then((response) => {
-      console.log(response.data);
-      setAccounts(response.data);
-    })
-      .catch((error) => {
-        console.log("Error fetching account details");
-      });
-  }, []);
+    if (searchAccountNumber !== '') {
+      loadAccounts();
+    }
+    else {
+      AdminService.viewAllAccounts().then((response) => {
+        console.log(response.data);
+        setAccounts(response.data);
+      })
+        .catch((error) => {
+          console.log("Error fetching account details");
+        });
+    }
+
+
+  }, [accounts]);
 
   const handleApproval = (accountNumber) => {
     AdminService.updateAccountStatusApprove(accountNumber)
@@ -48,9 +70,22 @@ function AdminStatus() {
       });
   };
 
+  const handleSearchChange = (e) => {
+    setSearchAccountNumber(e.target.value);
+    console.log(searchAccountNumber);
+  };
+
   return (
     <div className="admin-dashboard">
       <h2>USER ACCOUNTS</h2>
+      <div className="search-box">
+        <input
+          type="text"
+          placeholder="Enter Account Number"
+          value={searchAccountNumber}
+          onChange={handleSearchChange}
+        />
+      </div>
       <table>
         <thead>
           <tr>
@@ -61,6 +96,7 @@ function AdminStatus() {
           </tr>
         </thead>
         <tbody>
+          {console.log(accounts)}
           {accounts.map(account => (
             <tr key={account.accountNumber}>
               <td>{account.accountName}</td>

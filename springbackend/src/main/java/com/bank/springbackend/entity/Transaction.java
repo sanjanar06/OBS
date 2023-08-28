@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,17 +25,20 @@ public class Transaction {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long transactionId;
 
-	// @JsonFormat(pattern="dd-mm-yyyy")
 	private Date transactionDate;
 
+	@NotBlank
 	private String transactionType;
 
+	@NotBlank
 	private String transactionDesc;
 
 	private Double transactionAmount;
 
+	@NotBlank
 	private String toAccount;
 
+	@NotBlank
 	private String fromAccount;
 
 }

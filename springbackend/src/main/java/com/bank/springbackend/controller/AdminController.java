@@ -1,6 +1,7 @@
 package com.bank.springbackend.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -18,12 +19,14 @@ import lombok.RequiredArgsConstructor;
 public class AdminController {
     private final AdminService adminService;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/accept/{accountNumber}")
     public ResponseEntity<String> approveAccount(@PathVariable String accountNumber) {
         adminService.approveAccount(accountNumber);
         return ResponseEntity.ok("Account approved successfully.");
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/reject/{accountNumber}")
     public ResponseEntity<String> rejectAccount(@PathVariable String accountNumber) {
         adminService.rejectAccount(accountNumber);

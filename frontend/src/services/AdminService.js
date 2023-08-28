@@ -6,6 +6,11 @@ class AdminService {
     return api.get('/account/view/all');
   }
 
+  viewAccount(accountNumber) {
+    return api.get(`/account/view/${accountNumber}`);
+
+  }
+
   updateAccountStatusApprove(accountNumber) {
     return api.put(`/admin/accept/${accountNumber}`);
   }

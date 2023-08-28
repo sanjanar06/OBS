@@ -6,16 +6,16 @@ const Home = () => {
   return (
     <div className="Home">
       <header className="Home-header">
-        <h1>Welcome to Our Banking App</h1>
+        <h1>WELCOME TO OUR BANK</h1>
         <p>Your Trusted Banking Partner</p>
         <div className="Button-container">
           <Link to="/login">
-            <button className="Button">Login</button>
+            <button className="Button">LOGIN</button>
           </Link>
           <Link to="/register">
-            <button className="Button">Register</button>
+            <button className="Button">REGISTER</button>
           </Link>
-          <Link to="/account">
+          <Link to="/accountCreation">
             <button className="Button">Apply Online for Account</button>
           </Link>
         </div>
