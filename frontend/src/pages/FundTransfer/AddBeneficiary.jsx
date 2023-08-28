@@ -66,6 +66,11 @@ function AddBeneficiary() {
         setSuccess('Beneficiary added successfull!');
         setResponseErrors('');
 
+      }).catch((error) => {
+        if (error.response.status === 500){
+          setResponseErrors(error.response.message);
+          setSuccess('');
+        }
       });
     }
 
