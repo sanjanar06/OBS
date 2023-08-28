@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.bank.springbackend.communication.Request.AccountRequest;
 import com.bank.springbackend.communication.Request.UserDetailsRequest;
 import com.bank.springbackend.communication.Response.AccountResponse;
 import com.bank.springbackend.entity.Account;
@@ -16,6 +17,7 @@ import com.bank.springbackend.exception.ResourceNotFoundException;
 import com.bank.springbackend.repository.AccountRepository;
 import com.bank.springbackend.repository.UserProfileRepository;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -100,6 +102,16 @@ public class AccountService {
         }
 
         return accountResponses;
+    }
+
+    @Transactional
+    public void updateAccount(AccountRequest request) {
+        Account account = accountRepository.findAccountByAccountNumber(request.getAccountNumber())
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        String.format("Account %s not found", request.getAccountNumber())));
+
+        account.setStatus(AccountStatusEnum.valueOf(request.getStatus())); // Status udated
+        accountRepository.save(account);
     }
 
 }

@@ -38,7 +38,7 @@ function AdminStatus() {
   }, [accounts]);
 
   const handleApproval = (accountNumber) => {
-    AdminService.updateAccountStatusApprove(accountNumber)
+    AdminService.updateAccountStatus(accountNumber, "ACCEPTED")
       .then((response) => {
         if (response.status === 200) {
           setAccounts((prevAccounts) =>
@@ -54,8 +54,7 @@ function AdminStatus() {
   };
 
   const handleRejection = (accountNumber) => {
-    console.log(accountNumber);
-    AdminService.updateAccountStatusReject(accountNumber)
+    AdminService.updateAccountStatus(accountNumber, "REJECTED")
       .then((response) => {
         if (response.status === 200) {
           setAccounts((prevAccounts) =>
@@ -105,13 +104,13 @@ function AdminStatus() {
               <td className="actions">
                 {/* {account.status === 'PENDING' && ( */}
                 {/* <> */}
-                <button className="approve-btn" 
-                  onClick={() => handleApproval(account.accountNumber)} 
+                <button className="approve-btn"
+                  onClick={() => handleApproval(account.accountNumber)}
                   disabled={account.status == 'ACCEPTED'}
                   style={{ backgroundColor: account.status === 'ACCEPTED' ? 'grey' : 'green' }}
-                  >Approve</button>
-                <button className="reject-btn" 
-                  onClick={() => handleRejection(account.accountNumber)} 
+                >Approve</button>
+                <button className="reject-btn"
+                  onClick={() => handleRejection(account.accountNumber)}
                   disabled={account.status == 'REJECTED'}
                   style={{ backgroundColor: account.status === 'REJECTED' ? 'grey' : 'red' }}>Reject</button>
                 {/* </>

@@ -11,13 +11,11 @@ class AdminService {
 
   }
 
-  updateAccountStatusApprove(accountNumber) {
-    return api.put(`/admin/accept/${accountNumber}`);
-  }
-
-  updateAccountStatusReject(accountNumber) {
-    return api.put(`/admin/reject/${accountNumber}`);
-
+  updateAccountStatus(accountNumber, status) {
+    return api.put('/account/update/status', {
+      accountNumber: accountNumber,
+      status: status
+    });
   }
 
   viewTransactions(accountNumber) {

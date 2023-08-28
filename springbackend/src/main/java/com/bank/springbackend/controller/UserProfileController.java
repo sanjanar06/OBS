@@ -3,7 +3,6 @@ package com.bank.springbackend.controller;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,13 +30,6 @@ public class UserProfileController {
     @GetMapping("/view/{accountNumber}")
     public UserProfile findUserByAccount(@PathVariable String accountNumber) {
         return userProfileService.getUserProfile(accountNumber);
-    }
-
-    // Admin :Delete rejected account opening forms
-    @DeleteMapping("/delete/{id}")
-    public String deleteUserProfile(@PathVariable("id") Integer accountId) {
-        userProfileService.deleteUserProfileById(accountId);
-        return "Deleted Profile Successfully";
     }
 
 }
