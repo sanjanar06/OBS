@@ -66,11 +66,8 @@ function AddBeneficiary() {
       AccountService.addBeneficiary(beneficiaryData).then((res) => {
         console.log("Added beneficiary");
         console.log(res.status);
-        // alert("Added beneficiary");
-        // const status = res.status;
-        // if (status === 200) {
-        //   setSuccess("Beneficiary Added");
-        // }
+        setSuccess('Beneficiary added successfull!');
+        setResponseErrors('');
                        
       });
     }
@@ -149,8 +146,6 @@ function AddBeneficiary() {
           </button>
           {responseErrors && <div className="error-message">{responseErrors}</div>}
           {success && <div className="success-message">{success}</div>}
-
-
         </div>
       </form>
     </div>

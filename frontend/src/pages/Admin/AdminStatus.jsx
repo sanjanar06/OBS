@@ -69,8 +69,15 @@ function AdminStatus() {
               <td className="actions">
                 {/* {account.status === 'PENDING' && ( */}
                 {/* <> */}
-                <button className="approve-btn" onClick={() => handleApproval(account.accountNumber)} disabled={account.status == 'ACCEPTED'}>Approve</button>
-                <button className="reject-btn" onClick={() => handleRejection(account.accountNumber)} disabled={account.status == 'REJECTED'}>Reject</button>
+                <button className="approve-btn" 
+                  onClick={() => handleApproval(account.accountNumber)} 
+                  disabled={account.status == 'ACCEPTED'}
+                  style={{ backgroundColor: account.status === 'ACCEPTED' ? 'grey' : 'green' }}
+                  >Approve</button>
+                <button className="reject-btn" 
+                  onClick={() => handleRejection(account.accountNumber)} 
+                  disabled={account.status == 'REJECTED'}
+                  style={{ backgroundColor: account.status === 'REJECTED' ? 'grey' : 'red' }}>Reject</button>
                 {/* </>
                 )} */}
               </td>
