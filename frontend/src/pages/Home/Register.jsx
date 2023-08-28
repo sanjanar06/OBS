@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
 import UserService from "../../services/UserService";
@@ -20,9 +20,9 @@ const InternetBanking = () => {
             navigate("/login");
         })
             .catch((error) => {
-                if (error.response.data.status === 500){
+                if (error.response.data.status === 404) {
                     setResponseError(error.response.data.message);
-                  }
+                }
             });
 
     }

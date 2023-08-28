@@ -10,22 +10,7 @@ function AdminTransaction() {
     if (searchAccountNumber !== '') {
       await AdminService.viewTransactions(searchAccountNumber)
         .then((response) => {
-          const transaction = response.data;
-
-          const isDebit = transaction.fromAccount === searchAccountNumber;
-          const isCredit = transaction.toAccount === searchAccountNumber;
-
-          const newResponse = {
-            toAccount: transaction.toAccount,
-            fromAccount: transaction.fromAccount,
-            amount: transaction.transactionAmount,
-            description: transaction.transactionDesc,
-            type: transaction.transactionType,
-            date: transaction.transactionDate,
-            isDebit,
-            isCredit
-          }
-          setTransactions(newResponse);
+          setTransactions(response.data);
           console.log(transactions);
 
         })
@@ -74,9 +59,9 @@ function AdminTransaction() {
             <tr key={transaction.transactionId}>
               <td>{transaction.toAccount}</td>
               <td>{transaction.fromAccount}</td>
-              <td style={{ color: transaction.isDebit ? 'red' : 'green' }} >{transaction.amount}</td>
-              <td>{transaction.date}</td>
-              <td>{transaction.type}</td>
+              <td>{transaction.transactionDate}</td>
+              <td>{transaction.transactionAmount}</td>
+              <td>{transaction.transactionType}</td>
             </tr>
           ))}
         </tbody>
