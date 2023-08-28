@@ -8,7 +8,6 @@ import BeneficiaryDropdown from './BeneficiaryDropdown';
 function RTGSPayment() {
   const [beneficiaries, setBeneficiaries] = useState([]);
   const [errors, setErrors] = useState({});
-  const [account, setAccount] = useState({});
   const [formData, setFormData] = useState({
     toAccount: '',
     transactionAmount: '',
@@ -35,7 +34,7 @@ function RTGSPayment() {
         console.log("Error fetching beneficiaries");
       });
 
-    
+
   }, []);
 
   const validateForm = () => {
@@ -81,12 +80,12 @@ function RTGSPayment() {
         setResponseSuccess("Transfer Successfull!")
         setReponseError('');
       })
-      .catch((error) => {
-        if (error.response.data.status === 500 && error.response.data.message === "Insufficient Balance"){
-          setReponseError(error.response.data.message);
-          setResponseSuccess('')
-        }
-      });
+        .catch((error) => {
+          if (error.response.data.status === 500 && error.response.data.message === "Insufficient Balance") {
+            setReponseError(error.response.data.message);
+            setResponseSuccess('')
+          }
+        });
 
     }
   }
@@ -108,8 +107,8 @@ function RTGSPayment() {
               }}
             />
             {errors.toAccount && (
-            <div className="error">{errors.toAccount}</div>
-          )}
+              <div className="error">{errors.toAccount}</div>
+            )}
           </label>
           {/* <input
             type="text"
@@ -134,7 +133,7 @@ function RTGSPayment() {
               handleInputChange('transactionAmount', e.target.value)
               setErrors({ ...errors, transactionAmount: '' });
             }} />
-            {errors.transactionAmount && (
+          {errors.transactionAmount && (
             <div className="error">{errors.transactionAmount}</div>
           )}
         </div>
@@ -146,7 +145,7 @@ function RTGSPayment() {
             name="transactionDesc"
             value={formData.transactionDesc}
             onChange={e => handleInputChange('transactionDesc', e.target.value)} />
-            {errors.transactionDesc && (
+          {errors.transactionDesc && (
             <div className="error">{errors.transactionDesc}</div>
           )}
         </div>

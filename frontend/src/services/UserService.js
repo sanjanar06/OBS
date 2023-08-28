@@ -13,8 +13,6 @@ class UserService {
         return api.get(`/userProfile/view/${localStorage.getItem("accountNumber")}`);
     }
 
-
-
 }
 
 export default new UserService();

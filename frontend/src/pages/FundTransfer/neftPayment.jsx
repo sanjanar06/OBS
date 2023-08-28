@@ -6,7 +6,6 @@ import BeneficiaryDropdown from './BeneficiaryDropdown';
 function NEFTPayment() {
   const [beneficiaries, setBeneficiaries] = useState([]);
   const [errors, setErrors] = useState({});
-  const [account, setAccount] = useState({});
 
   const [responseError, setReponseError] = useState('');
   const [responseSuccess, setResponseSuccess] = useState('');
@@ -21,7 +20,7 @@ function NEFTPayment() {
         console.log("Error fetching beneficiaries");
       });
 
-    
+
 
   }, []);
 
@@ -79,12 +78,12 @@ function NEFTPayment() {
         setResponseSuccess("Transfer Successfull!")
         setReponseError('');
       })
-      .catch((error) => {
-        if (error.response.data.status === 500 && error.response.data.message === "Insufficient Balance"){
-          setReponseError(error.response.data.message);
-          setResponseSuccess('')
-        }
-      });
+        .catch((error) => {
+          if (error.response.data.status === 500 && error.response.data.message === "Insufficient Balance") {
+            setReponseError(error.response.data.message);
+            setResponseSuccess('')
+          }
+        });
 
     }
   }
@@ -102,7 +101,7 @@ function NEFTPayment() {
               setErrors({ ...errors, toAccount: '' });
             }}
           />
-           {errors.toAccount && (
+          {errors.toAccount && (
             <div className="error">{errors.toAccount}</div>
           )}
           {/* <input
@@ -136,7 +135,7 @@ function NEFTPayment() {
             <div className="error">{errors.transactionAmount}</div>
           )}
         </div>
-        
+
         <div className="form-group">
           <label> Transaction Desc:</label>
           <input
@@ -147,7 +146,7 @@ function NEFTPayment() {
             value={formData.transactionDesc}
             onChange={e => handleInputChange('transactionDesc', e.target.value)}
           />
-           {errors.transactionDesc && (
+          {errors.transactionDesc && (
             <div className="error">{errors.transactionDesc}</div>
           )}
         </div>

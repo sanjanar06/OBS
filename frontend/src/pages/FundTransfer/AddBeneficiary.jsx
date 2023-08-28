@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import AccountService from '../../services/AccountService';
 import '../style/AddBeneficiary.css'; // Import your custom CSS file for styling
 
@@ -23,8 +22,6 @@ function AddBeneficiary() {
     });
   };
 
-  const navigate = useNavigate();
-
   const validateForm = () => {
     let isValid = true;
     const newErrors = {};
@@ -39,7 +36,7 @@ function AddBeneficiary() {
       isValid = false;
     }
 
-    if (beneficiaryData.beneficiaryAccountNumber === localStorage.getItem('accountNumber')){
+    if (beneficiaryData.beneficiaryAccountNumber === localStorage.getItem('accountNumber')) {
       newErrors.beneficiaryAccountNumber = "You cannot add yourself as a beneficiary!";
       isValid = false;
     }
@@ -48,7 +45,7 @@ function AddBeneficiary() {
       newErrors.reenteredAccountNumber = '*Account numbers do not match';
       isValid = false;
     }
-    if (beneficiaryData.beneficiaryAccountNumber.length != 12) {
+    if (beneficiaryData.beneficiaryAccountNumber.length !== 12) {
       newErrors.beneficiaryAccountNumber = '*Enter a valid account number';
       isValid = false;
     }
@@ -62,13 +59,13 @@ function AddBeneficiary() {
     event.preventDefault();
 
     if (validateForm()) {
-      
+
       AccountService.addBeneficiary(beneficiaryData).then((res) => {
         console.log("Added beneficiary");
         console.log(res.status);
         setSuccess('Beneficiary added successfull!');
         setResponseErrors('');
-                       
+
       });
     }
 
