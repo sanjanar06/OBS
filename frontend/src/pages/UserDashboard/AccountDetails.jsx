@@ -34,7 +34,7 @@ function AccountDetails() {
             {details.map((beneficiary, index) => (
                 <tr key={beneficiary.id}>
                     {/* <td>{index + 1}</td> */}
-                    <td>{beneficiary.Name}</td>
+                    <td>{beneficiary.accountHolderName}</td>
                     <td>{beneficiary.accountNumber}</td>
                     <td>{beneficiary.accountType}</td>
                     <td>beneficiary.accountBalance</td>
