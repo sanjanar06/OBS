@@ -67,4 +67,20 @@ body {
   border-radius: 10px;
 }
 
+.submenu-icon.open {
+  transform: rotate(90deg);
+}
+
+.submenu {
+  list-style: none;
+  padding-left: 20px;
+  display: none;
+}
+
+.submenu.open {
+  display: block;
+  position: relative; /* Add relative positioning */
+  top: -5px; /* Adjust this value as needed */
+  left: 0;
+}
 /* ... (other styles) */

@@ -46,7 +46,8 @@ public class User implements UserDetails {
 	@Column(name = "trans_password", nullable = true)
 	private String transactionPassword;
 
-	@OneToOne(mappedBy = "user")
+	@OneToOne(mappedBy = "user", optional = true)
+	@JsonManagedReference
 	private Account account;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST })

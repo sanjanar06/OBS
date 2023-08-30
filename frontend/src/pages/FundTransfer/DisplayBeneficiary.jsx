@@ -6,14 +6,7 @@ function DisplayBeneficiary() {
     const [beneficiaries, setBeneficiaries] = useState([]);
 
     useEffect(() => {
-        // axios.get('http://localhost:3001/beneficiary')
-        //   .then(response => {
-        //     console.log(response.data);
-        //     setBeneficiaries(response.data);
-        //   })
-        //   .catch(error => {
-        //     console.error('Error fetching beneficiaries:', error);
-        //   });
+
         AccountService.viewBeneficiaries().then((response) => {
             console.log(response.data);
             setBeneficiaries(response.data);
@@ -29,7 +22,7 @@ function DisplayBeneficiary() {
             <table>
                 <thead>
                     <tr>
-                        <th>Serial Number</th>
+                        <th>SNo.</th>
                         <th>Beneficiary Name</th>
                         <th>Beneficiary Account Number</th>
                         <th>Nick Name</th>

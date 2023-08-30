@@ -1,5 +1,4 @@
 import api from './api';
-const accountNumber = localStorage.getItem("accountNumber")
 
 class AccountService {
 
@@ -20,9 +19,13 @@ class AccountService {
         });
     }
 
+    viewAccount() {
+        return api.get(`/account/view/${localStorage.getItem("accountNumber")}`);
+    }
+
     addBeneficiary(details) {
         return api.post("/beneficiary/create", {
-            senderAccount: accountNumber,
+            senderAccount: localStorage.getItem("accountNumber"),
             beneficiaryAccount: details.beneficiaryAccountNumber,
             beneficiaryName: details.beneficiaryName,
             beneficiaryNickName: details.beneficiaryNickName
@@ -30,11 +33,11 @@ class AccountService {
     }
 
     viewBeneficiaries() {
-        return api.get(`/beneficiary/view/all/${accountNumber}`);
+        return api.get(`/beneficiary/view/all/${localStorage.getItem("accountNumber")}`);
     }
 
-    viewBeneficiary(beneficiaryAccount) {
-        return api.get(`/beneficiary/view/${beneficiaryAccount}`);
+    viewBeneficiary(details) {
+        return api.get(`/beneficiary/view?senderAccount=${details.fromAccount}&beneficiaryAccount=${details.toAccount}`);
     }
 
     createTransaction(details) {
@@ -42,13 +45,13 @@ class AccountService {
             transactionType: details.transactionType,
             transactionDesc: details.transactionDesc,
             transactionAmount: details.transactionAmount,
-            fromAccount: accountNumber,
+            fromAccount: localStorage.getItem("accountNumber"),
             toAccount: details.toAccount
         });
     }
 
     viewTransactions() {
-        return api.get(`/transaction/view/${accountNumber}`);
+        return api.get(`/transaction/view/${localStorage.getItem("accountNumber")}`);
     }
 
 

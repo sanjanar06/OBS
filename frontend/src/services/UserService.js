@@ -9,7 +9,9 @@ class UserService {
         });
     }
 
-
+    viewProfile() {
+        return api.get(`/userProfile/view/${localStorage.getItem("accountNumber")}`);
+    }
 
 }
 

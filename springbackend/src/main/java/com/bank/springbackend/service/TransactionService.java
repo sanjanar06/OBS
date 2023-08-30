@@ -11,6 +11,7 @@ import com.bank.springbackend.communication.Request.TransactionHistoryRequest;
 import com.bank.springbackend.communication.Request.TransactionRequest;
 import com.bank.springbackend.entity.Account;
 import com.bank.springbackend.entity.Transaction;
+import com.bank.springbackend.exception.BalanceCheckException;
 import com.bank.springbackend.repository.AccountRepository;
 import com.bank.springbackend.repository.TransactionRepository;
 
@@ -29,16 +30,23 @@ public class TransactionService {
                 Account toAccount = accountRepository.findAccountByAccountNumber(request.getToAccount()).orElse(null);
                 Account fromAccount = accountRepository.findAccountByAccountNumber(request.getFromAccount())
                                 .orElse(null);
+                Double amount = request.getTransactionAmount();
+
+                if (fromAccount != null) {
+                        if (amount > fromAccount.getAccountBalance()) {
+                                throw new BalanceCheckException("Insufficient Balance");
+                        }
+
+                        Double newBalanceFrom = fromAccount.getAccountBalance() - amount;
+                        fromAccount.setAccountBalance(newBalanceFrom);
+                        accountRepository.save(fromAccount);
+
+                }
 
                 if (toAccount != null) {
-                        Double newBalance = toAccount.getAccountBalance() + request.getTransactionAmount();
-                        toAccount.setAccountBalance(newBalance);
+                        Double newBalanceTo = toAccount.getAccountBalance() + amount;
+                        toAccount.setAccountBalance(newBalanceTo);
                         accountRepository.save(toAccount);
-                }
-                if (fromAccount != null) {
-                        Double newBalance = fromAccount.getAccountBalance() - request.getTransactionAmount();
-                        fromAccount.setAccountBalance(newBalance);
-                        accountRepository.save(fromAccount);
                 }
 
                 Transaction transaction = Transaction.builder()

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
 import UserService from "../../services/UserService";
@@ -11,6 +11,8 @@ const InternetBanking = () => {
     const loginPassword = watch('loginPassword')
     const transactionPassword = watch('transactionPassword')
 
+    const [responseError, setResponseError] = useState('');
+
     const onSubmit = (data) => {
 
         UserService.registerUser(data).then((res) => {
@@ -18,7 +20,9 @@ const InternetBanking = () => {
             navigate("/login");
         })
             .catch((error) => {
-                console.log("Error in sending request");
+                if (error.response.data.status === 404) {
+                    setResponseError(error.response.data.message);
+                }
             });
 
     }
@@ -70,6 +74,8 @@ const InternetBanking = () => {
                 <div>
                     <button type="submit">Register</button>
                 </div>
+
+                {responseError && <div className="error-message">{responseError}</div>}
             </form>
         </div>
     )

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import AccountService from '../../services/AccountService';
 import '../style/AddBeneficiary.css'; // Import your custom CSS file for styling
 
@@ -12,6 +11,10 @@ function AddBeneficiary() {
     beneficiaryNickName: '',
   });
 
+  const [errors, setErrors] = useState({});
+  const [responseErrors, setResponseErrors] = useState();
+  const [success, setSuccess] = useState('');
+
   const handleInputChange = (field, value) => {
     setBeneficiaryData({
       ...beneficiaryData,
@@ -19,25 +22,58 @@ function AddBeneficiary() {
     });
   };
 
-  const navigate = useNavigate();
+  const validateForm = () => {
+    let isValid = true;
+    const newErrors = {};
 
+    if (!beneficiaryData.beneficiaryName) {
+      newErrors.beneficiaryName = '*Beneficiary name is required';
+      isValid = false;
+    }
+
+    if (!beneficiaryData.beneficiaryAccountNumber) {
+      newErrors.beneficiaryAccountNumber = '*Beneficiary account number is required';
+      isValid = false;
+    }
+
+    if (beneficiaryData.beneficiaryAccountNumber === localStorage.getItem('accountNumber')) {
+      newErrors.beneficiaryAccountNumber = "You cannot add yourself as a beneficiary!";
+      isValid = false;
+    }
+
+    if (beneficiaryData.beneficiaryAccountNumber !== beneficiaryData.reenteredAccountNumber) {
+      newErrors.reenteredAccountNumber = '*Account numbers do not match';
+      isValid = false;
+    }
+    if (beneficiaryData.beneficiaryAccountNumber.length !== 12) {
+      newErrors.beneficiaryAccountNumber = '*Enter a valid account number';
+      isValid = false;
+    }
+
+    setErrors(newErrors);
+    return isValid;
+  };
 
   const handleProceedClick = async (event) => {
-    if (beneficiaryData.beneficiaryAccountNumber != beneficiaryData.reenteredAccountNumber) {
-      alert("Account number not matched,Please re-enter!!");
 
-    }
-    else {
-      event.preventDefault();
+    event.preventDefault();
+
+    if (validateForm()) {
+
       AccountService.addBeneficiary(beneficiaryData).then((res) => {
         console.log("Added beneficiary");
-        console.log(res.data);
-        alert("Added beneficiary");
-      })
-        .catch(() => {
-          console.log("Error adding beneficiary");
-        });
+        console.log(res.status);
+        setSuccess('Beneficiary added successfull!');
+        setResponseErrors('');
+
+      }).catch((error) => {
+        if (error.response.data.status === 500) {
+          setResponseErrors(error.response.data.message);
+          setSuccess('');
+        }
+      });
     }
+
   }
 
 
@@ -50,10 +86,18 @@ function AddBeneficiary() {
           <input
             type="text"
             id="beneficiaryName"
+            required
             name="beneficiaryName"
             value={beneficiaryData.beneficiaryName}
-            onChange={e => handleInputChange('beneficiaryName', e.target.value)}
+            onChange={e => {
+              handleInputChange('beneficiaryName', e.target.value);
+              setErrors({ ...errors, beneficiaryName: '' });
+            }}
           />
+          {errors.beneficiaryName && (
+            <div className="error">{errors.beneficiaryName}</div>
+          )}
+
         </div>
         <div className="form-group">
           <label htmlFor="beneficiaryAccountNumber">Beneficiary Account Number:</label>
@@ -62,8 +106,15 @@ function AddBeneficiary() {
             id="beneficiaryAccountNumber"
             name="beneficiaryAccountNumber"
             value={beneficiaryData.beneficiaryAccountNumber}
-            onChange={e => handleInputChange('beneficiaryAccountNumber', e.target.value)}
+            onChange={e => {
+              handleInputChange('beneficiaryAccountNumber', e.target.value);
+              setErrors({ ...errors, beneficiaryAccountNumber: '' });
+            }}
           />
+          {errors.beneficiaryAccountNumber && (
+            <div className="error">{errors.beneficiaryAccountNumber}</div>
+          )}
+
         </div>
         <div className="form-group">
           <label htmlFor="reenteredAccountNumber">Re-enter Account Number:</label>
@@ -72,8 +123,14 @@ function AddBeneficiary() {
             id="reenteredAccountNumber"
             name="reenteredAccountNumber"
             value={beneficiaryData.reenteredAccountNumber}
-            onChange={e => handleInputChange('reenteredAccountNumber', e.target.value)}
+            onChange={(e) => {
+              handleInputChange('reenteredAccountNumber', e.target.value);
+              setErrors({ ...errors, reenteredAccountNumber: '' }); // Clear validation error
+            }}
           />
+          {errors.reenteredAccountNumber && (
+            <div className="error">{errors.reenteredAccountNumber}</div>
+          )}
         </div>
         <div className="form-group">
           <label htmlFor="beneficiaryNickName">Nick Name:</label>
@@ -87,17 +144,15 @@ function AddBeneficiary() {
         </div>
         <div className="button-container">
           <button type="button" className="button proceed-button" onClick={handleProceedClick}>
-            Proceed
+            ADD
           </button>
-          <Link to="/displaybeneficiaries">
-            <button type="button" className="button proceed-button" >
-              VIEW BENEFICIARIES
-            </button>
-          </Link>
+          {responseErrors && <div className="error-message">{responseErrors}</div>}
+          {success && <div className="success-message">{success}</div>}
         </div>
       </form>
     </div>
   );
 }
+
 
 export default AddBeneficiary;

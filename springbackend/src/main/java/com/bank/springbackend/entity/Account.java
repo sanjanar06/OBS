@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.bank.springbackend.entity.Enum.AccountStatusEnum;
 import com.bank.springbackend.entity.Enum.AccountTypeEnum;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -26,10 +28,9 @@ import lombok.NoArgsConstructor;
 public class Account {
 
     @Id
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String accountNumber;
 
-    private Double accountBalance; 
+    private Double accountBalance;
 
     @Enumerated(EnumType.STRING)
     private AccountTypeEnum accountType;
@@ -38,13 +39,15 @@ public class Account {
     private AccountStatusEnum status;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
+    @JsonBackReference
     private User user;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference
     private UserProfile userProfile;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true , fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Beneficiary> beneficiaries;
-
 
 }
